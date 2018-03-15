@@ -1,5 +1,21 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+
+import BuscarEquip from './BuscarEquip'
+
+import BuscarEvento from './BuscarEvento'
+import BuscarPartido from './BuscarPartido'
+import Estadisticasusuario  from './Estadisticasusuario'
+
+import Infousuario from './Info-usuario'
+
+import Eventos from './Eventos'
+
+import Misequipos from './Mis_equipos'
+import Miseventos from './Mis_equipos'
+import Mispartidos from './Mis_equipos'
+
+
 import Landing from './Landing'
 import Register from './Register'
 import Login from './Login'
@@ -9,7 +25,7 @@ import Equipos from './Equipos'
 import Equipo from './Equipo'
 import Torneo from './Torneo'
 import Configuracion from './Configuracion'
-
+import Inicio from './Inicio'
 
 
 // The Main component renders one of the three provided
@@ -20,15 +36,23 @@ import Configuracion from './Configuracion'
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/' component={Landing}/>
-      <Route path='/register' component={Register}/>
-      <Route path='/login' component={Login}/>
+      <Route exact path='/Landing' component={Landing}/>
+      <Route exact path='/' component={Inicio}/>
+      <Route exact path='/register' component={Register}/>
+      <Route exact path='/login' component={Login}/>
       <Route path='/canchas' component={Canchas}/>
       <Route path='/equipo' component={Equipo}/>
-      <Route path='/equipos' component={Equipos}/>
-      <Route path='/perfil' component={Perfil}/>
+      <Route exact path='/equipos' component={Equipos}/>
+      <Route exact path='/perfil' component={Perfil}/>
       <Route path='/Torneo' component={Torneo}/>
-      <Route path='/Configuracion' component={Configuracion}/>
+      <Route path='/BuscarEquip' component={BuscarEquip}/>
+      <Route path='/BuscarEvento' component={BuscarEvento}/>
+      <Route path='/BuscarPartido' component={BuscarPartido}/>
+      <Route path='/Estadisticasusuario' component={Estadisticasusuario}/>
+      <Route exact path='/Info-usuario' component={Infousuario}/>
+      <Route exact path='/Misequipos' component={Misequipos}/>
+      <Route exact path='/Miseventos' component={Miseventos}/>
+      <Route exact path='/Mispartidos' component={Mispartidos}/>
     </Switch>
   </main>
 )

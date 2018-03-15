@@ -5,8 +5,8 @@ const Canchas = () => (
 	  <h1>Canchas!</h1>
     <p> esta es la pagina de las canchas aqui deberia salir el mapa y lo demas </p>
          
-	  		<Link to='/login'><button>Login</button></Link>	
-	  		<Link to='/register'><button>Registro</button></Link>	  		  			  	
+	  		<Link to='/'><button>Inicio</button></Link>	
+	  		<Link to='/BuscarPartido'><button>Buscar partido</button></Link>	  		  			  	
 	  </div>
 
 

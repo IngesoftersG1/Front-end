@@ -7,8 +7,8 @@ const Configuracion = () => (
 	  	 <h1>configuracion!</h1>
          <p> cambios y ediciones al usuario y o programa </p>
          
-	  		<Link to='/login'><button>Login</button></Link>	
-	  		<Link to='/register'><button>Registro</button></Link>	  		  			  	
+	  		<Link to='/'><button>Inicio</button></Link>	
+	  			  		  			  	
 	  </div>
 	</div>
   

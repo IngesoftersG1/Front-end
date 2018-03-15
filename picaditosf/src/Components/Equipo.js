@@ -7,8 +7,8 @@ const Equipo = () => (
 	  	 <h1>Equipos</h1>
          <p> pagina para los equipos por medio de las rutas deberia poder ser indexada a la pagina dde cada uno de los usuarios</p>
   
-	  		<Link to='/login'><button>Login</button></Link>	
-	  		<Link to='/register'><button>Registro</button></Link>	  		  			  	
+	  		<Link to='/Misequipos'><button>ver mis equipos</button></Link>	
+	  		<Link to='/BuscarEquip'><button>buscar equipo</button></Link>	  		  			  	
 	  </div>
 	</div>  
   
