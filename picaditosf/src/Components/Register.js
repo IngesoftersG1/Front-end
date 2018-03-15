@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
 
 // The Roster component matches one of two different routes
 // depending on the full pathname
@@ -31,6 +31,7 @@ const Register = () => (
 	    	</label>
 
 		    <button type="submit">Crear cuenta</button>
+		    <Link to='/'><button>Back</button></Link>
 		</div>	    
   	</div>
   </div>

@@ -1,22 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Torneo = () => (
-    
-    
-     <div>
+const Configuracion = () => (
+   <div>
 	  <div className="cont1">    
-	   <h1>Welcome to Picaditos!</h1>
-       <p> Torneos disponibles </p>
-       <p> descripcion </p>
-       <p> premios </p>
+	  	 <h1>configuracion!</h1>
+         <p> cambios y ediciones al usuario y o programa </p>
+         
 	  		<Link to='/login'><button>Login</button></Link>	
 	  		<Link to='/register'><button>Registro</button></Link>	  		  			  	
 	  </div>
-	</div>   
-    
-
-   
+	</div>
+  
 )
 
-export default Torneo
+export default Configuracion

@@ -8,6 +8,9 @@ import Perfil from './Perfil'
 import Equipos from './Equipos'
 import Equipo from './Equipo'
 import Torneo from './Torneo'
+import Configuracion from './Configuracion'
+
+
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -25,6 +28,7 @@ const Main = () => (
       <Route path='/equipos' component={Equipos}/>
       <Route path='/perfil' component={Perfil}/>
       <Route path='/Torneo' component={Torneo}/>
+      <Route path='/Configuracion' component={Configuracion}/>
     </Switch>
   </main>
 )

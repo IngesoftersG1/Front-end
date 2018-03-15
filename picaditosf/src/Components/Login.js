@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "./Login.css";
-
+import { Link } from 'react-router-dom'
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -28,9 +28,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="Login cont1">
-        <img className="logo1"
-      src="https://cdn0.iconfinder.com/data/icons/cup/154/football-ball-fire-sport-512.png" />
+      <div className="Login">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
@@ -57,8 +55,12 @@ export default class Login extends Component {
           >
             Login
           </Button>
+          <Link to='/'><button>Back</button></Link>
         </form>
+      
+      
       </div>
+      
     );
   }
 }
