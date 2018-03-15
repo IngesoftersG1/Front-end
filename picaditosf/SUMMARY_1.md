@@ -1,20 +1,23 @@
 ## Front End picaditos app
 
 ## Features
-se agrego una carpeta Componentstree donde se encuentra el arbol de componentes de proyecto en general esta versionado de manera que se puedan ver los componentes descartados o los q se añadiran en las siguientes versiones
 
-se agregaron las paginas de login,register y landing
+Se agregó una carpeta Componentstree donde se encuentra el árbol de componentes de proyecto en general, esta versionado de manera que se puedan ver los componentes descartados o los que se añadiran en las siguientes versiones.
 
-se crearon las rutas para la navegacion de la aplicacion junto a los respectivos componentes que podemos ver el el archivo ./src/Componentstree/components-tree.png
+Se agregaron las paginas de login, register y landing de la aplicación, con sus respectivos formularios y estilos.
 
-cada ruta retorna un vista basica con informacion
+Se crearon las rutas para la navegacion de la aplicacion junto a los respectivos componentes que podemos ver el el archivo ./src/Componentstree/components-tree.png
 
-## next features
+Cada ruta retorna un vista basica con informacion.
 
-vistas terminadas con su propio estilo de css 
+## Next features
 
-flujos completos de la aplicacion 
+-Vistas terminadas con su propio estilo de css.
 
-actualizacion de las vistas ya implementadas 
+-Flujos completos de la aplicacion.
 
-envio de request de cada uno de los formularios y vistas que lo requieran
+-Actualizacion de las vistas ya implementadas. 
+
+-Envio de request de cada uno de los formularios y vistas que lo requieran.
+
+-Funcionamiento de mapa de canchas, ubicado en el componente Canchas.
