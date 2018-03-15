@@ -28,7 +28,9 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="Login">
+      <div className="Login cont1">
+        <img className="logo1"
+      src="https://cdn0.iconfinder.com/data/icons/cup/154/football-ball-fire-sport-512.png" />
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
