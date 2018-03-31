@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import "./Login.css";
 import { Link } from 'react-router-dom'
+import '../styles/styles.css'
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,7 @@ export default class Login extends Component {
   }
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    return this.state.email.length > 0 && this.state.password.length > 4;
   }
 
   handleChange = event => {
@@ -23,12 +24,13 @@ export default class Login extends Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault();
+    event.preventDefault();    
+    console.log(this.state)
   }
 
   render() {
     return (
-      <div className="Login">
+      <div className="cont_1">
         <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="email" bsSize="large">
             <ControlLabel>Email</ControlLabel>
@@ -47,6 +49,14 @@ export default class Login extends Component {
               type="password"
             />
           </FormGroup>
+
+          <div className="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"/>Remember me
+            </label>
+          </div>
+
+
           <Button
             block
             bsSize="large"
@@ -55,10 +65,7 @@ export default class Login extends Component {
           >
             Login
           </Button>
-          <Link to='/'><button>Back</button></Link>
-        </form>
-      
-      
+        </form>            
       </div>
       
     );

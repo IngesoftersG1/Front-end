@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import './styles.css'
 
 const Landing = () => (
   <div className="page">
@@ -30,6 +29,7 @@ const Landing = () => (
 	    	</label>
 
 		    <button type="submit">Crear cuenta</button>
+		    <h5 class="card-title">Special title treatment</h5>
 		    
 		</div>	    
   	</div>

@@ -1,0 +1,65 @@
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+/*
+LANDING STYLES
+*/
+
+h1{
+	color: white;
+	font-weight: bold;
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  margin: 10px;
+  color: #333;
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
+
+.logo1{
+	margin-top: 50px;
+	width: 100px;
+}
+
+/*
+LOGIN STTYLES
+*/
+
+.cont_1{	
+	background-color: rgba(36, 165, 38, 0.5);
+	max-width: 550px;
+	padding: 50px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+/*
+REGISTER STYLES
+*/
+
+#form1{
+	text-align: left;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #333;
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
+
+/*
+CANCHAS
+*/
+
