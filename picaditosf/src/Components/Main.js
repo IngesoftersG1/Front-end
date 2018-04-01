@@ -26,6 +26,7 @@ import Equipo from './Equipo'
 import Torneo from './Torneo'
 import Configuracion from './Configuracion'
 import Inicio from './Inicio'
+import Lostpass from './Lostpass'
 
 
 // The Main component renders one of the three provided
@@ -53,6 +54,7 @@ const Main = () => (
       <Route exact path='/Misequipos' component={Misequipos}/>
       <Route exact path='/Miseventos' component={Miseventos}/>
       <Route exact path='/Mispartidos' component={Mispartidos}/>
+      <Route exact path='/Lostpass' component={Lostpass}/>
     </Switch>
   </main>
 )
