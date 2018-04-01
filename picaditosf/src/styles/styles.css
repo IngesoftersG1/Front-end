@@ -8,6 +8,19 @@ a:focus,
 a:hover {
   color: #fff;
 }
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  line-height: 50px; /* Vertically center the text there */
+  background-color:  rgba(36, 165, 38, 0);
+  color: white;
+}
+
 /*
 LANDING STYLES
 */
@@ -57,6 +70,18 @@ REGISTER STYLES
   color: #333;
   background-color: #fff;
   border: .05rem solid #fff;
+}
+
+/*
+LOGIN
+*/
+
+.profile-img{	
+	max-width: 100px;
+}
+
+.tablink{
+	margin: 10px;
 }
 
 /*

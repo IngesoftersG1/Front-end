@@ -27,7 +27,6 @@ import Torneo from './Torneo'
 import Configuracion from './Configuracion'
 import Inicio from './Inicio'
 
-
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
 // and /schedule routes will match any pathname that starts
@@ -44,6 +43,7 @@ const Main = () => (
       <Route path='/equipo' component={Equipo}/>
       <Route exact path='/equipos' component={Equipos}/>
       <Route exact path='/perfil' component={Perfil}/>
+      <Route path='/eventos' component={Eventos}/>
       <Route path='/Torneo' component={Torneo}/>
       <Route path='/BuscarEquip' component={BuscarEquip}/>
       <Route path='/BuscarEvento' component={BuscarEvento}/>

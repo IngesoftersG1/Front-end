@@ -6,8 +6,7 @@ import './index.css';
 
 render((
   <BrowserRouter>
-    <App />
-   
+    <App />   
   </BrowserRouter>
 ), document.getElementById('root'));
 

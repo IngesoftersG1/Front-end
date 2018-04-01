@@ -6,13 +6,12 @@ import '../styles/styles.css'
 
 const Canchas = () => (
   <div className="cont_1">    
-	  <h1>Canchas!</h1>
+	  <h2>Canchas</h2>
     	<p> esta es la pagina de las canchas aqui deberia salir el mapa y lo demas </p>
-    	<MapContainer />
+    	{/*<MapContainer />*/}
 	  	<Link to='/'><button>Inicio</button></Link>	
 	  	<Link to='/BuscarPartido'><button>Buscar partido</button></Link>	  		  			  	
 	  </div>
-
 
 )
 

@@ -16,10 +16,10 @@ const Header = () => (
             <Link className="nav-link" to='/perfil'>Perfil</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to='/torneo'>Torneo</Link>
+            <Link className="nav-link" to='/eventos'>Torneos</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to='/equipo'>Equipos</Link>
+            <Link className="nav-link" to='/equipos'>Equipos</Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to='/canchas'>Canchas</Link>
@@ -27,11 +27,13 @@ const Header = () => (
         </ul>
         <form className="form-inline mt-2 mt-md-0">
           <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
-          <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <a href="#" className="btn">
+            <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_search-128.png" width="25"/>
+          </a>
         </form>
       </div>
     </nav>
-
+{/*}
     <nav>
       <ul>
         <li><Link to='/'>Landing</Link></li>
@@ -53,7 +55,7 @@ const Header = () => (
         <li><Link to='/eventos'>eventos</Link></li>
       </ul>
     </nav>
-    
+*/}
   </header>
 )
 
