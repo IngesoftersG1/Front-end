@@ -6,7 +6,7 @@ import BuscarEquip from './BuscarEquip'
 import BuscarEvento from './BuscarEvento'
 import BuscarPartido from './BuscarPartido'
 import Estadisticasusuario  from './Estadisticasusuario'
-
+import Lostpass from './Lostpass'
 import Infousuario from './Info-usuario'
 
 import Eventos from './Eventos'
@@ -53,6 +53,7 @@ const Main = () => (
       <Route exact path='/Misequipos' component={Misequipos}/>
       <Route exact path='/Miseventos' component={Miseventos}/>
       <Route exact path='/Mispartidos' component={Mispartidos}/>
+      <Route exact path='/Lostpass' component={Lostpass}/>
     </Switch>
   </main>
 )
