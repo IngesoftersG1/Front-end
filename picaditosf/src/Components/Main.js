@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Switch, Route } from 'react-router-dom'
 
 import BuscarEquip from './BuscarEquip'
@@ -6,7 +7,7 @@ import BuscarEquip from './BuscarEquip'
 import BuscarEvento from './BuscarEvento'
 import BuscarPartido from './BuscarPartido'
 import Estadisticasusuario  from './Estadisticasusuario'
-import Lostpass from './Lostpass'
+
 import Infousuario from './Info-usuario'
 
 import Eventos from './Eventos'
@@ -15,7 +16,7 @@ import Misequipos from './Mis_equipos'
 import Miseventos from './Mis_equipos'
 import Mispartidos from './Mis_equipos'
 
-
+import PrivateRoute from './Private_route'
 import Landing from './Landing'
 import Register from './Register'
 import Login from './Login'
@@ -26,6 +27,8 @@ import Equipo from './Equipo'
 import Torneo from './Torneo'
 import Configuracion from './Configuracion'
 import Inicio from './Inicio'
+import Lostpass from './Lostpass'
+
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -40,19 +43,18 @@ const Main = () => (
       <Route exact path='/register' component={Register}/>
       <Route exact path='/login' component={Login}/>
       <Route path='/canchas' component={Canchas}/>
-      <Route path='/equipo' component={Equipo}/>
+      <PrivateRoute path='/equipo' component={Equipo}/>
       <Route exact path='/equipos' component={Equipos}/>
-      <Route exact path='/perfil' component={Perfil}/>
-      <Route path='/eventos' component={Eventos}/>
+      <PrivateRoute exact path='/perfil' component={Perfil}/>
       <Route path='/Torneo' component={Torneo}/>
       <Route path='/BuscarEquip' component={BuscarEquip}/>
       <Route path='/BuscarEvento' component={BuscarEvento}/>
       <Route path='/BuscarPartido' component={BuscarPartido}/>
       <Route path='/Estadisticasusuario' component={Estadisticasusuario}/>
-      <Route exact path='/Info-usuario' component={Infousuario}/>
-      <Route exact path='/Misequipos' component={Misequipos}/>
-      <Route exact path='/Miseventos' component={Miseventos}/>
-      <Route exact path='/Mispartidos' component={Mispartidos}/>
+      <PrivateRoute exact path='/Info-usuario' component={Infousuario}/>
+      <PrivateRoute exact path='/Misequipos' component={Misequipos}/>
+      <PrivateRoute exact path='/Miseventos' component={Miseventos}/>
+      <PrivateRoute exact path='/Mispartidos' component={Mispartidos}/>
       <Route exact path='/Lostpass' component={Lostpass}/>
     </Switch>
   </main>
