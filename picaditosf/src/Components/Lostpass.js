@@ -3,18 +3,17 @@ import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 import '../styles/styles.css'
 
-export default class Login extends Component {
+export default class Lostpass extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: "",
-      password: ""
     };
   }
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 4;
+    return this.state.email.length > 0 ;
   }
 
   handleChange = event => {
@@ -41,21 +40,6 @@ export default class Login extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <Link className="nav-link" to='/Lostpass'>Forgot Password</Link>
-          <div className="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"/>Remember me
-            </label>
-          </div>
-
 
           <Button
             block
@@ -63,7 +47,7 @@ export default class Login extends Component {
             disabled={!this.validateForm()}
             type="submit"
           >
-            Login
+            Send
           </Button>
         </form>            
       </div>
