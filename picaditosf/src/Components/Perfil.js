@@ -3,20 +3,29 @@ import { Link } from 'react-router-dom'
 import '../styles/styles.css'
 
 const Perfil = () => (
-  <div className="container cont_1">
-	  <div className="row"> 
-	  	<div className="col-md-4">
-	  		<img src={require('../imagenes/perfil.jpg')} className="img-responsive profile-img"/>
-	  	</div>
-	  	<div className="col-md-8">
-	  		<h1>NAME</h1>
-	  		<h4>Username</h4>
-  		{/*	<Link to='/'><button>inicio</button></Link>	
-  			<Link to='/Eventos'><button>Eventos</button></Link>	  		  			  	
-	  	*/}
-	  	</div>
+  <div className="cont_2">
+		<div className="container"> 	
+		  <div className="row align-items-start"> 
+		  	<div className="col-md-2">
+		  		<img src={require('../imagenes/perfil.jpg')} className="img-responsive profile-img"/>
+		  	</div>
+		  	<div className="col-md-6">
+		  		<h1>NAME</h1>
+		  		<h4>Username</h4>
+		  	</div>
+		  	<div className="col-md-2">
+		  		<button className="btn">Editar Perfil</button>
+		  	</div>
+		  	<div className="col-md-2">
+		  		<Link to='/Configuracion'>
+		  			<button className="btn">Configuración</button>
+		  		</Link>
+		  	</div>
+	  		{/*	<Link to='/'><button>inicio</button></Link>	
+	  			<Link to='/Eventos'><button>Eventos</button></Link>	  		  			  	
+		  	*/}
+		 	</div>
 	  </div>
-
 		<div className="container">
 		  <ul class="nav nav-tabs">
 		    <li className="active tablink"><a data-toggle="tab" href="#perfil">Perfil</a></li>

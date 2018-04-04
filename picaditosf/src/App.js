@@ -5,8 +5,8 @@ import './styles/styles.css'
 
 const App = () => (
   <div>  	
-    <Main />    
-    <Header />  
+		<Main />    
+	 	<Header /> 
     <footer className="footer">
       <div className="container">
       	<div className="text-center">
