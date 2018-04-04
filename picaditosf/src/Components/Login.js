@@ -2,6 +2,18 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 import '../styles/styles.css'
+var token = null;
+
+
+
+
+
+
+export function Token(){
+  token="12345asd"
+  return token;
+}
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -12,6 +24,7 @@ export default class Login extends Component {
       password: ""
     };
   }
+  
 
   validateForm() {
     return this.state.email.length > 0 && this.state.password.length > 4;
@@ -27,6 +40,11 @@ export default class Login extends Component {
     event.preventDefault();    
     console.log(this.state)
   }
+  
+
+  
+  
+  
 
   render() {
     return (
