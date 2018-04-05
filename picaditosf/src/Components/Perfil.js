@@ -21,9 +21,6 @@ const Perfil = () => (
 		  			<button className="btn">Configuración</button>
 		  		</Link>
 		  	</div>
-	  		{/*	<Link to='/'><button>inicio</button></Link>	
-	  			<Link to='/Eventos'><button>Eventos</button></Link>	  		  			  	
-		  	*/}
 		 	</div>
 	  </div>
 		<div className="container">

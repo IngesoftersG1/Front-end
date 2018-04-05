@@ -29,7 +29,7 @@ class Register extends Component{
 			<div className="text-center">
 				<div className="cont_1">
 					<h1>Juega con Picaditos!</h1>
-					<form id="form1" onSubmit={this.onSubmit}>
+					<form className="form1" onSubmit={this.onSubmit}>
 						<label htmlFor="name">Correo electronico</label>
 						<input placeholder="Enter Email" 
 							name="email" 
