@@ -26,8 +26,6 @@ export default class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();    
-    console.log(this.state)
-    
     axios.post(`https://jsonplaceholder.typicode.com/users`, this.state)
       .then(res => {
         console.log(res);
@@ -78,11 +76,12 @@ export default class Login extends Component {
               <Link className="nav-link" to='/Lostpass'>Forgot Password</Link>
             </div>
           </div>
-
+          <Link to='/perfil'>
           <button type="submit" 
             disabled={!this.validateForm()}
             className="btn btn-lg btn-block">Ingresar        
           </button>
+          </Link>
         </form>            
       </div>
       
