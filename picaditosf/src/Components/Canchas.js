@@ -5,7 +5,7 @@ import '../styles/styles.css'
 
 
 const Canchas = () => (
-  <div className="cont_1">    
+  <div className="cont_2">    
 	  <h2>Canchas</h2>
     	<p> esta es la pagina de las canchas aqui deberia salir el mapa y lo demas </p>
     	{/*<MapContainer />*/}

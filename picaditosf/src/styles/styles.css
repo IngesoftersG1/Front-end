@@ -57,10 +57,10 @@ LOGIN STTYLES
 }
 
 /*
-REGISTER STYLES
+REGISTER
 */
 
-#form1{
+.form1{
 	text-align: left;
 }
 
@@ -78,6 +78,7 @@ LOGIN
 
 .profile-img{	
 	max-width: 100px;
+	margin-left: 0!important;
 }
 
 .tablink{
@@ -85,6 +86,28 @@ LOGIN
 }
 
 /*
-CANCHAS
+SITE
 */
+.cont_2{	
+	background-color: rgba(36, 165, 38, 0.5);
+	max-width: 800px;
+	min-width: 	400px;
+	padding: 40px;
+	margin: auto;
+	margin-top: 100px;
+}
 
+
+/*temp*/
+.carousel { z-index: -99; 
+		position: fixed;    
+		margin-top: -100px;} /* keeps this behind all content */
+.carousel .item {
+    position: fixed;  
+    width: 100%; height: 100%;
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+    -ms-transition: opacity 2s;
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+}

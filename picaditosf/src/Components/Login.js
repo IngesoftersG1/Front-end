@@ -55,6 +55,7 @@ export default class Login extends Component {
             />
           </FormGroup>*/}
 
+
           <label htmlFor="name">Correo electronico</label>
           <input placeholder="Enter Email" 
               id="email" 
@@ -84,12 +85,12 @@ export default class Login extends Component {
             </div>
           </div>
         
+
           <button type="submit" 
             disabled={!this.validateForm()}
             className="btn btn-lg btn-block">Ingresar        
           </button>
-         
-          
+
         </form>            
       </div>
       

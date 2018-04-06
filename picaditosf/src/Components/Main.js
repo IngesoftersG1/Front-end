@@ -46,7 +46,8 @@ const Main = () => (
       <Route path='/canchas' component={Canchas}/>
       <PrivateRoute path='/equipo' component={Equipo}/>
       <Route exact path='/equipos' component={Equipos}/>
-      <PrivateRoute exact path='/perfil' component={Perfil}/>
+      <PrivateRoute exact path='/perfil' component={Perfil}/>      
+      <Route path='/eventos' component={Eventos}/>
       <Route path='/Torneo' component={Torneo}/>
       <Route path='/BuscarEquip' component={BuscarEquip}/>
       <Route path='/BuscarEvento' component={BuscarEvento}/>
