@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 import BuscarEquip from './BuscarEquip'
 
@@ -36,16 +36,25 @@ import Lostpass from './Lostpass'
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
 const Main = () => (
+
   <main>
     <Switch>
       <Route exact path='/Landing' component={Landing}/>
-      <Route exact path='/' component={Inicio}/>
-      <Route exact path='/register' component={Register}/>
-      <Route exact path='/login' component={Login}/>
+      <Route exact path='/' render={()=>( 
+          !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Inicio />)
+      )}/>
+      <Route exact path='/register'  render={()=>( 
+          !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Register />)
+      )}/>
+      <Route exact path='/login' render={()=>( 
+          !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Login />)
+      )}/>
       <Route path='/canchas' component={Canchas}/>
       <PrivateRoute path='/equipo' component={Equipo}/>
       <Route exact path='/equipos' component={Equipos}/>
-      <PrivateRoute exact path='/perfil' component={Perfil}/>      
+      <Route exact path='/perfil' render={()=>( 
+          !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
+      )}/>    
       <Route path='/eventos' component={Eventos}/>
       <Route path='/Torneo' component={Torneo}/>
       <Route path='/BuscarEquip' component={BuscarEquip}/>

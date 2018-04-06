@@ -24,7 +24,7 @@ const Perfil = () => (
 		 	</div>
 	  </div>
 		<div className="container">
-		  <ul class="nav nav-tabs">
+		  <ul className="nav nav-tabs">
 		    <li className="active tablink"><a data-toggle="tab" href="#perfil">Perfil</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#info">Información</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#estat">Estadisticas</a></li>

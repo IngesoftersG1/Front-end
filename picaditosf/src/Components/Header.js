@@ -1,38 +1,43 @@
-import React from 'react'
+import * as sessionActions from '../Actions/sessionsActions'
+import React, { Component } from "react"
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { bindActionCreators} from 'redux'
-import * as sessionActions from 'redux'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import  '../styles/navstyles.css'
 
 import session from '../Reducers/sessionReducer';
 
 // The Header creates links that can be used to navigate
 // between routes.
-class Header extends React.Component {
+class Header extends Component {
   constructor(props){
     super();
     this.logout = this.logout.bind(this);
   }
 
-  logout(event) {
+  logout (event) {
     event.preventDefault();
-    this.props
+    this.props.actions.logoutUser();    
+    window.location.reload();
   }
 
 
   test = event => {    
     event.preventDefault();    
-    console.log(sessionStorage);
+    console.log("sessionstorage",sessionStorage);
+    console.log("session?",!!sessionStorage.jwt);
+    console.log(this.props);
   }
 
   render () {
-    /*this.props.logged_in*/
-    if(true) {
+    /**/
+    if(this.props.logged_in) {
       return (
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
             <Link className="navbar-brand" to='/'>Picaditos!</Link>
+            <button onClick={this.test}>test</button> 
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -52,8 +57,8 @@ class Header extends React.Component {
                 </li>
               </ul>
               <form className="form-inline mt-2 mt-md-0">
+                <Link onClick={this.logout} className="nav-link" to="/login">log out</Link>
                 <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>             
-                <button onClick={this.test}>test</button> 
                 <a href="#" className="btn">
                   <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_search-128.png" width="25"/>
                 </a>
@@ -63,24 +68,31 @@ class Header extends React.Component {
         </header>
       );
     }else{
-      <header>
-          <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
-            <Link className="navbar-brand" to='/'>Picaditos!</Link>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
-          </nav>
+      return(
+        <header>
+            <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
+              <Link className="navbar-brand" to='/'>Picaditos!</Link>
+              <button onClick={this.test}>test</button> 
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+            </nav>
         </header>
+      )
     }
   }
 }
-/*
-Header.propTypes = {  
+Header.propTypes={
   actions: PropTypes.object.isRequired
-}*/
-
-function mapStateToProps(state, ownProps) {  
-  return {logged_in: state.session};
 }
-
-export default connect(mapStateToProps)(Header);  
+function mapStateToProps(state, ownProps) {  
+  return {
+    logged_in: state.session
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(sessionActions, dispatch)
+  };
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Header);  

@@ -28,8 +28,10 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();    
-    console.log(this.state)
+    console.log(this.state)       
+    console.log(this.props)
     this.props.actions.loginUser(this.state);
+    window.location.reload();
   }
 
 
@@ -65,10 +67,9 @@ class Login extends Component {
               <Link className="nav-link" to='/Lostpass'>Forgot Password</Link>
             </div>
           </div>
-
           <button type="submit" 
             disabled={!this.validateForm()}
-            className="btn btn-lg btn-block">Ingresar        
+            className="btn btn-lg btn-block">Ingresar
           </button>
         </form>            
       </div>      
