@@ -1,13 +1,15 @@
-import React, { Component } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import * as sessionActions from '../Actions/sessionsActions';
+import React, { Component , PropTypes } from "react";
 import { Link } from 'react-router-dom'
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import '../styles/styles.css'
 import axios from 'axios';
 
 
 export var a;
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     a = null;
@@ -15,6 +17,8 @@ export default class Login extends Component {
       email: "",
       password: ""
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   validateForm() {
@@ -28,7 +32,7 @@ export default class Login extends Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault();    
+    event.preventDefault();
     axios.post(`https://jsonplaceholder.typicode.com/users`, this.state)
       .then(res => {
         console.log(res);
@@ -36,8 +40,11 @@ export default class Login extends Component {
         a = this.state.email;    
     
       })
+    console.log(this.state)
+    this.props.actions.loginUser(this.state);
   }
   
+
 
 
 
@@ -45,17 +52,6 @@ export default class Login extends Component {
     return (
       <div className="cont_1">
         <form onSubmit={this.handleSubmit}>
-          {/*<FormGroup controlId="" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </FormGroup>*/}
-
-
           <label htmlFor="name">Correo electronico</label>
           <input placeholder="Enter Email" 
               id="email" 
@@ -92,9 +88,15 @@ export default class Login extends Component {
           </button>
 
         </form>            
-      </div>
-      
+      </div>      
     );
   }
-  
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(sessionActions,dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Login);
