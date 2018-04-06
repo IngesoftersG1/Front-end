@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 import '../styles/styles.css'
+import axios from 'axios';
+
+
+export var a;
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
-
+    a = null;
     this.state = {
       email: "",
       password: ""
@@ -25,8 +29,17 @@ export default class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();    
-    console.log(this.state)
+    axios.post(`https://jsonplaceholder.typicode.com/users`, this.state)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        a = this.state.email;    
+    
+      })
   }
+  
+
+
 
   render() {
     return (
@@ -41,6 +54,7 @@ export default class Login extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>*/}
+
 
           <label htmlFor="name">Correo electronico</label>
           <input placeholder="Enter Email" 
@@ -70,14 +84,17 @@ export default class Login extends Component {
               <Link className="nav-link" to='/Lostpass'>Forgot Password</Link>
             </div>
           </div>
+        
 
           <button type="submit" 
             disabled={!this.validateForm()}
             className="btn btn-lg btn-block">Ingresar        
           </button>
+
         </form>            
       </div>
       
     );
   }
+  
 }

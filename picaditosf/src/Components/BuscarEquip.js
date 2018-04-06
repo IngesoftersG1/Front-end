@@ -10,8 +10,8 @@ const BuscarEquip = () => (
        <p> Torneos disponibles </p>
        <p> descripcion </p>
        <p> premios </p>
-	  		<Link to='/login'><button>Login</button></Link>	
-	  		<Link to='/register'><button>Registro</button></Link>	  		  			  	
+	  		<Link to='/getteamlist'><button>Buscarequipos</button></Link>	
+	  			  		  			  	
 	  </div>
 	</div>   
     
