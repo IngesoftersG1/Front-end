@@ -1,0 +1,113 @@
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  line-height: 50px; /* Vertically center the text there */
+  background-color:  rgba(36, 165, 38, 0);
+  color: white;
+}
+
+/*
+LANDING STYLES
+*/
+
+h1{
+	color: white;
+	font-weight: bold;
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  margin: 10px;
+  color: #333;
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
+
+.logo1{
+	margin-top: 50px;
+	width: 100px;
+}
+
+/*
+LOGIN STTYLES
+*/
+
+.cont_1{	
+	background-color: rgba(36, 165, 38, 0.5);
+	max-width: 550px;
+	padding: 50px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+/*
+REGISTER
+*/
+
+.form1{
+	text-align: left;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #333;
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
+
+/*
+LOGIN
+*/
+
+.profile-img{	
+	max-width: 100px;
+	margin-left: 0!important;
+}
+
+.tablink{
+	margin: 10px;
+}
+
+/*
+SITE
+*/
+.cont_2{	
+	background-color: rgba(36, 165, 38, 0.5);
+	max-width: 800px;
+	min-width: 	400px;
+	padding: 40px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+
+/*temp*/
+.carousel { z-index: -99; 
+		position: fixed;    
+		margin-top: -100px;} /* keeps this behind all content */
+.carousel .item {
+    position: fixed;  
+    width: 100%; height: 100%;
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+    -ms-transition: opacity 2s;
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+}
