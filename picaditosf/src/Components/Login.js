@@ -4,10 +4,15 @@ import { Link } from 'react-router-dom'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import '../styles/styles.css'
+import axios from 'axios';
+
+
+export var a;
 
 class Login extends Component {
   constructor(props) {
     super(props);
+    a = null;
     this.state = {
       email: "",
       password: ""
@@ -27,10 +32,20 @@ class Login extends Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault();    
+    event.preventDefault();
+    axios.post(`https://jsonplaceholder.typicode.com/users`, this.state)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        a = this.state.email;    
+    
+      })
     console.log(this.state)
     this.props.actions.loginUser(this.state);
   }
+  
+
+
 
 
   render() {
@@ -65,11 +80,13 @@ class Login extends Component {
               <Link className="nav-link" to='/Lostpass'>Forgot Password</Link>
             </div>
           </div>
+        
 
           <button type="submit" 
             disabled={!this.validateForm()}
             className="btn btn-lg btn-block">Ingresar        
           </button>
+
         </form>            
       </div>      
     );

@@ -2,23 +2,23 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
-export default class user extends Component {
+export default class geteventlist extends Component {
   state = {
-    usuarios: []
+    eventos: []
   }
 
   componentDidMount() {
     axios.get(`https://nuevasramas-garayf.c9users.io/geteventslist`)
       .then(res => {
-        const usuarios = res.data;
-        this.setState({ usuarios });
+        const eventos = res.data;
+        this.setState({ eventos });
       })
   }
 
   render() {
     return (
       <ul>
-        { this.state.usuarios.map(usuario => <li>{usuario}</li>)}
+        { this.state.eventos.map(evento => <li>{evento.name}</li>)}
       </ul>
     )
   }
