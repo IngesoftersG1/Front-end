@@ -2,6 +2,8 @@ import React,{ Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import '../styles/styles.css'
+import a from './Login'
+
 
 // The Roster component matches one of two different routes
 // depending on the full pathname
@@ -22,6 +24,7 @@ class Register extends Component{
     e.preventDefault();
     //todo api request
     console.log(this.state)
+    console.log(a);
   }
   
 	render() {

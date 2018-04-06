@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/styles.css'
+import {a} from './Login'
+
+
 
 const Perfil = () => (
+	
   <div className="container cont_1">
 	  <div className="row"> 
 	  	<div className="col-md-4">
@@ -18,6 +22,7 @@ const Perfil = () => (
 	  </div>
 
 		<div className="container">
+		
 		  <ul class="nav nav-tabs">
 		    <li className="active tablink"><a data-toggle="tab" href="#perfil">Perfil</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#info">Información</a></li>
@@ -37,6 +42,7 @@ const Perfil = () => (
 		  </div>
 		</div>
 	</div>
+	
 )
 
 export default Perfil

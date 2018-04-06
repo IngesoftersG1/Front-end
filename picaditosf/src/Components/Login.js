@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom'
 import '../styles/styles.css'
 import axios from 'axios';
 
+
+export var a;
+
 export default class Login extends Component {
   constructor(props) {
     super(props);
-
+    a = null;
     this.state = {
       email: "",
       password: ""
@@ -30,9 +33,13 @@ export default class Login extends Component {
       .then(res => {
         console.log(res);
         console.log(res.data);
-        
+        a = this.state.email;    
+    
       })
   }
+  
+
+
 
   render() {
     return (
@@ -76,15 +83,17 @@ export default class Login extends Component {
               <Link className="nav-link" to='/Lostpass'>Forgot Password</Link>
             </div>
           </div>
-          <Link to='/perfil'>
+        
           <button type="submit" 
             disabled={!this.validateForm()}
             className="btn btn-lg btn-block">Ingresar        
           </button>
-          </Link>
+         
+          
         </form>            
       </div>
       
     );
   }
+  
 }
