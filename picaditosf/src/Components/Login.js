@@ -1,16 +1,22 @@
-import React, { Component } from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import * as sessionActions from '../Actions/sessionsActions';
+import React, { Component , PropTypes } from "react";
 import { Link } from 'react-router-dom'
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import '../styles/styles.css'
 
-export default class Login extends Component {
+
+import session from '../Reducers/sessionReducer';
+
+class Login extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       email: "",
       password: ""
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   validateForm() {
@@ -26,22 +32,19 @@ export default class Login extends Component {
   handleSubmit = event => {
     event.preventDefault();    
     console.log(this.state)
+    this.props.actions.loginUser(this.state);
+  }
+
+  test = event => {    
+    debugger;
+    event.preventDefault();    
+    console.log(sessionStorage);
   }
 
   render() {
     return (
       <div className="cont_1">
         <form onSubmit={this.handleSubmit}>
-          {/*<FormGroup controlId="" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </FormGroup>*/}
-
           <label htmlFor="name">Correo electronico</label>
           <input placeholder="Enter Email" 
               id="email" 
@@ -68,6 +71,7 @@ export default class Login extends Component {
             </div>
             <div className="col-sm-6 mb-3">
               <Link className="nav-link" to='/Lostpass'>Forgot Password</Link>
+              <button onClick={this.test}>test</button> 
             </div>
           </div>
 
@@ -76,8 +80,15 @@ export default class Login extends Component {
             className="btn btn-lg btn-block">Ingresar        
           </button>
         </form>            
-      </div>
-      
+      </div>      
     );
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(sessionActions,dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(Login);
