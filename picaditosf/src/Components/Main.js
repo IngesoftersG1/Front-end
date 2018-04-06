@@ -28,7 +28,8 @@ import Torneo from './Torneo'
 import Configuracion from './Configuracion'
 import Inicio from './Inicio'
 import Lostpass from './Lostpass'
-
+import getteamlist from './getteamlist'
+import auth from './auth'
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -65,7 +66,11 @@ const Main = () => (
       <PrivateRoute exact path='/Misequipos' component={Misequipos}/>
       <PrivateRoute exact path='/Miseventos' component={Miseventos}/>
       <PrivateRoute exact path='/Mispartidos' component={Mispartidos}/>
+      <Route path='/getteamlist' component={getteamlist}/>
       <Route exact path='/Lostpass' component={Lostpass}/>
+      <Route exact path='/token' />
+      <Route exact path='/auth' component={auth}/>
+      
     </Switch>
   </main>
 )

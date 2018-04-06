@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/styles.css'
+import {a} from './Login'
+
 
 const Perfil = () => (
   <div className="cont_2">
