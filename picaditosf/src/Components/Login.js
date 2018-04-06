@@ -5,9 +5,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import '../styles/styles.css'
 
-
-import session from '../Reducers/sessionReducer';
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -35,11 +32,6 @@ class Login extends Component {
     this.props.actions.loginUser(this.state);
   }
 
-  test = event => {    
-    debugger;
-    event.preventDefault();    
-    console.log(sessionStorage);
-  }
 
   render() {
     return (
@@ -71,7 +63,6 @@ class Login extends Component {
             </div>
             <div className="col-sm-6 mb-3">
               <Link className="nav-link" to='/Lostpass'>Forgot Password</Link>
-              <button onClick={this.test}>test</button> 
             </div>
           </div>
 

@@ -8,11 +8,11 @@ import './index.css';
 
 const store = configureStore();
 
-render((
+render(
 	<Provider store={store}>
 	  <BrowserRouter>
 	    <App />   
 	  </BrowserRouter>
 	</Provider>
-), document.getElementById('root'));
+, document.getElementById('root'));
 
