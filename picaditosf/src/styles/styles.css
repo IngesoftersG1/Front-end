@@ -133,17 +133,10 @@ SITE
 
 
 .features-icons {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-.features-icons .features-icons-item {
-  max-width: 20rem;
-}
-
-.features-icons .features-icons-item .features-icons-icon {
-  height: 7rem;
-}
 
 
 

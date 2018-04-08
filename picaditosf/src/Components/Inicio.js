@@ -38,46 +38,44 @@ const Inicio = () => (
      </div>
      
      
-      <section class="features-icons bg-light text-center">
+      <section class="cont_3 text-center">
+      
       <div class="container">
         <div class="row">
           <div class="col-lg-4">
-            <div class="features-icons-item">
-              <div class="features-icons-icon">
+            <div class="features-icons">
 
-                 <i class="fas fa-camera-retro"></i>
-                
-              </div>
-              
+                 <img className="logo1" src={require('../imagenes/thinking.png')} />
+                 
+            </div>  
+            
               <h3>Facil de usar</h3>
               <p class="lead mb-0">intuitivo y atractivo a la vista lo que permite al usuario un facil entendimiento!</p>
               <br/>
-            </div>
           </div>
+          
           <div class="col-lg-4">
-            <div class="features-icons-item">
-              <div class="features-icons-icon">
-              
-                <i class="fas fa-camera-retro"></i>
-                
-              </div>
+              <div class="features-icons">
+
+                 <img className="logo1" src={require('../imagenes/phone.png')} />
+                 
+              </div>  
               <h3>Responsive</h3>
               <p class="lead mb-0">permite a los usuarios acceder desde distintos dispositivos!</p>
               <br/>
-            </div>
+            
           </div>
           <div class="col-lg-4">
-            <div class="features-icons-item">
-              <div class="features-icons-icon">
-              
-                <i class=" fa fa-database fa-5x "></i>
-                
-              </div>
+            <div class="features-icons">
+
+                 <img className="logo1" src={require('../imagenes/users.png')} />
+                 
+              </div>  
               <h3>Para todos los gustos</h3>
               <p class="lead mb-0">Para distintos usuarios que buscan divertirse en un partido casual o un torneo con recompensa!</p>
               <br/>
-            </div>
-          </div>
+            
+        </div>
         </div>
       </div>
     </section>
