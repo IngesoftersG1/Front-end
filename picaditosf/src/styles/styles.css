@@ -98,6 +98,16 @@ SITE
 }
 
 
+/* features */
+.cont_3{	
+	padding: 30px;
+	background-color: rgba(255, 255, 255, 1);
+	width: 	100%;
+
+}
+
+
+
 /*temp*/
 .carousel { z-index: -99; 
 		position: fixed;    
@@ -111,3 +121,30 @@ SITE
     -o-transition: opacity 2s;
     transition: opacity 2s;
 }
+
+
+.Footerfont{
+	background-color: rgba(36, 165, 38, 1);
+	width:100%;
+	padding: 5;
+	height:40px;
+}
+
+
+
+.features-icons {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.features-icons .features-icons-item {
+  max-width: 20rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+  height: 7rem;
+}
+
+
+
+
