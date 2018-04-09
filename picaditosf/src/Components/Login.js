@@ -38,7 +38,7 @@ class Login extends Component {
     axios.post(`https://jsonplaceholder.typicode.com/users`, this.state)
       .then(res => {
         console.log(res);
-        console.log(res.data);
+        console.log(res.data.id);
         a = this.state.email;    
     
       })
