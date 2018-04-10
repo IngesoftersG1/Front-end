@@ -4,13 +4,10 @@ import '../styles/styles.css'
 import axios from 'axios';
 
 import getteamlist from './getteamlist'
+import geteventlist from './geteventlist'
+ 
 
-
-
-
-
-
-
+ 
   
 const Equipos = () => (
   <div>
@@ -24,13 +21,14 @@ const Equipos = () => (
 			</div>
 			<div>
 				<h2>Buscar Equipo</h2>
-				<button className="btn" onClick={getteamlist()} > Equipos </button>
+				<button className="btn" onClick ={getteamlist} > Equipos </button>
+				<button className="btn" onClick ={geteventlist} > Equipos2 </button>
 				
 			</div>
 	  </div>
 	</div>  
 )
-
-
+ 
+  
 
 export default Equipos

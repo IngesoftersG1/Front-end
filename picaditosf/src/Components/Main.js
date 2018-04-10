@@ -29,6 +29,8 @@ import Configuracion from './Configuracion'
 import Inicio from './Inicio'
 import Lostpass from './Lostpass'
 import getteamlist from './getteamlist'
+import geteventlist from './geteventlist'
+
 import auth from './auth'
 
 // The Main component renders one of the three provided
@@ -67,6 +69,7 @@ const Main = () => (
       <PrivateRoute exact path='/Miseventos' component={Miseventos}/>
       <PrivateRoute exact path='/Mispartidos' component={Mispartidos}/>
       <Route path='/getteamlist' component={getteamlist}/>
+      <Route path='/geteventlist' component={geteventlist}/>
       <Route exact path='/Lostpass' component={Lostpass}/>
       <Route exact path='/token' />
       <Route exact path='/auth' component={auth}/>

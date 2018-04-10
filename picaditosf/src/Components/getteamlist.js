@@ -4,6 +4,9 @@ import axios from 'axios';
 
 
 export default function getteamlist ()  {
+  
+ 
+  
     alert('ejecutando funcion');
     axios.get('https://jsonplaceholder.typicode.com/users')
        .then(function (response) {
