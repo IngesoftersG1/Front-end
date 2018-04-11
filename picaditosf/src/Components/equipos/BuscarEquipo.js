@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const BuscarEquip = () => (
+const BuscarEquipo = () => (
     
     
      <div>
@@ -19,4 +19,4 @@ const BuscarEquip = () => (
    
 )
 
-export default BuscarEquip
+export default BuscarEquipo

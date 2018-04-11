@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/styles.css'
-import {a} from './Login'
+import '../../styles/styles.css'
+import {a} from '../Login'
 
 
 const Perfil = () => (
@@ -9,7 +9,7 @@ const Perfil = () => (
 		<div className="container"> 	
 		  <div className="row align-items-start"> 
 		  	<div className="col-md-2">
-		  		<img src={require('../imagenes/perfil.jpg')} className="img-responsive profile-img"/>
+		  		<img src={require('../../imagenes/perfil.jpg')} className="img-responsive profile-img"/>
 		  	</div>
 		  	<div className="col-md-6">
 		  		<h1>NAME</h1>

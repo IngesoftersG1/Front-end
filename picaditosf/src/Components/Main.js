@@ -2,29 +2,33 @@ import React from 'react'
 
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-import BuscarEquip from './BuscarEquip'
 
-import BuscarEvento from './BuscarEvento'
+
+import BuscarEvento from './eventos/BuscarEvento'
 import BuscarPartido from './BuscarPartido'
-import Estadisticasusuario  from './Estadisticasusuario'
+import Estadisticasusuario  from './eventos/Estadisticasusuario'
 
 import Infousuario from './Info-usuario'
 
-import Eventos from './Eventos'
+import Eventos from './eventos/Eventos'
 
-import Misequipos from './Mis_equipos'
-import Miseventos from './Mis_equipos'
-import Mispartidos from './Mis_equipos'
+import Misequipos from './perfil/Mis_equipos'
+import Miseventos from './perfil/Mis_equipos'
+import Mispartidos from './perfil/Mis_equipos'
 
 import Landing from './Landing'
 import Register from './Register'
 import Login from './Login'
-import Canchas from './Canchas'
-import Perfil from './Perfil'
-import Equipos from './Equipos'
-import Equipo from './Equipo'
-import Torneo from './Torneo'
-import Configuracion from './Configuracion'
+import Canchas from './canchas/Canchas'
+import Perfil from './perfil/Perfil'
+//import Equipos from './Equipos'
+//import Equipo from './Equipo'
+import Equipos from './equipos/Equipos.js'
+import Equipo from './equipos/Equipo.js'
+import BuscarEquipo from './equipos/BuscarEquipo'
+
+import Torneo from './eventos/Torneo'
+import Configuracion from './perfil/Configuracion'
 import Inicio from './Inicio'
 import Lostpass from './Lostpass'
 import getteamlist from './getteamlist'
@@ -65,7 +69,7 @@ const Main = () => (
       )}/>
       
       
-      <Route path='/BuscarEquip' component={BuscarEquip}/>
+      <Route path='/BuscarEquipo' component={BuscarEquipo}/>
       <Route path='/BuscarEvento' component={BuscarEvento}/>
       <Route path='/BuscarPartido' component={BuscarPartido}/>
       
