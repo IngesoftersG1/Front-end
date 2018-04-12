@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import MapContainer from './MapContainer.js'
-import '../styles/styles.css'
+import '../../styles/styles.css'
 
 
 const Canchas = () => (
