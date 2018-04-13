@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+
 const Equipo = () => (
+	
   <div className="cont_2">
 		<div className="container"> 	
 		  <div className="row align-items-start"> 

@@ -13,7 +13,7 @@ import Infousuario from './Info-usuario'
 import Eventos from './Eventos'
 
 import Misequipos from './Mis_equipos'
-import Miseventos from './Mis_equipos'
+import Miseventos from './Mis_eventos'
 import Mispartidos from './Mis_equipos'
 
 import PrivateRoute from './Private_route'
