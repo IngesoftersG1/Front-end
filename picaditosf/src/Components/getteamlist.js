@@ -2,6 +2,29 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
+
+export default function getteamlist ()  {
+  
+ 
+  
+    alert('ejecutando funcion');
+    axios.get('https://jsonplaceholder.typicode.com/users')
+       .then(function (response) {
+         alert('llamamos los valores')
+         console.log(response);
+       })
+       .catch(function (error) {
+         alert('error')
+       });
+  }
+
+
+
+
+
+
+
+{/*
 export default class getteamlist extends Component {
   state = {
     equipos: []
@@ -14,12 +37,5 @@ export default class getteamlist extends Component {
         this.setState({ equipos });
       })
   }
-
-  render() {
-    return (
-      <ul>
-        { this.state.equipos.map(equipo => <li>{equipo.name}</li>)}
-      </ul>
-    )
-  }
 }
+*/}
