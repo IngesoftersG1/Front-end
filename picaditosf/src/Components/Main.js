@@ -40,8 +40,7 @@ import auth from './auth'
 // with /roster or /schedule. The / route will only match
 // when the pathname is exactly the string "/"
 const Main = () => (
-
-  <main>
+ <main>
     <Switch>
       <Route exact path='/Landing' component={Landing}/>
       <Route exact path='/' render={()=>( 
@@ -56,13 +55,15 @@ const Main = () => (
       <Route path='/canchas' component={Canchas}/>
       
       <Route path='/equipo' render={()=>( 
-          !!sessionStorage.jwt ? (<Redirect to='/login' />) : (<equipo />)
+          !!sessionStorage.jwt ? (<Redirect to='/login' />) : (<Equipo />)
       )}/>
       
       <Route exact path='/equipos' component={Equipos}/>
+      
       <Route exact path='/perfil' render={()=>( 
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>    
+      
       <Route path='/eventos' component={Eventos}/>
       <Route path='/Torneo' render={()=>( 
           !!sessionStorage.jwt ? (<Redirect to='/login' />) : (<Torneo />)
@@ -81,15 +82,15 @@ const Main = () => (
       
       
       <Route exact path='/Misequipos' render={()=>( 
-          !!sessionStorage.jwt ? (<Redirect to='/login' />) : (<Misequipos />)
+          !!sessionStorage.jwt ? (<Misequipos />): (<Redirect to='/login' />) 
       )}/>
       
       <Route exact path='/Miseventos' render={()=>( 
-          !!sessionStorage.jwt ? (<Redirect to='/login' />) : (<Miseventos />)
+          !!sessionStorage.jwt ? (<Miseventos />) : (<Redirect to='/login' />)
       )}/>
       
       <Route exact path='/Mispartidos' render={()=>( 
-          !!sessionStorage.jwt ? (<Redirect to='/login' />) : (<Mispartidos />)
+          !!sessionStorage.jwt ? (<Mispartidos />) : (<Redirect to='/login' />) 
       )}/>
       
       <Route path='/getteamlist' component={getteamlist}/>
