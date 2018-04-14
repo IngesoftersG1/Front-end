@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-var a;
+import Example from '../Loading/logo'
+
 /*
 {
 this.state.eventos.map(evento => {evento[0].title})	
@@ -9,20 +10,29 @@ this.state.eventos.map(evento => {evento[0].title})
 */
 export default class Miseventos extends Component {
   state = {
-    eventos: []
+    eventos: [], isLoading: true
   }
 
   componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/posts `)
+    axios.get(`https://jsonplaceholder.typicode.com/posts`)
       .then(res => {
         const eventos = res.data;
-        
+        setTimeout(() => this.setState({ isLoading: false }), 2000);
         this.setState({ eventos });
        
       })
   }
 
   render() {
+  	
+  	if(this.state.isLoading){ 
+    return (<div>
+    
+        {Example}
+    
+        </div>); // render the loading component
+    }
+  	
     return (
    <div>    
 
@@ -33,7 +43,7 @@ export default class Miseventos extends Component {
 		<div className="container"> 	
 		<div className="row align-items-start"> 
 		  	<div className="col-md-2">
-		  		<img src={require('../imagenes/team.jpg')} className="img-responsive profile-img"/>
+		  		<img src={require('../../imagenes/team.jpg')} className="img-responsive profile-img"/>
 		  	</div>
 		  	
 		  	<div className="col-md-8">
