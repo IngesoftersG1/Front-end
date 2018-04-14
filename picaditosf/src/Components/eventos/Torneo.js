@@ -18,7 +18,7 @@ const Torneo = () => (
 		 	</div>
 	  </div>
 		<div className="container">
-		  <ul class="nav nav-tabs">
+		  <ul className="nav nav-tabs">
 		    <li className="active tablink"><a data-toggle="tab" href="#perfil">Información</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#estat">Estadisticas</a></li>
 		  </ul>
