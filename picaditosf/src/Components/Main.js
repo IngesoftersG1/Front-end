@@ -20,15 +20,16 @@ import Landing from './Landing'
 import Register from './Register'
 import Login from './Login'
 import Canchas from './canchas/Canchas'
+
 import Perfil from './perfil/Perfil'
-//import Equipos from './Equipos'
-//import Equipo from './Equipo'
+import Configuracion from './perfil/Configuracion'
+import Edit from './perfil/Edit'
+
 import Equipos from './equipos/Equipos.js'
 import Equipo from './equipos/Equipo.js'
 import BuscarEquipo from './equipos/BuscarEquipo'
 
 import Torneo from './eventos/Torneo'
-import Configuracion from './perfil/Configuracion'
 import Inicio from './Inicio'
 import Lostpass from './Lostpass'
 import getteamlist from './getteamlist'
@@ -63,11 +64,13 @@ const Main = () => (
       <Route exact path='/perfil' render={()=>( 
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>    
+            <Route exact path='/edit_perfil' render={()=>( 
+          !!sessionStorage.jwt ? (<Edit />) : (<Redirect to='/' />)
+      )}/>    
       <Route path='/eventos' component={Eventos}/>
       <Route path='/Torneo' render={()=>( 
           !!sessionStorage.jwt ? (<Redirect to='/login' />) : (<Torneo />)
       )}/>
-      
       
       <Route path='/BuscarEquipo' component={BuscarEquipo}/>
       <Route path='/BuscarEvento' component={BuscarEvento}/>

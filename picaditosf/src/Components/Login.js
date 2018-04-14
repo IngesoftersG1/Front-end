@@ -43,7 +43,7 @@ class Login extends Component {
     
       })
     this.props.actions.loginUser(this.state);
-    window.location.reload();
+   // window.location.reload();
   }
   
 
