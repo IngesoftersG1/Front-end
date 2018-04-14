@@ -10,28 +10,20 @@ this.state.eventos.map(evento => {evento[0].title})
 */
 export default class Miseventos extends Component {
   state = {
-    eventos: [], isLoading: true
+    eventos: []
   }
 
   componentDidMount() {
     axios.get(`https://jsonplaceholder.typicode.com/posts`)
       .then(res => {
         const eventos = res.data;
-        setTimeout(() => this.setState({ isLoading: false }), 2000);
+        
         this.setState({ eventos });
        
       })
   }
 
   render() {
-  	
-  	if(this.state.isLoading){ 
-    return (<div>
-    
-        {Example}
-    
-        </div>); // render the loading component
-    }
   	
     return (
    <div>    
