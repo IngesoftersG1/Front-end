@@ -9,7 +9,7 @@ this.state.eventos.map(evento => {evento[0].title})
 */
 export default class Mispartidos extends Component {
   state = {
-    eventos: []
+    eventos: [], isLoading: true
   }
 
   componentDidMount() {
@@ -20,16 +20,30 @@ export default class Mispartidos extends Component {
         
         this.setState({ eventos });
       
-        
+        setTimeout(() => this.setState({ isLoading: false }), 2000);
       
       })
   }
    
   
+
   render() {
-  	return (
+  	
+  		if(this.state.isLoading){ 
+    return (<div>
+    
+        {Example}
+    
+        </div>); // render the loading component
+    }
+  	
+  	
+  	
+    return (
     	
 <div>    
+
+
 
 { this.state.eventos.map(evento =>	
 	 <div className="cont_2">
