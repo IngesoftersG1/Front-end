@@ -15,9 +15,6 @@ const Torneo = () => (
 		  	<div className="col-md-2">
 		  		<button className="btn">Inscripción</button>
 		  	</div>
-	  		{/*	<Link to='/'><button>inicio</button></Link>	
-	  			<Link to='/Eventos'><button>Eventos</button></Link>	  		  			  	
-		  	*/}
 		 	</div>
 	  </div>
 		<div className="container">

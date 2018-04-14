@@ -69,7 +69,7 @@ const Main = () => (
       )}/>    
       <Route path='/eventos' component={Eventos}/>
       <Route path='/Torneo' render={()=>( 
-          !!sessionStorage.jwt ? (<Redirect to='/login' />) : (<Torneo />)
+          !!sessionStorage.jwt ? (<Torneo />) : (<Redirect to='/login' />) 
       )}/>
       
       <Route path='/BuscarEquipo' component={BuscarEquipo}/>
