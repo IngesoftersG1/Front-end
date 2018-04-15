@@ -1,6 +1,7 @@
 import React from 'react';
 import PDF from 'react-pdf-js';
- 
+import myPDF from './sample.pdf'
+
 export default class MyPdfViewer extends React.Component {
   state = {};
  
@@ -48,7 +49,7 @@ export default class MyPdfViewer extends React.Component {
      <div>
       <div align="center">
         <PDF
-          file='https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf'
+          file={myPDF}
           onDocumentComplete={this.onDocumentComplete}
           onPageComplete={this.onPageComplete}
           page={this.state.page}
