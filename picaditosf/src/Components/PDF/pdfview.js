@@ -1,35 +1,67 @@
-import React, { Component } from 'react';
-import * as PdfJs from 'pdfjs-dist';
-
-// Components
-import { Viewer } from './Viewer';
-
-const PDF_URL = 'https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf';
-
-
-export default class pdf extends Component {
-  state = {
-    pdf: null,
-    scale: 1.2
-  };
-
-  componentDidMount() {
-    PdfJs.getDocument(PDF_URL).then((pdf) => {
-      console.log(pdf);
-      this.setState({ pdf });
-    });
+import React from 'react';
+import PDF from 'react-pdf-js';
+ 
+export default class MyPdfViewer extends React.Component {
+  state = {};
+ 
+  onDocumentComplete = (pages) => {
+    this.setState({ page: 1, pages });
   }
-
-  render() {
-    const { pdf, scale } = this.state;
+ 
+  onPageComplete = (page) => {
+    this.setState({ page });
+  }
+ 
+  handlePrevious = () => {
+    this.setState({ page: this.state.page - 1 });
+  }
+ 
+  handleNext = () => {
+    this.setState({ page: this.state.page + 1 });
+  }
+ 
+  renderPagination = (page, pages) => {
+    let previousButton = <div className="previous" onClick={this.handlePrevious}><a href="#">Previous</a></div>;
+    if (page === 1) {
+      previousButton = <div className="previous disabled"><a href="#">Previous</a></div>;
+    }
+    let nextButton = <div className="next" onClick={this.handleNext}><a href="#">Next</a></div>;
+    if (page === pages) {
+      nextButton = <div className="next disabled"><a href="#">Next </a></div> ;
+    }
     return (
-      <div align='center' >
-        <Viewer
-          pdf={pdf}
-          scale={scale}
+      <nav>
+        <div className="pager">
+          {previousButton}
+          {nextButton}
+        </div>
+      </nav>
+      );
+  }
+ 
+  render() {
+    let pagination = null;
+    if (this.state.pages) {
+      pagination = this.renderPagination(this.state.page, this.state.pages);
+    }
+    return (
+     <div>
+      <div align="center">
+        <PDF
+          file='https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf'
+          onDocumentComplete={this.onDocumentComplete}
+          onPageComplete={this.onPageComplete}
+          page={this.state.page}
         />
+        {pagination}
       </div>
-    );
+      <div align="center">
+      <br/>
+      <br/>
+      </div>
+      </div>
+     
+    )
   }
 }
-
+ 
