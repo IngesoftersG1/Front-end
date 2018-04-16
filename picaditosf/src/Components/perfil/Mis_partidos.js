@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-var a;
+import Example from '../Loading/logo'
 /*
 {
 this.state.eventos.map(evento => {evento[0].title})	
@@ -9,7 +9,7 @@ this.state.eventos.map(evento => {evento[0].title})
 */
 export default class Mispartidos extends Component {
   state = {
-    eventos: []
+    eventos: [], isLoading: true
   }
 
   componentDidMount() {
@@ -19,16 +19,25 @@ export default class Mispartidos extends Component {
       	const b = eventos[0].name;
         
         this.setState({ eventos });
-        a=JSON.stringify(b)
-        
-        console.log(a)
-       
+      
+        setTimeout(() => this.setState({ isLoading: false }), 2000);
+      
       })
   }
    
   
 
   render() {
+  	
+  		if(this.state.isLoading){ 
+    return (<div>
+    
+        {Example}
+    
+        </div>); // render the loading component
+    }
+  	
+  	
   	
     return (
     	

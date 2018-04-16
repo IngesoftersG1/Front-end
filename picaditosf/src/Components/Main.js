@@ -7,8 +7,10 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import BuscarEvento from './eventos/BuscarEvento'
 import BuscarPartido from './BuscarPartido'
 import Estadisticasusuario  from './eventos/Estadisticasusuario'
-
+import Loading from './Loading/Loading'
 import Infousuario from './Info-usuario'
+
+import Example from './Loading/logo'
 
 import Eventos from './eventos/Eventos'
 
@@ -94,6 +96,10 @@ const Main = () => (
       )}/>
       
       <Route path='/getteamlist' component={getteamlist}/>
+      
+      <Route path='/loading' component={Loading}/>
+      <Route path='/L' component={Example}/>
+      
       <Route exact path='/Lostpass' component={Lostpass}/>
       <Route exact path='/token' />
       <Route exact path='/auth' component={auth}/>
