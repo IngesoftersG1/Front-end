@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Switch, Route, Redirect } from 'react-router-dom'
 
-
+import MyPdfViewer from './PDF/pdfview'
 
 import BuscarEvento from './eventos/BuscarEvento'
 import BuscarPartido from './BuscarPartido'
@@ -95,6 +95,7 @@ const Main = () => (
           !!sessionStorage.jwt ? (<Mispartidos />) : (<Redirect to='/login' />) 
       )}/>
       
+      <Route path='/pdf' component={MyPdfViewer}/>
       <Route path='/getteamlist' component={getteamlist}/>
       
       <Route path='/loading' component={Loading}/>
