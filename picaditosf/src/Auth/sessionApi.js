@@ -21,7 +21,7 @@ export default class sessionApi {
 class SessionApi {
   static login(credentials) {
     //debugger;
-    const request = new Request(`https://jsonplaceholder.typicode.com/posts`, {
+    const request = new Request(`https://jsonplaceholder.typicode.com/users`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
