@@ -15,10 +15,13 @@ const Torneo = () => (
 		  	<div className="col-md-2">
 		  		<button className="btn">Inscripción</button>
 		  	</div>
+	  		{/*	<Link to='/'><button>inicio</button></Link>	
+	  			<Link to='/Eventos'><button>Eventos</button></Link>	  		  			  	
+		  	*/}
 		 	</div>
 	  </div>
 		<div className="container">
-		  <ul className="nav nav-tabs">
+		  <ul class="nav nav-tabs">
 		    <li className="active tablink"><a data-toggle="tab" href="#perfil">Información</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#estat">Estadisticas</a></li>
 		  </ul>

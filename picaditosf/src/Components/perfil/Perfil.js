@@ -15,10 +15,8 @@ const Perfil = () => (
 		  		<h1>NAME</h1>
 		  		<h4>Username</h4>
 		  	</div>
-		  	<div className="col-md-2">		  		
-		  		<Link to='/edit_perfil'>
-		  			<button className="btn">Editar Perfil</button>
-		  		</Link>
+		  	<div className="col-md-2">
+		  		<button className="btn">Editar Perfil</button>
 		  	</div>
 		  	<div className="col-md-2">
 		  		<Link to='/Configuracion'>

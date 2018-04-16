@@ -15,7 +15,6 @@ export function loginUser(credentials) {
       //sessionStorage.setItem('jwt', response.jwt);
       sessionStorage.setItem('jwt', response.id);
       dispatch(loginSuccess());
-      window.location.reload();
     }).catch(error => {
       throw(error);
     });
