@@ -73,11 +73,19 @@ const Main = () => (
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>    
       
+        
+      <Route exact path='/editperfil' component={Edit}/>
       
       
-      <Route exact path='/edit_perfil' render={()=>( 
+      {/*
+      <Route exact path='/editperfil' render={()=>( 
           !!sessionStorage.jwt ? (<Edit />) : (<Redirect to='/' />)
-      )}/>    
+      )}/>
+      
+      */}
+  
+
+
 
       <Route path='/eventos' component={Eventos}/>
       <Route path='/Torneo' render={()=>( 
@@ -107,7 +115,13 @@ const Main = () => (
           !!sessionStorage.jwt ? (<Mispartidos />) : (<Redirect to='/login' />) 
       )}/>
       
+      
       <Route path='/pdf' component={MyPdfViewer}/>
+      
+      {/*<Route path='/pdf'  render={()=>( 
+          !!sessionStorage.jwt ? (<pdf />) : (<Redirect to='/login' />) 
+      )}/>*/}
+      
       <Route path='/getteamlist' component={getteamlist}/>
       
       <Route path='/loading' component={Loading}/>

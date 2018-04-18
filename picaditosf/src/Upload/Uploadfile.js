@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../styles/styles.css'
 
 class Uploadfile extends React.Component {
 
@@ -60,7 +60,7 @@ class Uploadfile extends React.Component {
     }
 
     return (
-      <div className="form-group">
+      <div className="form-group" align="center">
         <form onSubmit={(e)=>this._handleSubmit(e)}>
           <input className="form-control-file btn" 
             type="file" 

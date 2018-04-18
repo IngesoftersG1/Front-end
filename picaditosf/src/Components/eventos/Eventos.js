@@ -9,7 +9,7 @@ export default class Eventos extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://back-end-proyect-daeperdomocr.c9users.io/torneos `)
+    axios.get(`https://picaditos-dehormazah.c9users.io/torneos `)
       .then(res => {
         const eventos = res.data;
         

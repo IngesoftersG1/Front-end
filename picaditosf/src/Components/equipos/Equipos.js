@@ -9,7 +9,7 @@ export default class Equipos extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://back-end-proyect-daeperdomocr.c9users.io/equipos `)
+    axios.get(`https://picaditos-dehormazah.c9users.io/equipos `)
       .then(res => {
         const eventos = res.data;
       	const b = eventos[0].name;

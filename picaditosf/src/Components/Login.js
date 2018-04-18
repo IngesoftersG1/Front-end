@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import '../styles/styles.css'
 import axios from 'axios';
+import swal from 'sweetalert2'
 
 
 export var a;
@@ -35,13 +36,11 @@ class Login extends Component {
     event.preventDefault();    
     console.log(this.state)       
     console.log(this.props)
-    axios.post(`https://jsonplaceholder.typicode.com/users`, this.state)
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-        a = this.state.email;    
-    
-      })
+    swal(
+    'Good job!',
+    'You clicked the button!',
+    'success'
+    ) 
     this.props.actions.loginUser(this.state);
    // window.location.reload();
   }

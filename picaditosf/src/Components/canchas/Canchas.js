@@ -12,7 +12,7 @@ export default class Canchas extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://back-end-proyect-daeperdomocr.c9users.io/canchas`)
+    axios.get(`https://picaditos-dehormazah.c9users.io/canchas`)
       .then(res => {
         const eventos = res.data;
         

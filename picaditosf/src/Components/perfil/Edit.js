@@ -2,12 +2,44 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import '../../styles/styles.css'
 import Uploadfile from '../../Upload/Uploadfile.js'
+import Example from '../Loading/logo'
 
-const Edit = () => (
-  <div className="cont_2">
+
+
+export default class Edit extends React.Component {
+  state = {
+    eventos: [], isLoading: true
+  }
+
+  componentDidMount() {
+   
+        setTimeout(() => this.setState({ isLoading: false }), 2000);
+    
+  }
+   
+  
+
+ render() {
+    if(this.state.isLoading){ 
+    return (<div>
+    
+        {Example}
+    
+        </div>); // render the loading component
+    }
+  	 	
+  	 	
+    return (
+    	
+<div>    
+
+<div className="cont_2">
+  
   	<div className="row">
-  		<div className="col-md-7">
-  			<div id="accordion">
+  		<div class="col-sm-2">
+  		</div>
+  		<div class="col-sm-8">
+  			<div class = "acco" id="accordion">
 				  <div className="card">
 				    <div className="card-header" id="headingOne">
 				      <h5 className="mb-0">
@@ -80,9 +112,18 @@ const Edit = () => (
 				<form className="form1" onSubmit={this.onSubmit}>
 					<button type="submit" className="btn btn-lg btn-primary btn-block">Actualizar perfil</button>
 				</form>  	
-  		</div>  		
+  		</div>
+  		
   	</div>
 	</div>
-)
 
-export default Edit
+	</div>   
+
+    	
+      
+    )
+  }
+}
+
+
+
