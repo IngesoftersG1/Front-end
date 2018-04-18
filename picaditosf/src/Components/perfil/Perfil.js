@@ -1,11 +1,35 @@
-import React from 'react'
+import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import '../../styles/styles.css'
-import {a} from '../Login'
+import Example from '../Loading/logo'
+import MyPdfViewer from '../PDF/pdfview'
 
+export default class Perfil extends Component {
+  state = {
+    eventos: [], isLoading: true
+  }
 
-const Perfil = () => (
-  <div className="cont_2">
+  componentDidMount() {
+  	
+          setTimeout(() => this.setState({ isLoading: false }), 500);
+      }
+  
+   
+  
+
+ render() {
+    if(this.state.isLoading){ 
+    return (<div>
+    
+        {Example}
+    
+        </div>); // render the loading component
+    }
+  	 	
+  	 	
+    return (
+    <div>	
+	<div className="cont_2">
 		<div className="container"> 	
 		  <div className="row align-items-start"> 
 		  	<div className="col-md-2">
@@ -43,10 +67,19 @@ const Perfil = () => (
 		    </div>
 		    <div id="estat" className="tab-pane fade">
 		      <h3>Estadisticas</h3>
+		      	<Link to='/pdf'>
+		  			<button className="btn">ver estadisticas</button>
+		  		</Link>
 		    </div>
 		  </div>
+	
 		</div>
 	</div>
-)
+	</div>   
 
-export default Perfil
+    	
+      
+    )
+  }
+	
+}

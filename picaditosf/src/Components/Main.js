@@ -55,6 +55,8 @@ const Main = () => (
       <Route exact path='/login' render={()=>( 
           !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Login />)
       )}/>
+      
+      
       <Route path='/canchas' component={Canchas}/>
       
       <Route path='/equipo' render={()=>( 
@@ -63,13 +65,27 @@ const Main = () => (
       )}/>
       
       <Route exact path='/equipos' component={Equipos}/>
+    {/* <Route exact path='/perfil' component={Perfil}/>*/}
+      
+      
       
       <Route exact path='/perfil' render={()=>( 
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>    
-      <Route exact path='/edit_perfil' render={()=>( 
+      
+        
+      <Route exact path='/editperfil' component={Edit}/>
+      
+      
+      {/*
+      <Route exact path='/editperfil' render={()=>( 
           !!sessionStorage.jwt ? (<Edit />) : (<Redirect to='/' />)
-      )}/>    
+      )}/>
+      
+      */}
+  
+
+
 
       <Route path='/eventos' component={Eventos}/>
       <Route path='/Torneo' render={()=>( 
@@ -99,7 +115,13 @@ const Main = () => (
           !!sessionStorage.jwt ? (<Mispartidos />) : (<Redirect to='/login' />) 
       )}/>
       
+      
       <Route path='/pdf' component={MyPdfViewer}/>
+      
+      {/*<Route path='/pdf'  render={()=>( 
+          !!sessionStorage.jwt ? (<pdf />) : (<Redirect to='/login' />) 
+      )}/>*/}
+      
       <Route path='/getteamlist' component={getteamlist}/>
       
       <Route path='/loading' component={Loading}/>
