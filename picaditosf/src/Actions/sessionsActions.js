@@ -11,11 +11,16 @@ export function logoutUser(){
 export function loginUser(credentials) {  
   return function(dispatch) {
     return sessionApi.login(credentials).then(response => {
-      console.log(response);
-      //sessionStorage.setItem('jwt', response.jwt);
-      sessionStorage.setItem('jwt', response.id);
-      dispatch(loginSuccess());
-      window.location.reload();
+      console.log("RES",response);
+      //debugger;
+      sessionStorage.setItem('jwt', response.jwt);
+      console.log("jwt",response.jwt)
+      if (response.jwt==undefined){
+        dispatch(logoutUser()); 
+      }else{
+        dispatch(loginSuccess()); 
+        window.location.reload();
+      }
     }).catch(error => {
       throw(error);
     });

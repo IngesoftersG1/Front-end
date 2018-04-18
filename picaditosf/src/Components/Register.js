@@ -11,20 +11,43 @@ class Register extends Component{
 	constructor(props){
     super(props);
     this.state = {
-      username: '',
-      name: '',
+      user_name: '',
+      nombres: '',
+      apellidos: '',
       email:'',
-      password: '',
-      passwordConf: ''
+      fecha_nacimiento:'1990-06-06',
+      password: '123456',
+      password_confirmation: '123456'
     }
     this.onSubmit = this.onSubmit.bind(this);
   }
+	
+	createUser(){
+		const info = JSON.stringify(this.state)
+		console.log("json",info)
+		const request = new Request(`https://picaditos-dehormazah.c9users.io/users`, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }), 
+      body: info
+    });
 
+    return fetch(request).then(response => {
+    	console.log("response",response);
+			window.location.reload();
+      return response.json();
+    }).catch(error => {
+      return error;
+    });
+	}
+	
   onSubmit(e){
     e.preventDefault();
     //todo api request
+    this.createUser()
+    //
     console.log(this.state)
-    console.log(a);
   }
   
 	render() {
@@ -46,8 +69,8 @@ class Register extends Component{
 						<input placeholder="Enter Username" 
 							name="user" 
 							type='text' 
-		          onChange={event => this.setState({username: event.target.value})}
-		          value={this.state.username}
+		          onChange={event => this.setState({user_name: event.target.value})}
+		          value={this.state.user_name}
 							className="form-control"
 							required/>
 
@@ -55,11 +78,29 @@ class Register extends Component{
 						<input placeholder="Enter firstname" 
 							name="firstname" 
 							type='text' 
-		          onChange={event => this.setState({name: event.target.value})}
-		          value={this.state.name}
+		          onChange={event => this.setState({nombres: event.target.value})}
+		          value={this.state.nombres}
 							className="form-control" 
 							required/>
-
+							
+						<label htmlFor="psw">Apellido</label>
+						<input placeholder="Enter firstname" 
+							name="lastname" 
+							type='text' 
+		          onChange={event => this.setState({apellidos: event.target.value})}
+		          value={this.state.apellidos}
+							className="form-control" 
+							required/>
+							
+						<label htmlFor="psw">Nacimiento</label>
+						<input placeholder="Enter birth" 
+							name="firstname" 
+							type='text' 
+		          onChange={event => this.setState({fecha_nacimiento: event.target.value})}
+		          value={this.state.fecha_nacimiento}
+							className="form-control" 
+							required/>
+							
 						<label htmlFor="psw">Contraseña</label>
 						<input placeholder="Enter password" 
 							name="password" 
@@ -73,8 +114,8 @@ class Register extends Component{
 						<input placeholder="Enter password" 
 							name="passwordConf" 
 							type='password' 
-		          onChange={event => this.setState({passwordConf: event.target.value})}
-		          value={this.state.passwordConf}
+		          onChange={event => this.setState({password_confirmation: event.target.value})}
+		          value={this.state.password_confirmation}
 							className="form-control" 
 							required/>
 
@@ -83,7 +124,6 @@ class Register extends Component{
 		         		<input type="checkbox" value="remember-me"/>Remember me
 		       	 	</label>
 		     		</div>
-
 						<button type="submit" className="btn btn-lg btn-primary btn-block">Crear cuenta</button>
 					</form>  	
 				</div>

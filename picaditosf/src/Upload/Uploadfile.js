@@ -5,22 +5,24 @@ class Uploadfile extends React.Component {
 
 	constructor(props) {
     super(props);
-    this.state = {file: '',imagePreviewUrl: ''};
+    this.state = {image: '',picture: ''};
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
 	sendImageToController(file){
 		console.log("payload",file)
-	  fetch(`https://jsonplaceholder.typicode.com/posts`, {
+		const imag = JSON.stringify({picture: file.picture});
+		console.log("imag",imag)
+	  fetch(`https://picaditos-dehormazah.c9users.io/items`, {
 	    headers: new Headers({
         'Content-Type': 'application/json'
       }), 
 	    method: 'POST',
-	    body: JSON.stringify(file)
+	    body: imag
 	  })
 	  .then(response => response.json())
 	  .then(imageFromController => {
-	    console.log(imageFromController)
+	    console.log("img",imageFromController)
 	    //this.setState({uploads: this.state.uploads.concat(imageFromController)})
 	  })
 	}  
@@ -29,7 +31,7 @@ class Uploadfile extends React.Component {
     e.preventDefault();
     // TODO: do something with -> this.state.file    
     //console.log('handle uploading-', this.state.file);
-    this.sendImageToController(this.state.file)
+    this.sendImageToController(this.state)
   }
 
   handleImageChange(e) {
@@ -40,8 +42,8 @@ class Uploadfile extends React.Component {
 
     reader.onloadend = () => {
       this.setState({
-        file: file,
-        imagePreviewUrl: reader.result
+        image: file,
+        picture: reader.result
       });
     }
 
@@ -49,10 +51,10 @@ class Uploadfile extends React.Component {
   }
 
   render() {
-    let {imagePreviewUrl} = this.state;
+    let {picture} = this.state;
     let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
+    if (picture) {
+      $imagePreview = (<img src={picture} />);
     } else {
       $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
     }

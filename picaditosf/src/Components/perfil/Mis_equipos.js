@@ -14,7 +14,7 @@ export default class Misequipos extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/users `)
+    axios.get(`https://picaditos-dehormazah.c9users.io/users `)
       .then(res => {
         const eventos = res.data;
       	const b = eventos[0].name;
@@ -55,7 +55,7 @@ export default class Misequipos extends Component {
 		  	
 		  	<div className="col-md-8">
 		  		<h1>
-		  		 {evento.name}
+		  		 {evento.nombres}
 		  	    </h1>
 		  		
 		  		<h4>calificación</h4>
