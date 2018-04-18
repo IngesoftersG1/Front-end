@@ -47,7 +47,7 @@ export default class MyPdfViewer extends React.Component {
     }
     return (
      <div>
-      <div align="center">
+      <div align="center" >
         <PDF
           file={myPDF}
           onDocumentComplete={this.onDocumentComplete}

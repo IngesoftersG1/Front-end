@@ -55,6 +55,8 @@ const Main = () => (
       <Route exact path='/login' render={()=>( 
           !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Login />)
       )}/>
+      
+      
       <Route path='/canchas' component={Canchas}/>
       
       <Route path='/equipo' render={()=>( 
@@ -63,10 +65,16 @@ const Main = () => (
       )}/>
       
       <Route exact path='/equipos' component={Equipos}/>
+    {/* <Route exact path='/perfil' component={Perfil}/>*/}
+      
+      
       
       <Route exact path='/perfil' render={()=>( 
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>    
+      
+      
+      
       <Route exact path='/edit_perfil' render={()=>( 
           !!sessionStorage.jwt ? (<Edit />) : (<Redirect to='/' />)
       )}/>    
