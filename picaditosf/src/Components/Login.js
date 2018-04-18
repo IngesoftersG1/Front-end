@@ -14,8 +14,8 @@ class Login extends Component {
     super(props);
     a = null;
     this.state = {
-      email: "arlie@homenick.biz",
-      password: "1234567"
+      email: "",
+      password: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);

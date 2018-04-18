@@ -11,10 +11,10 @@ class Register extends Component{
 	constructor(props){
     super(props);
     this.state = {
-      user_name: '',
-      nombres: '',
-      apellidos: '',
-      email:'',
+      user_name: 'daes1',
+      nombres: 'Dav',
+      apellidos: 'Est',
+      email:'davidemail@unal.com',
       fecha_nacimiento:'1990-06-06',
       password: '123456',
       password_confirmation: '123456'
@@ -25,7 +25,7 @@ class Register extends Component{
 	createUser(){
 		const info = JSON.stringify(this.state)
 		console.log("json",info)
-		const request = new Request(`https://picaditos-dehormazah.c9users.io/users`, {
+		const request = new Request(`https://back-end-proyect-daeperdomocr.c9users.io/users`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -35,9 +35,10 @@ class Register extends Component{
 
     return fetch(request).then(response => {
     	console.log("response",response);
-			window.location.reload();
       return response.json();
-    }).catch(error => {
+    })
+    
+    .catch(error => {
       return error;
     });
 	}
@@ -45,7 +46,16 @@ class Register extends Component{
   onSubmit(e){
     e.preventDefault();
     //todo api request
-    this.createUser()
+    this.createUser().then(res => {
+    	if (res.status==500){
+    		window.location.href='/login'	
+    	}else{
+    		console.log("responseresp",res)
+    		var msg = "No se pudo crear usuario: email " + res.email + "user " + res.user_name
+    		alert(msg)
+    	}
+   })
+    
     //
     console.log(this.state)
   }
