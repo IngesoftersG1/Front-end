@@ -6,12 +6,13 @@ import {connect} from 'react-redux';
 import '../styles/styles.css'
 import axios from 'axios';
 
+import { GoogleLogin } from 'react-google-login-component';
 
 export var a;
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props,context) {
+    super(props,context);
     a = null;
     this.state = {
       email: "",
@@ -46,13 +47,28 @@ class Login extends Component {
    // window.location.reload();
   }
   
+  responseGoogle (googleUser) {
+    var id_token = googleUser.getAuthResponse().id_token;
+    var googleId = googleUser.getId();
+    
+    console.log({ googleId });
+    console.log({accessToken: id_token});
+    //anything else you want to do(save to localStorage)...
+  }
 
-
+  
 
 
   render() {
     return (
       <div className="cont_1">
+        <GoogleLogin socialId="850983779532-u20mj39en2t6f5sq8ea0c6nqdh7hooqe.apps.googleusercontent.com"
+                     className="google-login"
+                     scope="profile"
+                     fetchBasicProfile={false}
+                     responseHandler={this.responseGoogle}
+                     buttonText="Login With Google"/>
+            
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name">Correo electronico</label>
           <input placeholder="Enter Email" 
