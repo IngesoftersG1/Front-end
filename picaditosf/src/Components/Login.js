@@ -96,12 +96,6 @@ class Login extends Component {
   render() {
     return (
       <div className="cont_1">
-        <GoogleLogin clientId="506449915249-06m1o75jjoe8g3b9q3vj4mhsus5fjt3d.apps.googleusercontent.com"
-                     className="google-login"
-                     onSuccess={this.responseGoogle}
-                     onFailure={this.responseGoogle}
-                     buttonText="Login With Google"/>
-            
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name">Correo electronico</label>
           <input placeholder="Enter Email" 
@@ -133,9 +127,18 @@ class Login extends Component {
           </div>
           <button type="submit" 
             disabled={!this.validateForm()}
-            className="btn btn-lg btn-block">Ingresar
+            className="btn btn-lg btn-block">Iniciar sesion
           </button>
-
+          
+          <p>o</p>
+          
+          <GoogleLogin clientId="506449915249-06m1o75jjoe8g3b9q3vj4mhsus5fjt3d.apps.googleusercontent.com"
+                     className="btn btn-lg btn-block btn-google"
+                     onSuccess={this.responseGoogle}
+                     onFailure={this.responseGoogle}>
+            <span> Iniciar sesion con Google + </span>
+          </GoogleLogin>  
+                 
         </form>            
       </div>      
     );
