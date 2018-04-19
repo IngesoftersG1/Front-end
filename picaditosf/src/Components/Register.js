@@ -25,7 +25,7 @@ class Register extends Component{
 	createUser(){
 		const info = JSON.stringify(this.state)
 		console.log("json",info)
-		const request = new Request(`https://back-end-proyect-daeperdomocr.c9users.io/users`, {
+		const request = new Request(`https://picaditos-dehormazah.c9users.io/users`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'

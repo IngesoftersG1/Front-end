@@ -56,6 +56,22 @@ LOGIN STTYLES
 	margin-top: 100px;
 }
 
+.cont_1 p {
+	text-align: center;
+}
+.btn-google {
+	  background: #E93F2E;
+	  color: #fff;
+	  border-width: 1px;
+	  border-style: solid;
+	  border-color: #b72213;
+	}
+
+.btn-google:active, .btn-google:hover {
+	  background: #b72213;
+	  color: #fff;
+	}
+
 /*
 REGISTER
 */
