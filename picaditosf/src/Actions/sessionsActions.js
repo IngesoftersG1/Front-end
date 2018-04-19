@@ -1,5 +1,6 @@
 import * as types from './actionTypes';  
 import sessionApi from '../Auth/sessionApi';
+import swal from 'sweetalert2'
 
 export function loginSuccess() {  
   return {type: types.LOG_IN_SUCCESS}
@@ -20,6 +21,11 @@ export function loginUser(credentials) {
       }else{
         dispatch(loginSuccess()); 
         window.location.reload();
+        swal(
+          'Sucessfull!',
+          'You clicked the button!',
+          'success'
+          ) 
       }
     }).catch(error => {
       throw(error);

@@ -47,7 +47,10 @@ class Register extends Component{
     e.preventDefault();
     //todo api request
     this.createUser().then(res => {
-    	if (res.status==500){
+    	if (res.user_name){
+    		console.log("success ",res)
+    		window.location.href='/login'
+    	}else if(res.status==500){
     		window.location.href='/login'	
     	}else{
     		console.log("responseresp",res)

@@ -37,11 +37,6 @@ class Login extends Component {
     event.preventDefault();    
     console.log(this.state)       
     console.log(this.props)
-    swal(
-    'Good job!',
-    'You clicked the button!',
-    'success'
-    ) 
     this.props.actions.loginUser(this.state);
    // window.location.reload();
   }
@@ -82,7 +77,7 @@ class Login extends Component {
     
     
     console.log({accessToken: id_token});
-    console.log("datag",googleUser.getBasicProfile().getName())
+    console.log("datag",googleUser.getBasicProfile())
     sessionStorage.setItem('jwt', id_token);
     sessionStorage.setItem('user_name', datauser.getName() );
     window.location.reload()
