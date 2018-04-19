@@ -8,7 +8,7 @@ import Example from '../Loading/logo'
 
 export default class Edit extends React.Component {
   state = {
-    eventos: [], isLoading: true
+    isLoading: true
   }
 
   componentDidMount() {
@@ -52,6 +52,7 @@ export default class Edit extends React.Component {
 				    <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
 				      <div className="card-body">
 				      	<Uploadfile />
+				      	
 					    </div>
 				    </div>
 				  </div>
@@ -78,6 +79,10 @@ export default class Edit extends React.Component {
 									type='text' 
 									className="form-control" 
 									required/>
+								<form className="form1" onSubmit={this.onSubmit}>
+								<button type="submit" className="btn btn-lg btn-primary btn-block">Actualizar perfil</button>
+								</form> 		
+									
 				      </div>
 				    </div>
 				  </div>
@@ -104,14 +109,14 @@ export default class Edit extends React.Component {
 									type='password' 
 									className="form-control" 
 									required/>
+									
+							<form className="form1" onSubmit={this.onSubmit}>
+							<button type="submit" className="btn btn-lg btn-primary btn-block">Actualizar Contraseña</button>
+							</form> 			
 				      </div>
 				    </div>
 				  </div>
 				</div>
-
-				<form className="form1" onSubmit={this.onSubmit}>
-					<button type="submit" className="btn btn-lg btn-primary btn-block">Actualizar perfil</button>
-				</form>  	
   		</div>
   		
   	</div>

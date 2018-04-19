@@ -1,4 +1,6 @@
 import axios from 'axios';
+import swal from 'sweetalert2'
+
 
 class SessionApi {
   static login(credentials) {
@@ -13,6 +15,25 @@ class SessionApi {
 
     return fetch(request).then(response => {
       return response.json();
+      
+    if(response.length!=0){  
+    swal(
+    'logeado!',
+    'success'
+    ) 
+    }else{
+    
+    swal(
+      {
+    type: 'error',
+    title: 'Oops...',
+    text: 'Something went wrong!',
+    footer: '<a href>Why do I have this issue?</a>',
+    })  
+      
+    }
+    
+      
     }).catch(error => {
       return error;
     });

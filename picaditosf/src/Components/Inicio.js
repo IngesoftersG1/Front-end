@@ -38,41 +38,41 @@ const Inicio = () => (
      </div>
      
      
-      <section class="cont_3 text-center">
+      <section className="cont_3 text-center">
       
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="features-icons">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-4">
+            <div className="features-icons">
 
                  <img className="logo1" src={require('../imagenes/thinking.png')} />
                  
             </div>  
             
               <h3>Facil de usar</h3>
-              <p class="lead mb-0">intuitivo y atractivo a la vista lo que permite al usuario un facil entendimiento!</p>
+              <p className="lead mb-0">intuitivo y atractivo a la vista lo que permite al usuario un facil entendimiento!</p>
               <br/>
           </div>
           
-          <div class="col-lg-4">
-              <div class="features-icons">
+          <div className="col-lg-4">
+              <div className="features-icons">
 
                  <img className="logo1" src={require('../imagenes/phone.png')} />
                  
               </div>  
               <h3>Responsive</h3>
-              <p class="lead mb-0">permite a los usuarios acceder desde distintos dispositivos!</p>
+              <p className="lead mb-0">permite a los usuarios acceder desde distintos dispositivos!</p>
               <br/>
             
           </div>
-          <div class="col-lg-4">
-            <div class="features-icons">
+          <div className="col-lg-4">
+            <div className="features-icons">
 
                  <img className="logo1" src={require('../imagenes/users.png')} />
                  
               </div>  
               <h3>Para todos los gustos</h3>
-              <p class="lead mb-0">Para distintos usuarios que buscan divertirse en un partido casual o un torneo con recompensa!</p>
+              <p className="lead mb-0">Para distintos usuarios que buscan divertirse en un partido casual o un torneo con recompensa!</p>
               <br/>
             
         </div>
@@ -80,7 +80,7 @@ const Inicio = () => (
       </div>
     </section>
     
-    <div class = 'Footerfont'> 
+    <div className= 'Footerfont'> 
     
     </div>
       

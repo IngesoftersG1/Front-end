@@ -4,21 +4,27 @@ import axios from 'axios';
 
 export default class getteamlist extends Component {
   state = {
-    equipos: []
+    eventos: []
   }
 
   componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/users`) // https://nuevasramas-garayf.c9users.io/getteamlist
-      .then(res => {
-        const equipos = res.data;
-        this.setState({ equipos });
-      })
+    axios.get('https://jsonplaceholder.typicode.com/users', {
+    params: {
+    user_name: 'hola'
+  }
+})
+.then(res => {
+        console.log(res.config.params);
+        const eventos = res.data;
+        this.setState({ eventos });
+        
+      });
   }
 
   render() {
     return (
       <ul>
-        { this.state.equipos.map(equipo => <li>{equipo.name}</li>)}
+        { this.state.eventos.map(evento => <li>{evento.name}</li>)}
       </ul>
     )
   }

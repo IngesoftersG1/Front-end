@@ -8,11 +8,17 @@ export default class geteventlist extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://nuevasramas-garayf.c9users.io/geteventslist`)
-      .then(res => {
+    axios.get('https://jsonplaceholder.typicode.com/users', {
+    params: {
+    user_name: 'hola'
+  }
+})
+.then(res => {
+        console.log(res.config.params);
         const eventos = res.data;
         this.setState({ eventos });
-      })
+        
+      });
   }
 
   render() {
