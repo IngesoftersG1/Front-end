@@ -25,14 +25,15 @@ const Inicio = () => (
 			  <img className="logo1" src={require('../imagenes/ball-fire.png')} />
         <h1>PICADITOS</h1>
         <p className="lead">        
-					Registrate como jugador para obtener calificación de otros usuarios, compartir disponibilidad de tiempo para jugar y estadísticas<br/>
-					Crea equipos, añade miembros y buscar jugadores.<br/>
-					Consulta canchas disponibles para jugar</p>
+					<b>Regístrate como jugador para obtener calificación de otros usuarios, compartir disponibilidad de tiempo para jugar y estadísticas</b><br/><br/>
+					<b>Crea equipos, añade miembros y busca jugadores!</b><br/><br/>
+					<b>Consulta canchas disponibles para jugar!</b>
+				</p>
         <p className="lead">
           <Link to='/login' >
-          	<button className="btn btn-lg btn-secondary">Login</button></Link>	
+          	<button className="btn btn-lg btn-success idx-btn">Ingresa</button></Link>	
 		   		<Link to='/register'>
-		   			<button className="btn btn-lg btn-secondary">Registro</button></Link>
+		   			<button className="btn btn-lg idx-btn">Registrate</button></Link>
         </p>
       </div>
      </div>

@@ -2,7 +2,9 @@ import React,{ Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import '../../styles/styles.css'
+import session from '../../Reducers/sessionReducer';
 
+import swal from 'sweetalert2'
 //fecha , contenido , usuario_2_name ,user_id , asunto 
 // The Roster component matches one of two different routes
 // depending on the full pathname
@@ -34,10 +36,10 @@ class mensaje extends Component {
     super(props);
     
     this.state = {
-      fecha: '2014-04-04',
+      fecha: '2018-04-04',
       contenido: '',
       usuario_2_name: '',
-      user_id:'Malphite',
+      user_id: JSON.parse(sessionStorage.user).user_name,
       asunto:''
     }
     
@@ -72,9 +74,16 @@ class mensaje extends Component {
     this.createMessage().then(res => {
     	console.log(res)
     	if (res.status==500){
-    	}else{
     		var msg = "No se pudo enviar el mensaje "
     		alert(msg)
+    	}else{
+	    	swal(
+				"Mensaje enviado correctamente",
+				"continue",
+				"success"
+				).then((value) => {
+					window.location.reload()
+			})
     	}
    })
     
@@ -89,7 +98,7 @@ class mensaje extends Component {
 					<h1>Nuevo Mensaje</h1>
 					<form className="form1" onSubmit={this.onSubmit}>
 						<label htmlFor="name">Destinatario</label>
-						<input placeholder="Example usuario" 
+						<input placeholder="example_usuario" 
 							name="usuario_2_name" 
 		          type='eusuario_2_name' 
 		          onChange={event => this.setState({usuario_2_name: event.target.value})}
@@ -98,7 +107,7 @@ class mensaje extends Component {
 							required/>
 
 						<label htmlFor="psw">Asunto</label>
-						<input placeholder="emmm no se" 
+						<input placeholder="Asunto" 
 							name="asunto" 
 							type='text' 
 		          onChange={event => this.setState({asunto: event.target.value})}
@@ -107,7 +116,7 @@ class mensaje extends Component {
 							required/>
 
 						<label htmlFor="psw">Contenido</label>
-						<textarea rows="5" placeholder="Hola soy un mensaje"
+						<textarea rows="5" placeholder="Escribe tu mensaje"
 							name="contenido" 
 							type='text' 
 		          onChange={event => this.setState({contenido: event.target.value})}

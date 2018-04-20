@@ -13,19 +13,15 @@ export default class Perfil extends Component {
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
       }
-  
-   
-  
 
  render() {
     if(this.state.isLoading){ 
     return (<div>
-    
         {Example}
-    
         </div>); // render the loading component
     }
-  	 	
+  	
+  	let names = JSON.parse(sessionStorage.user).nombres + " " + JSON.parse(sessionStorage.user).apellidos
   	 	
     return (
     <div>	
@@ -35,19 +31,25 @@ export default class Perfil extends Component {
 		  	<div className="col-md-2">
 		  		<img src={require('../../imagenes/perfil.jpg')} className="img-responsive profile-img"/>
 		  	</div>
-		  	<div className="col-md-6">
-		  		<h1>{JSON.parse(sessionStorage.user).nombres}</h1>
-		  		<h4>{JSON.parse(sessionStorage.user).user_name}</h4>
-		  	</div>
-		  	<div className="col-md-2">		  		
-		  		<Link to='/edit_perfil'>
-		  			<button className="btn">Editar Perfil</button>
-		  		</Link>
-		  	</div>
-		  	<div className="col-md-2">
-		  		<Link to='/Configuracion'>
-		  			<button className="btn">Configuración</button>
-		  		</Link>
+		  	<div className="col-md-10">
+			  	
+			  	<div className="row">
+			  	
+			  		<h1>{JSON.parse(sessionStorage.user).nombres}</h1>
+						<div className="prf-btns">
+				  		<Link to='/editperfil'>
+				  			<button className="btn btn-info prf-btn">Editar Perfil</button>
+				  		</Link>
+				  		
+				  		<Link to='/Configuracion'>
+				  			<button className="btn btn-warning prf-btn">Configuración</button>
+				  		</Link>	
+						</div>
+			  	</div>
+			  	
+			  	<div className="row">
+					<h4>@{JSON.parse(sessionStorage.user).user_name}</h4>
+		  		</div>
 		  	</div>
 		 	</div>
 	  </div>

@@ -17,7 +17,7 @@ a:hover {
   /* Set the fixed height of the footer here */
   height: 50px;
   line-height: 50px; /* Vertically center the text there */
-  background-color:  rgba(36, 165, 38, 0);
+  background-color:  rgba(0, 0, 0, 0);
   color: white;
 }
 
@@ -28,6 +28,11 @@ LANDING STYLES
 h1{
 	color: white;
 	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+h4,h3 {
+  color:white;
 }
 
 .btn-secondary,
@@ -40,24 +45,36 @@ h1{
 }
 
 .logo1{
-	margin-top: 50px;
+	margin: 5px;
 	width: 100px;
 }
 
+.idx-btn{
+  min-width: 120px;
+  margin: 10px;
+}
 /*
 LOGIN STTYLES
 */
 
 .cont_1{	
-	background-color: rgba(36, 165, 38, 0.5);
-	max-width: 550px;
-	padding: 50px;
+	background-color: rgba(0, 0, 0, 0.8);
+	max-width: 650px;
+	min-height: 520px;
+	max-height: 750px;
+	padding: 40px;
 	margin: auto;
-	margin-top: 100px;
+	margin-top: 80px;
+	margin-bottom: 30px;
+	color: #EBEBEB;
 }
 
 .cont_1 p {
 	text-align: center;
+	color: #EBEBEB;
+	font-size:  18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 .btn-google {
 	  background: #E93F2E;
@@ -157,7 +174,7 @@ LOGIN
 SITE
 */
 .cont_2{	
-	background-color: rgba(36, 165, 38, 0.5);
+	background-color: rgba(0, 0, 0, 0.8);
 	max-width: 800px;
 	min-width: 	400px;
 	padding: 40px;
@@ -183,6 +200,12 @@ SITE
 	margin-top: 50px;
 }
 
+.prf-btns{
+  margin-left: 20px;
+}
+.prf-btn {
+  margin: 5px;
+}
 
 /*temp*/
 .carousel { z-index: -99; 
@@ -200,7 +223,7 @@ SITE
 
 
 .Footerfont{
-	background-color: rgba(36, 165, 38, 1);
+	background-color: rgba(0, 0, 0, 1);
 	width:100%;
 	padding: 5;
 	height:40px;

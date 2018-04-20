@@ -37,7 +37,7 @@ class Header extends Component {
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
             <Link className="navbar-brand" to='/'>Picaditos!</Link>
-            <button onClick={this.test}>test</button> 
+            <button className="btn btn-warning test-btn" onClick={this.test}>test</button> 
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -60,11 +60,12 @@ class Header extends Component {
                 </li>
               </ul>
               <form className="form-inline mt-2 mt-md-0">
-                <Link onClick={this.logout} className="nav-link" to="/login">log out</Link>
-                <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>             
+                <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>  
                 <a href="#" className="btn">
                   <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_search-128.png" width="25"/>
                 </a>
+                <Link onClick={this.logout} className="nav-link" to="/login">
+                  <button className="btn btn-danger">Cerrar sesión</button></Link>
               </form>
             </div>
           </nav>
@@ -75,7 +76,7 @@ class Header extends Component {
         <header>
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
               <Link className="navbar-brand" to='/'>Picaditos!</Link>
-              <button onClick={this.test}>test</button> 
+              <button className="btn btn-warning test-btn" onClick={this.test}>test</button> 
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>

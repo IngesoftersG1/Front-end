@@ -12,13 +12,13 @@ class Register extends Component{
 	constructor(props){
     super(props);
     this.state = {
-      user_name: 'daes1',
-      nombres: 'Dav',
-      apellidos: 'Est',
-      email:'davidemail@unal.com',
-      fecha_nacimiento:'1990-06-06',
-      password: '123456',
-      password_confirmation: '123456'
+      user_name: '',
+      nombres: '',
+      apellidos: '',
+      email:'',
+      fecha_nacimiento:'',
+      password: '',
+      password_confirmation: ''
     }
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -93,7 +93,7 @@ class Register extends Component{
 		return (
 			<div className="text-center">
 				<div className="cont_1">
-					<h1>Juega con Picaditos!</h1>
+					<h1>Registrarse</h1>
 					<form className="form1" onSubmit={this.onSubmit}>
 						<label htmlFor="name">Correo electronico</label>
 						<input placeholder="Enter Email" 
@@ -163,7 +163,7 @@ class Register extends Component{
 		         		<input type="checkbox" value="remember-me"/>Remember me
 		       	 	</label>
 		     		</div>
-						<button type="submit" className="btn btn-lg btn-primary btn-block">Crear cuenta</button>
+						<button type="submit" className="btn btn-lg btn-success btn-block">Crear cuenta</button>
 					</form>  	
 				</div>
 			</div>

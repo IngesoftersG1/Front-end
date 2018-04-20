@@ -68,7 +68,8 @@ class Login extends Component {
     var datauser = googleUser.getBasicProfile();
     //console.log("datagoogl",response)
     var user = {
-          user_name: datauser.getName(),
+          user_name: datauser.getGivenName(),
+ //         user_name: datauser.getName(),
           nombres: datauser.getGivenName(),
           apellidos: datauser.getFamilyName(),
           email: datauser.getEmail()
@@ -78,12 +79,17 @@ class Login extends Component {
       console.log("res",res)
     }
     )
-    
-    
     console.log({accessToken: id_token});
     console.log("datag",datauser)
     sessionStorage.setItem('jwt', id_token);
     sessionStorage.setItem('user',JSON.stringify(user));
+    swal(
+			"Ha ingresado correctamente",
+			"continue",
+			"success"
+			).then((value) => {
+				window.location.reload()
+		})
   }
 
   
@@ -92,6 +98,7 @@ class Login extends Component {
   render() {
     return (
       <div className="cont_1">
+        <h1 className="text-center">Iniciar sesión</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name">Correo electronico</label>
           <input placeholder="Enter Email" 
