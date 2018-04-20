@@ -80,7 +80,7 @@ class Login extends Component {
     console.log("datag",googleUser.getBasicProfile())
     sessionStorage.setItem('jwt', id_token);
     sessionStorage.setItem('user_name', datauser.getName() );
-    window.location.reload()
+    //window.location.reload()
     //anything else you want to do(save to localStorage)...
   }
 
