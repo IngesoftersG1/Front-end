@@ -9,6 +9,7 @@
 * Cada formulario de la aplicación con sus respectivas validaciones.(Edgar Garay, David Perdomo)
 * envio de archivos al backend.(David Perdomo)
 * consumir los endpoints necesarios para realizar los 2 flujos propios de su aplicacion.(David Perdomo , Edgar Garay)
-
+* nuevos estilos y diseño de la pagina (David Hormaza, David Perdomo)
+* singin con redes sociales (David Perdomo)
 
 
