@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import '../styles/styles.css'
 import a from './Login'
+import swal from 'sweetalert2'
 
 
 // The Roster component matches one of two different routes
@@ -25,16 +26,24 @@ class Register extends Component{
 	createUser(){
 		const info = JSON.stringify(this.state)
 		console.log("json",info)
-		const request = new Request(`https://back-end-proyect-daeperdomocr.c9users.io/users`, {
+		const request = new Request(`https://picaditos-dehormazah.c9users.io/users`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
       }), 
       body: info
     });
-
+    
     return fetch(request).then(response => {
+    	
     	console.log("response",response);
+    	if(response.status==422){
+    		console.log("validations from server error")
+    	}else if(response.status==200){
+    		console.log("create user sucessfull")
+    	}else{
+    		console.log("Error inesperate")
+    	}
       return response.json();
     })
     
@@ -47,12 +56,32 @@ class Register extends Component{
     e.preventDefault();
     //todo api request
     this.createUser().then(res => {
-    	if (res.status==500){
-    		window.location.href='/login'	
+			console.log("respo",res)
+    	if (res.nombres){
+    		console.log("success ",res.user_name)
+				swal(
+					"Registrado correctamente",
+					"continue a login",
+					"success"
+					).then((value) => {
+						window.location.href='/login'
+				})
+    		//window.location.href='/login'
     	}else{
     		console.log("responseresp",res)
-    		var msg = "No se pudo crear usuario: email " + res.email + "user " + res.user_name
-    		alert(msg)
+    		var rmail , ruser
+    		if (res.email){
+    			rmail= " email " + res.email
+    		}
+    		if (res.user_name){
+    			ruser=", user_name " + res.user_name
+    		}
+    		var msg = "No se pudo crear usuario " + rmail + ruser 
+    		swal(
+    			"No se pudo crear usuario ",
+    			rmail + ruser ,
+    			"warning"
+    			)
     	}
    })
     
