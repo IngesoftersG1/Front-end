@@ -7,6 +7,7 @@ export function loginSuccess() {
 }
 export function logoutUser(){
 	sessionStorage.removeItem('jwt');
+	sessionStorage.removeItem('user');
 	return {type: types.LOG_OUT}
 }
 export function loginUser(credentials) {  
@@ -15,11 +16,14 @@ export function loginUser(credentials) {
       console.log("chacRES",response);
       //debugger;
       sessionStorage.setItem('jwt', response.jwt);
+      sessionStorage.setItem('user',JSON.stringify(response.user));
       console.log("response_jwt",response.jwt)
+      console.log("response_user",response.user)
+      
       if (response.jwt==undefined){
         dispatch(logoutUser());
         swal(
-          'Uusuario o contraseña invalidos',
+          'usuario o contraseña invalidos',
           'You clicked the button!',
           'success'
         ) 

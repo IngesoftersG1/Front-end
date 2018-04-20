@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import '../styles/styles.css'
 import axios from 'axios';
 import swal from 'sweetalert2'
-
 import { GoogleLogin } from 'react-google-login';
 
 export var a;
@@ -67,10 +66,14 @@ class Login extends Component {
     var id_token = googleUser.getAuthResponse().id_token;
     //var googleId = googleUser.getId();
     var datauser = googleUser.getBasicProfile();
-    //var auth = googleUser.getAuthResponse()
-    
     //console.log("datagoogl",response)
-    
+    var user = {
+          user_name: datauser.getName(),
+          nombres: datauser.getGivenName(),
+          apellidos: datauser.getFamilyName(),
+          email: datauser.getEmail()
+    }
+    console.log("user",user)
     this.verificator(id_token).then(res =>{
       console.log("res",res)
     }
@@ -78,11 +81,9 @@ class Login extends Component {
     
     
     console.log({accessToken: id_token});
-    console.log("datag",googleUser.getBasicProfile())
+    console.log("datag",datauser)
     sessionStorage.setItem('jwt', id_token);
-    sessionStorage.setItem('user_name', datauser.getName() );
-    //window.location.reload()
-    //anything else you want to do(save to localStorage)...
+    sessionStorage.setItem('user',JSON.stringify(user));
   }
 
   
