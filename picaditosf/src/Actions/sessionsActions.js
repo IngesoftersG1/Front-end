@@ -24,17 +24,18 @@ export function loginUser(credentials) {
         dispatch(logoutUser());
         swal(
           'usuario o contraseña invalidos',
-          'You clicked the button!',
-          'success'
+          'intentalo de nuevo',
+          'warning'
         ) 
       }else{
         dispatch(loginSuccess()); 
-        //window.location.reload();
         swal(
-          'Sucessfull!',
-          'You clicked the button!',
-          'success'
-          ) 
+    			"Ha ingresado correctamente",
+    			"continue",
+    			"success"
+    			).then((value) => {
+    				window.location.reload()
+    		})
       }
     }).catch(error => {
       throw(error);
