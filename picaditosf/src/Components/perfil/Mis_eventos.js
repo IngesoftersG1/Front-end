@@ -14,7 +14,12 @@ export default class Miseventos extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/posts`)
+    axios.get(`https://picaditos-dehormazah.c9users.io/torneos/my_tournaments`, {
+    params: {
+    user_name:'Vladimir'
+  }
+})
+    
       .then(res => {
         const eventos = res.data;
         setTimeout(() => this.setState({ isLoading: false }), 2000);

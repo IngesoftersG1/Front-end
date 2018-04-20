@@ -37,6 +37,7 @@ class Login extends Component {
     event.preventDefault();    
     console.log(this.state)       
     console.log(this.props)
+
     this.props.actions.loginUser(this.state);
    // window.location.reload();
   }

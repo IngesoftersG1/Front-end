@@ -34,9 +34,9 @@ import BuscarEquipo from './equipos/BuscarEquipo'
 import Torneo from './eventos/Torneo'
 import Inicio from './Inicio'
 import Lostpass from './Lostpass'
-import getteamlist from './getteamlist'
+import mensajes from './perfil/Mensaje'
 import auth from './auth'
-
+import geteventlist from './geteventlist'
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
 // and /schedule routes will match any pathname that starts
@@ -46,6 +46,7 @@ const Main = () => (
  <main>
     <Switch>
       <Route exact path='/Landing' component={Landing}/>
+      <Route exact path='/geteventlist' component={geteventlist}/>
       <Route exact path='/' render={()=>( 
           !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Inicio />)
       )}/>
@@ -115,17 +116,15 @@ const Main = () => (
           !!sessionStorage.jwt ? (<Mispartidos />) : (<Redirect to='/login' />) 
       )}/>
       
-      
+      <Route path='/mensajes' component={mensajes}/>
       <Route path='/pdf' component={MyPdfViewer}/>
       
       {/*<Route path='/pdf'  render={()=>( 
           !!sessionStorage.jwt ? (<pdf />) : (<Redirect to='/login' />) 
       )}/>*/}
       
-      <Route path='/getteamlist' component={getteamlist}/>
-      
       <Route path='/loading' component={Loading}/>
-      <Route path='/L' component={Example}/>
+      <Route path='/L' />
       
       <Route exact path='/Lostpass' component={Lostpass}/>
       <Route exact path='/token' />
