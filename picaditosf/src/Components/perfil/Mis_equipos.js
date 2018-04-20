@@ -14,16 +14,18 @@ export default class Misequipos extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://picaditos-dehormazah.c9users.io/users `)
+    axios.get(`https://picaditos-dehormazah.c9users.io/equipos/my_team`, {
+    params: {
+    user_name:'Malphite'
+  }
+})
       .then(res => {
         const eventos = res.data;
-      	const b = eventos[0].name;
-        
+      	console.log(res)
         this.setState({ eventos });
-        a=JSON.stringify(b)
+        
         setTimeout(() => this.setState({ isLoading: false }), 2000);
-        console.log(a)
-       
+        
       })
   }
    
@@ -55,7 +57,7 @@ export default class Misequipos extends Component {
 		  	
 		  	<div className="col-md-8">
 		  		<h1>
-		  		 {evento.nombres}
+		  		 {evento.nombre}
 		  	    </h1>
 		  		
 		  		<h4>calificación</h4>

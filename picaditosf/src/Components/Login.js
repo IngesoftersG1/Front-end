@@ -36,11 +36,7 @@ class Login extends Component {
     event.preventDefault();    
     console.log(this.state)       
     console.log(this.props)
-    swal(
-    'Good job!',
-    'You clicked the button!',
-    'success'
-    ) 
+    
     this.props.actions.loginUser(this.state);
    // window.location.reload();
   }

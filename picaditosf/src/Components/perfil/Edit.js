@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import '../../styles/styles.css'
 import Uploadfile from '../../Upload/Uploadfile.js'
 import Example from '../Loading/logo'
-
+import Userchange from './Funciones'
 
 
 export default class Edit extends React.Component {
   state = {
     isLoading: true
+  
+  	
   }
 
   componentDidMount() {
@@ -17,8 +19,6 @@ export default class Edit extends React.Component {
     
   }
    
-  
-
  render() {
     if(this.state.isLoading){ 
     return (<div>
@@ -79,9 +79,9 @@ export default class Edit extends React.Component {
 									type='text' 
 									className="form-control" 
 									required/>
-								<form className="form1" onSubmit={this.onSubmit}>
-								<button type="submit" className="btn btn-lg btn-primary btn-block">Actualizar perfil</button>
-								</form> 		
+								
+								<button onClick={Userchange}>Actualizar perfil</button>
+								
 									
 				      </div>
 				    </div>

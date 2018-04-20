@@ -55,6 +55,9 @@ class Header extends Component {
                 <li className="nav-item">
                   <Link className="nav-link" to='/canchas'>Canchas</Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to='/mensajes'>Mensajes</Link>
+                </li>
               </ul>
               <form className="form-inline mt-2 mt-md-0">
                 <Link onClick={this.logout} className="nav-link" to="/login">log out</Link>
