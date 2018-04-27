@@ -9,12 +9,6 @@ import './index.css';
 
 const store = configureStore();
 
-
-
-
-
-
-
 render(
 	
 	

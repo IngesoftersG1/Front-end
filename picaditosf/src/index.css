@@ -7,3 +7,6 @@ body {
    background-image: url("https://i.pinimg.com/originals/c2/75/33/c2753303832db57412627f5ca4534a19.jpg");
 }
 
+#map {
+height: 500px;
+}

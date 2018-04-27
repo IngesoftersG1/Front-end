@@ -10,7 +10,7 @@ export default class Canchas extends Component {
   state = {
     eventos: [], isLoading: true
   }
-
+/*
   componentDidMount() {
     axios.get(`https://picaditos-dehormazah.c9users.io/canchas`)
       .then(res => {
@@ -25,31 +25,31 @@ export default class Canchas extends Component {
   }
    
   
+  initMap() {
+    let map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    });
+  }
+    */
 
  render() {
-    if(this.state.isLoading){ 
+   /* if(this.state.isLoading){ 
     return (<div>
-    
         {Example}
-    
         </div>); // render the loading component
-    }
-  	 	
-  	 	
+    }*/	
     return (
-    	
-<div>    
-
- <div className="cont_2">    
-	  <h2>Canchas</h2>
-    	<p> esta es la pagina de las canchas aqui deberia salir el mapa y lo demas </p>
-    	{/*<MapContainer />*/}
-	  	<Link to='/'><button>Inicio</button></Link>	
-	  	<Link to='/BuscarPartido'><button>Buscar partido</button></Link>	  		  			  	
-	  </div>	
-	  )}
-
-	</div>   
+    <div>    
+      <div className="cont_2">    
+    	  <h1>Canchas</h1>
+        {/*<p> esta es la pagina de las canchas aqui deberia salir el mapa y lo demas </p>
+        	<MapContainer />*/}
+        <div id="map"></div>
+    	  <Link to='/'><button>Inicio</button></Link>	
+    	  <Link to='/BuscarPartido'><button>Buscar partido</button></Link>	  		  			  	
+    	</div>	
+    </div>   
 
     	
       
