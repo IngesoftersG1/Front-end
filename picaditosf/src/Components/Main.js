@@ -37,6 +37,8 @@ import Lostpass from './Lostpass'
 import mensajes from './perfil/Mensaje'
 import auth from './auth'
 import geteventlist from './geteventlist'
+
+
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
 // and /schedule routes will match any pathname that starts
@@ -66,14 +68,17 @@ const Main = () => (
       )}/>
       
       <Route exact path='/equipos' component={Equipos}/>
-    {/* <Route exact path='/perfil' component={Perfil}/>*/}
       
       
       
+    { <Route exact path='/perfil' component={Perfil}/>}
+      
+      
+      {/*
       <Route exact path='/perfil' render={()=>( 
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>    
-      
+      */}
         
       <Route exact path='/editperfil' component={Edit}/>
       

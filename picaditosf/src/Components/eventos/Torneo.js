@@ -1,38 +1,92 @@
-import React from 'react'
+import React, { Component } from "react";
 import { Link } from 'react-router-dom'
+import axios from 'axios';
+import Example from '../Loading/logo'
+var a;
+/*
+{
+this.state.eventos.map(evento => {evento[0].title})	
+}
+*/
+export default class Torneo extends Component {
+  state = {
+    eventos: [], isLoading: true
+  }
 
-const Torneo = () => (   
-  <div className="cont_2">
+  componentDidMount() {
+    axios.get(`https://picaditos-dehormazah.c9users.io/equipos/my_team`, {
+    params: {
+    user_name:'Malphite'
+  }
+})
+      .then(res => {
+        const eventos = res.data;
+      	console.log(res)
+        this.setState({ eventos });
+        
+        setTimeout(() => this.setState({ isLoading: false }), 2000);
+        
+      })
+  }
+   
+  
+
+ render() {
+    if(this.state.isLoading){ 
+    return (<div>
+    
+        {Example}
+    
+        </div>); // render the loading component
+    }
+  	 	
+  	 	
+    return (
+    	
+<div>    
+
+
+
+{ this.state.eventos.map(evento =>	
+	 <div className="cont_2">
 		<div className="container"> 	
-		  <div className="row align-items-start"> 
+		<div className="row align-items-start"> 
 		  	<div className="col-md-2">
-		  		<img src={require('../../imagenes/cup.jpg')} className="img-responsive profile-img"/>
+		  		<img src={require('../../imagenes/team.jpg')} className="img-responsive profile-img"/>
 		  	</div>
+		  	
 		  	<div className="col-md-8">
-		  		<h1>TORNEO_1</h1>
-		  		<h4>date///</h4>
+		  		<h1>
+		  		 {evento.nombre}
+		  	    </h1>
+		  		
+		  		<h4>calificación</h4>
 		  	</div>
-		  	<div className="col-md-2">
-		  		<button className="btn">Inscripción</button>
+		  	
+		  	<div className="col-md-2 " >
+		   
+		  		   <button className="btn">Ver Informacion</button>
+		  	
 		  	</div>
-		 	</div>
-	  </div>
-		<div className="container">
-		  <ul className="nav nav-tabs">
-		    <li className="active tablink"><a data-toggle="tab" href="#perfil">Información</a></li>
-		    <li className="tablink"><a data-toggle="tab" href="#estat">Estadisticas</a></li>
-		  </ul>
-
-		  <div className="tab-content">
-		    <div id="perfil" className="tab-pane active">
-		      <h3>Información</h3>
-		    </div>
-		    <div id="estat" className="tab-pane fade">
-		      <h3>Estadisticas</h3>
-		    </div>
-		  </div>
 		</div>
-	</div>     
-)
+		</div>
+		</div>
+		)}
+  
+  
+  
+ 
+  
+   
+	
+		
 
-export default Torneo
+	</div>   
+
+    	
+      
+    )
+  }
+}
+
+
