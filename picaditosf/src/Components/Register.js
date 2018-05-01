@@ -8,7 +8,7 @@ import swal from 'sweetalert2'
 
 // The Roster component matches one of two different routes
 // depending on the full pathname
-class Register extends Component{ 
+class Register extends Component{
 	constructor(props){
     super(props);
     this.state = {
@@ -22,20 +22,20 @@ class Register extends Component{
     }
     this.onSubmit = this.onSubmit.bind(this);
   }
-	
+
 	createUser(){
 		const info = JSON.stringify(this.state)
 		console.log("json",info)
-		const request = new Request(`https://picaditos-dehormazah.c9users.io/users`, {
+		const request = new Request(`http://localhost:3001/users`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
-      }), 
+      }),
       body: info
     });
-    
+
     return fetch(request).then(response => {
-    	
+
     	console.log("response",response);
     	if(response.status==422){
     		console.log("validations from server error")
@@ -46,12 +46,12 @@ class Register extends Component{
     	}
       return response.json();
     })
-    
+
     .catch(error => {
       return error;
     });
 	}
-	
+
   onSubmit(e){
     e.preventDefault();
     //todo api request
@@ -76,7 +76,7 @@ class Register extends Component{
     		if (res.user_name){
     			ruser=", user_name " + res.user_name
     		}
-    		var msg = "No se pudo crear usuario " + rmail + ruser 
+    		var msg = "No se pudo crear usuario " + rmail + ruser
     		swal(
     			"No se pudo crear usuario ",
     			rmail + ruser ,
@@ -84,11 +84,11 @@ class Register extends Component{
     			)
     	}
    })
-    
+
     //
     console.log(this.state)
   }
-  
+
 	render() {
 		return (
 			<div className="text-center">
@@ -96,66 +96,66 @@ class Register extends Component{
 					<h1>Registrarse</h1>
 					<form className="form1" onSubmit={this.onSubmit}>
 						<label htmlFor="name">Correo electronico</label>
-						<input placeholder="Enter Email" 
-							name="email" 
-		          type='email' 
+						<input placeholder="Enter Email"
+							name="email"
+		          type='email'
 		          onChange={event => this.setState({email: event.target.value})}
 		          value={this.state.email}
-							className="form-control" 
+							className="form-control"
 							required/>
 
 						<label htmlFor="psw">Nombre de usuario</label>
-						<input placeholder="Enter Username" 
-							name="user" 
-							type='text' 
+						<input placeholder="Enter Username"
+							name="user"
+							type='text'
 		          onChange={event => this.setState({user_name: event.target.value})}
 		          value={this.state.user_name}
 							className="form-control"
 							required/>
 
 						<label htmlFor="psw">Nombre</label>
-						<input placeholder="Enter firstname" 
-							name="firstname" 
-							type='text' 
+						<input placeholder="Enter firstname"
+							name="firstname"
+							type='text'
 		          onChange={event => this.setState({nombres: event.target.value})}
 		          value={this.state.nombres}
-							className="form-control" 
+							className="form-control"
 							required/>
-							
+
 						<label htmlFor="psw">Apellido</label>
-						<input placeholder="Enter firstname" 
-							name="lastname" 
-							type='text' 
+						<input placeholder="Enter firstname"
+							name="lastname"
+							type='text'
 		          onChange={event => this.setState({apellidos: event.target.value})}
 		          value={this.state.apellidos}
-							className="form-control" 
+							className="form-control"
 							required/>
-							
+
 						<label htmlFor="psw">Nacimiento</label>
-						<input placeholder="Enter birth" 
-							name="firstname" 
-							type='text' 
+						<input placeholder="Enter birth"
+							name="firstname"
+							type='text'
 		          onChange={event => this.setState({fecha_nacimiento: event.target.value})}
 		          value={this.state.fecha_nacimiento}
-							className="form-control" 
+							className="form-control"
 							required/>
-							
+
 						<label htmlFor="psw">Contraseña</label>
-						<input placeholder="Enter password" 
-							name="password" 
-							type='password' 
+						<input placeholder="Enter password"
+							name="password"
+							type='password'
 		          onChange={event => this.setState({password: event.target.value})}
 		          value={this.state.password}
-							className="form-control" 
+							className="form-control"
 							required/>
 
 						<label htmlFor="psw">Confirmar Contraseña</label>
-						<input placeholder="Enter password" 
-							name="passwordConf" 
-							type='password' 
+						<input placeholder="Enter password"
+							name="passwordConf"
+							type='password'
 		          onChange={event => this.setState({password_confirmation: event.target.value})}
 		          value={this.state.password_confirmation}
-							className="form-control" 
+							className="form-control"
 							required/>
 
 						<div className="checkbox mb-3">
@@ -164,7 +164,7 @@ class Register extends Component{
 		       	 	</label>
 		     		</div>
 						<button type="submit" className="btn btn-lg btn-success btn-block">Crear cuenta</button>
-					</form>  	
+					</form>
 				</div>
 			</div>
 		)

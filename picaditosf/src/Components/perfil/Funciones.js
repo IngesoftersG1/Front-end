@@ -5,7 +5,7 @@ import axios from 'axios';
 export default function Userchange () {
 
 
-    axios.patch('https://picaditos-dehormazah.c9users.io/users', {
+    axios.patch('http://localhost:3001/users', {
     params: {
     user_name:'Vladimir'
   }
@@ -15,8 +15,6 @@ export default function Userchange () {
         console.log(res);
         const eventos = res.data;
         this.setState({ eventos });
-        
+
       });
   }
-
-

@@ -8,7 +8,7 @@ export default class user extends Component {
   }
 
   componentDidMount() {
-    axios.get(`https://nuevasramas-garayf.c9users.io/geteventslist`)
+    axios.get(`http://localhost:3001/geteventslist`)
       .then(res => {
         const usuarios = res.data;
         this.setState({ usuarios });

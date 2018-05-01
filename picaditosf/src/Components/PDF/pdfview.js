@@ -8,36 +8,36 @@ import '../../styles/styles.css'
 
 export default class MyPdfViewer extends React.Component {
   state = {
-    
+
     isLoading: true
-    
+
   }
- 
+
  componentDidMount() {
-   
+
         setTimeout(() => this.setState({ isLoading: false }), 2000);
-   
+
   }
- 
- 
- 
+
+
+
   onDocumentComplete = (pages) => {
     this.setState({ page: 1, pages });
-    
+
   }
- 
+
   onPageComplete = (page) => {
     this.setState({ page });
   }
- 
+
   handlePrevious = () => {
     this.setState({ page: this.state.page - 1 });
   }
- 
+
   handleNext = () => {
     this.setState({ page: this.state.page + 1 });
   }
- 
+
   renderPagination = (page, pages) => {
     let previousButton = <div className="previous" onClick={this.handlePrevious}><a href="#">Previous</a></div>;
     if (page === 1) {
@@ -56,18 +56,18 @@ export default class MyPdfViewer extends React.Component {
       </nav>
       );
   }
- 
+
   render() {
-    
-    if(this.state.isLoading){ 
+
+    if(this.state.isLoading){
     return (<div>
-    
+
         {Example}
-    
+
         </div>); // render the loading component
     }
-    
-    
+
+
     let pagination = null;
     if (this.state.pages) {
       pagination = this.renderPagination(this.state.page, this.state.pages);
@@ -76,7 +76,7 @@ export default class MyPdfViewer extends React.Component {
      <div>
       <div className="cont_2" align="center" >
         <PDF
-          file = "https://picaditos-dehormazah.c9users.io/pdfs/show_deporte.pdf?id=2"
+          file = "http://localhost:3001/pdfs/show_deporte.pdf?id=2"
           onDocumentComplete={this.onDocumentComplete}
           onPageComplete={this.onPageComplete}
           page={this.state.page}
@@ -88,8 +88,7 @@ export default class MyPdfViewer extends React.Component {
       <br/>
       </div>
       </div>
-     
+
     )
   }
 }
- 

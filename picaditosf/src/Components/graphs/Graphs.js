@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Example from '../Loading/logo'
-import MapContainer from './MapContainer.js'
 import '../../styles/styles.css'
 
 
-export default class Canchas extends Component {
+
+export default class Graphs extends React.Component {
   state = {
     eventos: [], isLoading: true
   }
