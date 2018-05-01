@@ -71,14 +71,14 @@ const Main = () => (
       
       
       
-    { <Route exact path='/perfil' component={Perfil}/>}
+    {/* <Route exact path='/perfil' component={Perfil}/>*/}
       
       
-      {/*
+      
       <Route exact path='/perfil' render={()=>( 
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>    
-      */}
+      
         
       <Route exact path='/editperfil' component={Edit}/>
       
