@@ -37,7 +37,7 @@ class Header extends Component {
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
             <Link className="navbar-brand" to='/'>Picaditos!</Link>
-            <button className="btn btn-warning test-btn" onClick={this.test}>test</button> 
+            <a className="test-btn" onClick={this.test}>test</a> 
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -76,7 +76,7 @@ class Header extends Component {
         <header>
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
               <Link className="navbar-brand" to='/'>Picaditos!</Link>
-              <button className="btn btn-warning test-btn" onClick={this.test}>test</button> 
+              <a className="test-btn" onClick={this.test}>test</a> 
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
