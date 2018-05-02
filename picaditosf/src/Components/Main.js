@@ -38,7 +38,7 @@ import mensajes from './perfil/Mensaje'
 import auth from './auth'
 import geteventlist from './geteventlist'
 
-import Graphs from './graphs/Graphs'
+import Stats from './stats/Stats'
 
 
 // The Main component renders one of the three provided
@@ -92,9 +92,7 @@ const Main = () => (
 
       */}
 
-      <Route exact path='/statistics' component={Graphs}/>
-
-
+      <Route exact path='/statistics' component={Stats}/>
 
 
       <Route path='/eventos' component={Eventos}/>
