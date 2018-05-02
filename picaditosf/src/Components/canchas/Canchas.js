@@ -53,8 +53,11 @@ export default class Canchas extends Component {
       <div className="cont_2">    
     	  <h1>Canchas</h1>
         {/*<p> esta es la pagina de las canchas aqui deberia salir el mapa y lo demas </p>
-        	<MapContainer />*/}
-        <div id="map"></div>
+        	<div id="map"></div>*/}
+        <div className="mapg">
+          <MapContainer />
+        </div>
+        
         <button className="btn" onClick={this.test}>map</button>
     	 {/* <Link to='/'><button>Inicio</button></Link>	
     	  <Link to='/BuscarPartido'><button>Buscar partido</button></Link> */} 			  	
