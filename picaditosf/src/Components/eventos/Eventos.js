@@ -49,10 +49,10 @@ export default class Eventos extends Component {
 		  	
 		  	<div className="col-md-8">
 		  		<h1>
-		  		 {evento.name}
+		  		 {evento.nombre}
 		  	    </h1>
 		  		
-		  		<h4>calificación</h4>
+		  		<h4>Organizador: {evento.organizador_name}</h4>
 		  	</div>
 		  	
 		  	<div className="col-md-2 " >
