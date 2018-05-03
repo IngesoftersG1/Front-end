@@ -207,6 +207,10 @@ SITE
   margin: 5px;
 }
 
+/*canchas*/
+.mapg {
+    height: 500px;
+}
 /*temp*/
 .carousel { z-index: -99;
 		position: fixed;
@@ -243,7 +247,6 @@ SITE
   opacity: 0.88;
 
   width: 1500px;
-
 }
 
 .title-stats{

@@ -26,7 +26,9 @@ class Register extends Component{
 	createUser(){
 		const info = JSON.stringify(this.state)
 		console.log("json",info)
+
 		const request = new Request(`http://localhost:3001/users`, {
+
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'

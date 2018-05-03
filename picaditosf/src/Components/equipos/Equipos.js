@@ -17,6 +17,7 @@ export default class Equipos extends Component {
   	sessionStorage.setItem('check_equipo', name);
   }
   componentDidMount() {
+
     axios.get(`http://localhost:3001/equipos `)
       .then(res => {
         const eventos = res.data;
@@ -73,14 +74,6 @@ export default class Equipos extends Component {
 		</div>
 		</div>
 		)}
-
-
-
-
-
-
-
-
 
 	</div>
 
