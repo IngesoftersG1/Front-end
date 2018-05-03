@@ -11,12 +11,20 @@ export default class Perfil extends Component {
   state = {
     equipos: [], isLoading: true, users:[]
   }
-
+  storeTorneoName(name){
+	sessionStorage.setItem('check_torneo', name);
+	}
+	storeUserName(name){
+	sessionStorage.setItem('check_user', name);
+	}
+	storeEquipoName(name){
+	sessionStorage.setItem('check_equipo', name);
+	}
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
           axios.get(`http://localhost:3001/equipos/1?`, {
     			params: {
-					nombre:sessionStorage.check_equipo
+					nombre: sessionStorage.check_equipo
 				}
 			})
     		.then(res => {
@@ -52,12 +60,12 @@ export default class Perfil extends Component {
 			  	<div className="row">
 
 			  		<h1>{equipo.data.nombre}</h1>
-						<div className="prf-btns">
-				  		<Link to='/editperfil'>
-				  			<button className="btn btn-info prf-btn">Editar Equipo</button>
-				  		</Link>
+						
+						
+						
+				  		
 
-						</div>
+						
 			  	</div>
 			  	<div className="row">
 			  		<div className="row align-items-start">
@@ -65,11 +73,6 @@ export default class Perfil extends Component {
 		  					<h4>
 		  					{equipo.data.deporte.nombre}
 		  	    			</h4>
-		  	    		</div>
-		  	    		<div className="col-md-2">
-
-		  						<button className="btn btn-info prf-btn">Ver Deporte</button>
-
 		  	    		</div>
 		  	    	</div>
 			  	</div>
@@ -104,9 +107,9 @@ export default class Perfil extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-2">
-		  						<Link to='/equipo'>
-		  						<button className="btn btn-info prf-btn">Ver Usuario</button>
-		  	    				</Link>
+						  	<Link to='/usuario'>
+		  		  				<button className="btn btn-info prf-btn" onClick={() => this.storeUserName(user.user_name)}>Ver Usuario</button>
+							</Link>
 		  	    		</div>
 		  	    	</div>
 
@@ -126,9 +129,9 @@ export default class Perfil extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-2">
-		  						<Link to='/torneo'>
-		  						<button className="btn btn-info prf-btn">Ver Torneo</button>
-		  	    				</Link>
+						  <Link to='/torneo'>
+		  		  		<button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(torneo.nombre)}>Ver Torneo</button>
+							</Link>
 		  	    		</div>
 		  	    	</div>
 

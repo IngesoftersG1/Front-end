@@ -17,6 +17,8 @@ import Eventos from './eventos/Eventos'
 import Misequipos from './perfil/Mis_equipos'
 import Miseventos from './perfil/Mis_equipos'
 import Mispartidos from './perfil/Mis_equipos'
+import Usuario from './perfil/Usuario'
+
 
 import Landing from './Landing'
 import Register from './Register'
@@ -26,6 +28,8 @@ import Canchas from './canchas/Canchas'
 import Perfil from './perfil/Perfil'
 import Configuracion from './perfil/Configuracion'
 import Edit from './perfil/Edit'
+
+import UnderConstruction from './UnderConstruction'
 
 import Equipos from './equipos/Equipos.js'
 import Equipo from './equipos/Equipo.js'
@@ -69,6 +73,8 @@ const Main = () => (
 
       )}/>
 
+      
+
       <Route exact path='/equipos' component={Equipos}/>
 
 
@@ -80,11 +86,13 @@ const Main = () => (
       <Route exact path='/perfil' render={()=>(
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>
-
+      <Route exact path='/usuario' render={()=>(
+          !!sessionStorage.jwt ? (<Usuario />) : (<Redirect to='/' />)
+      )}/>
 
       <Route exact path='/editperfil' component={Edit}/>
 
-
+      <Route exact path='/comingsoon' component={UnderConstruction}/>
       {/*
       <Route exact path='/editperfil' render={()=>(
           !!sessionStorage.jwt ? (<Edit />) : (<Redirect to='/' />)
@@ -122,6 +130,8 @@ const Main = () => (
       <Route exact path='/Mispartidos' render={()=>(
           !!sessionStorage.jwt ? (<Mispartidos />) : (<Redirect to='/login' />)
       )}/>
+
+    
 
       <Route path='/mensajes' component={mensajes}/>
       <Route path='/pdf' component={MyPdfViewer}/>
