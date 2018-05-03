@@ -15,20 +15,21 @@ export default class Canchas extends Component {
     setTimeout(() => 
       this.endLoading()
       , 2000);
-    axios.get(`https://picaditos-dehormazah.c9users.io/canchas`)
+    axios.get(`http://localhost:3001/canchas`)
+
       .then(res => {
         const eventos = res.data;
-        
+
         this.setState({ eventos });
-       
+
         setTimeout(() => this.setState({ isLoading: false }), 2000);
-    
-       
+
+
       })
     
   }
-/*   
   
+/*   
   initMap() {
     let map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -34.397, lng: 150.644},
@@ -64,16 +65,7 @@ export default class Canchas extends Component {
     	</div>	
     </div>   
 
-    	
-      
+
     )
   }
 }
-
-
-
-
-
-
-
-

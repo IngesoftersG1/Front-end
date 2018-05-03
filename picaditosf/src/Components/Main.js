@@ -17,6 +17,8 @@ import Eventos from './eventos/Eventos'
 import Misequipos from './perfil/Mis_equipos'
 import Miseventos from './perfil/Mis_equipos'
 import Mispartidos from './perfil/Mis_equipos'
+import Usuario from './perfil/Usuario'
+
 
 import Landing from './Landing'
 import Register from './Register'
@@ -26,6 +28,8 @@ import Canchas from './canchas/Canchas'
 import Perfil from './perfil/Perfil'
 import Configuracion from './perfil/Configuracion'
 import Edit from './perfil/Edit'
+
+import UnderConstruction from './UnderConstruction'
 
 import Equipos from './equipos/Equipos.js'
 import Equipo from './equipos/Equipo.js'
@@ -37,6 +41,10 @@ import Lostpass from './Lostpass'
 import mensajes from './perfil/Mensaje'
 import auth from './auth'
 import geteventlist from './geteventlist'
+
+import Stats from './stats/Stats'
+
+
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
 // and /schedule routes will match any pathname that starts
@@ -47,89 +55,98 @@ const Main = () => (
     <Switch>
       <Route exact path='/Landing' component={Landing}/>
       <Route exact path='/geteventlist' component={geteventlist}/>
-      <Route exact path='/' render={()=>( 
+      <Route exact path='/' render={()=>(
           !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Inicio />)
       )}/>
-      <Route exact path='/register'  render={()=>( 
+      <Route exact path='/register'  render={()=>(
           !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Register />)
       )}/>
-      <Route exact path='/login' render={()=>( 
+      <Route exact path='/login' render={()=>(
           !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Login />)
       )}/>
-      
-      
+
+
       <Route path='/canchas' component={Canchas}/>
-      
-      <Route path='/equipo' render={()=>( 
-          !!sessionStorage.jwt ? (<Equipo />) : (<Redirect to='/login' />) 
+
+      <Route path='/equipo' render={()=>(
+          !!sessionStorage.jwt ? (<Equipo />) : (<Redirect to='/login' />)
 
       )}/>
+
       
+
       <Route exact path='/equipos' component={Equipos}/>
+
+
+
     {/* <Route exact path='/perfil' component={Perfil}/>*/}
-      
-      
-      
-      <Route exact path='/perfil' render={()=>( 
+
+
+
+      <Route exact path='/perfil' render={()=>(
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
-      )}/>    
-      
-        
+      )}/>
+      <Route exact path='/usuario' render={()=>(
+          !!sessionStorage.jwt ? (<Usuario />) : (<Redirect to='/' />)
+      )}/>
+
       <Route exact path='/editperfil' component={Edit}/>
-      
-      
+
+      <Route exact path='/comingsoon' component={UnderConstruction}/>
       {/*
-      <Route exact path='/editperfil' render={()=>( 
+      <Route exact path='/editperfil' render={()=>(
           !!sessionStorage.jwt ? (<Edit />) : (<Redirect to='/' />)
       )}/>
-      
-      */}
-  
 
+      */}
+
+      <Route exact path='/statistics' component={Stats}/>
 
 
       <Route path='/eventos' component={Eventos}/>
-      <Route path='/Torneo' render={()=>( 
-          !!sessionStorage.jwt ? (<Torneo />) : (<Redirect to='/login' />) 
+      <Route path='/Torneo' render={()=>(
+          !!sessionStorage.jwt ? (<Torneo />) : (<Redirect to='/login' />)
       )}/>
-      
+
       <Route path='/BuscarEquipo' component={BuscarEquipo}/>
       <Route path='/BuscarEvento' component={BuscarEvento}/>
       <Route path='/BuscarPartido' component={BuscarPartido}/>
-      
-      <Route path='/Estadisticasusuario' render={()=>( 
+
+      <Route path='/Estadisticasusuario' render={()=>(
           !!sessionStorage.jwt ? (<Redirect to='/login' />) : (<Estadisticasusuario />)
       )}/>
-      
+
       <Route exact path='/Info-usuario' component={Infousuario}/>
-      
-      
-      <Route exact path='/Misequipos' render={()=>( 
-          !!sessionStorage.jwt ? (<Misequipos />): (<Redirect to='/login' />) 
+
+
+      <Route exact path='/Misequipos' render={()=>(
+          !!sessionStorage.jwt ? (<Misequipos />): (<Redirect to='/login' />)
       )}/>
-      
-      <Route exact path='/Miseventos' render={()=>( 
+
+      <Route exact path='/Miseventos' render={()=>(
           !!sessionStorage.jwt ? (<Miseventos />) : (<Redirect to='/login' />)
       )}/>
-      
-      <Route exact path='/Mispartidos' render={()=>( 
-          !!sessionStorage.jwt ? (<Mispartidos />) : (<Redirect to='/login' />) 
+
+      <Route exact path='/Mispartidos' render={()=>(
+          !!sessionStorage.jwt ? (<Mispartidos />) : (<Redirect to='/login' />)
       )}/>
-      
+
+    
+
       <Route path='/mensajes' component={mensajes}/>
       <Route path='/pdf' component={MyPdfViewer}/>
-      
-      {/*<Route path='/pdf'  render={()=>( 
-          !!sessionStorage.jwt ? (<pdf />) : (<Redirect to='/login' />) 
+
+      {/*<Route path='/pdf'  render={()=>(
+          !!sessionStorage.jwt ? (<pdf />) : (<Redirect to='/login' />)
       )}/>*/}
-      
+
       <Route path='/loading' component={Loading}/>
       <Route path='/L' />
-      
+
       <Route exact path='/Lostpass' component={Lostpass}/>
       <Route exact path='/token' />
       <Route exact path='/auth' component={auth}/>
-      
+
     </Switch>
   </main>
 )

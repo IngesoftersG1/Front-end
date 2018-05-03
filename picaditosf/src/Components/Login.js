@@ -33,22 +33,22 @@ class Login extends Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault();    
-    console.log(this.state)       
+    event.preventDefault();
+    console.log(this.state)
     console.log(this.props)
 
     this.props.actions.loginUser(this.state);
    // window.location.reload();
   }
-  
+
   verificator(data){
 		const info = JSON.stringify({TokenId:data})
 		console.log("json",info)
-		const request = new Request(`https://picaditos-dehormazah.c9users.io/user_sign_in/google`, {
+		const request = new Request(`http://localhost:3001/user_sign_in/google`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
-      }), 
+      }),
       body: info
     });
 
@@ -60,7 +60,7 @@ class Login extends Component {
       return error;
     });
 	}
-  
+
   responseGoogle = (googleUser) => {
     console.log("id", googleUser );
     var id_token = googleUser.getAuthResponse().id_token;
@@ -92,7 +92,7 @@ class Login extends Component {
 		})
   }
 
-  
+
 
 
   render() {
@@ -101,23 +101,23 @@ class Login extends Component {
         <h1 className="text-center">Iniciar sesión</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name">Correo electronico</label>
-          <input placeholder="Enter Email" 
-              id="email" 
-              type='email' 
+          <input placeholder="Enter Email"
+              id="email"
+              type='email'
               onChange={this.handleChange}
               value={this.state.email}
-              className="form-control" 
+              className="form-control"
               required/>
 
           <label htmlFor="psw">Contraseña</label>
-          <input placeholder="Enter password" 
-              id="password" 
-              type='password' 
+          <input placeholder="Enter password"
+              id="password"
+              type='password'
               onChange={this.handleChange}
               value={this.state.password}
-              className="form-control" 
+              className="form-control"
               required/>
-          
+
           <div className="row">
             <div className="col-sm-6 checkbox mb-3">
               <label className="nav-link">
@@ -128,22 +128,22 @@ class Login extends Component {
               <Link className="nav-link" to='/Lostpass'>Forgot Password</Link>
             </div>
           </div>
-          <button type="submit" 
+          <button type="submit"
             disabled={!this.validateForm()}
             className="btn btn-lg btn-block">Iniciar sesion
           </button>
-          
+
           <p>o</p>
-          
-          <GoogleLogin clientId="506449915249-06m1o75jjoe8g3b9q3vj4mhsus5fjt3d.apps.googleusercontent.com"
+
+          <GoogleLogin clientId="506449915249-mpnernms8pplsn9m3m1mnlsgvphj3km9.apps.googleusercontent.com"
                      className="btn btn-lg btn-block btn-google"
                      onSuccess={this.responseGoogle}
                      onFailure={this.responseGoogle}>
             <span> Iniciar sesion con Google + </span>
-          </GoogleLogin>  
-                 
-        </form>            
-      </div>      
+          </GoogleLogin>
+
+        </form>
+      </div>
     );
   }
 }

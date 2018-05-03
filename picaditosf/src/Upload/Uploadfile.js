@@ -13,10 +13,10 @@ class Uploadfile extends React.Component {
 		console.log("payload",file)
 		const imag = JSON.stringify({picture: file.picture});
 		console.log("imag",imag)
-	  fetch(`https://picaditos-dehormazah.c9users.io/items`, {
+	  fetch(`http://localhost:3001/items`, {
 	    headers: new Headers({
         'Content-Type': 'application/json'
-      }), 
+      }),
 	    method: 'POST',
 	    body: imag
 	  })
@@ -25,11 +25,11 @@ class Uploadfile extends React.Component {
 	    console.log("img",imageFromController)
 	    //this.setState({uploads: this.state.uploads.concat(imageFromController)})
 	  })
-	}  
+	}
 
   handleSubmit(e) {
     e.preventDefault();
-    // TODO: do something with -> this.state.file    
+    // TODO: do something with -> this.state.file
     //console.log('handle uploading-', this.state.file);
     this.sendImageToController(this.state)
   }
@@ -62,16 +62,16 @@ class Uploadfile extends React.Component {
     return (
       <div className="form-group" align="center">
         <form onSubmit={(e)=>this._handleSubmit(e)}>
-          <input className="form-control-file btn" 
-            type="file" 
+          <input className="form-control-file btn"
+            type="file"
             onChange={(e)=>this.handleImageChange(e)} />
           <div className="imgprev">
           	{$imagePreview}
         	</div>
-          <button className="btn" 
-            type="submit" 
+          <button className="btn"
+            type="submit"
             onClick={(e)=>this.handleSubmit(e)}>Subir Imagen</button>
-        </form>        
+        </form>
       </div>
     )
   }
