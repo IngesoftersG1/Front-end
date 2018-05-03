@@ -16,7 +16,7 @@ export default class Perfil extends Component {
   }
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
-          axios.get(`https://picaditos-dehormazah.c9users.io/equipos/my_team`, {
+          axios.get(`http://localhost:3001/equipos/my_team`, {
     			params: {
 					user_name:'Rammus'
 				}

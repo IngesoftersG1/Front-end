@@ -14,7 +14,7 @@ export default class Perfil extends Component {
 
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
-          axios.get(`https://pa-be-dfchacona.c9users.io/equipos/1?`, {
+          axios.get(`http://localhost:3001/equipos/1?`, {
     			params: {
 					nombre:sessionStorage.check_equipo
 				}
