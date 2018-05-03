@@ -9,12 +9,34 @@ const style =  {width: '700px', height: '500px'}
 export class MapContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = {canchas: [{lat: 4.674, lng: -74.113},{lat: 4.574, lng: -74.013},{lat: 4.624, lng: -74.173}]}
+        this.state = {
+            showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {},
+            canchas: [{nombre: 'cancha 1',lat: 4.674, lng: -74.113},
+                {nombre: 'cancha 2',lat: 4.574, lng: -74.013},
+                {nombre: 'cancha 3',lat: 4.624, lng: -74.173}]}
     }
-    
+      onMarkerClick = (props, marker, e) =>
+        this.setState({
+          selectedPlace: props,
+          activeMarker: marker,
+          showingInfoWindow: true
+        });
+     
+      onMapClicked = (props) => {
+        if (this.state.showingInfoWindow) {
+          this.setState({
+            showingInfoWindow: false,
+            activeMarker: null
+          })
+        }
+      };
+      
     render() {
         return (
          <Map google={this.props.google} 
+            onClick={this.onMapClicked}
             style={style}
             initialCenter={BOGOTA_COOR}
             zoom={12}>
@@ -22,19 +44,24 @@ export class MapContainer extends Component {
             <Marker
                 title={'Cancha1'}
                 name={'Cancha'}
+                onClick={this.onMarkerClick}
                 position={{lat: 4.624, lng: -74.063}} 
                 icon={BALLICON}/>
                 
             { this.state.canchas.map(cancha =>
         		(<Marker
+        		onClick={this.onMarkerClick}
                 title={'Canchas'}
-                name={'Cancha'}
-                position={cancha} 
-                icon={BALLICON}/>)
+                name={cancha.nombre}
+                position={{lat: cancha.lat, lng: cancha.lng}} 
+                icon={BALLICON}/>
+                )
         	)}
-
-            <InfoWindow onClose={this.onInfoWindowClose}>
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}>
                 <div>
+                  <h2>{this.state.selectedPlace.name}</h2>
                 </div>
             </InfoWindow>
           </Map>
