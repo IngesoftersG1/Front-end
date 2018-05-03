@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import Example from '../Loading/logo'
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
  
 const BOGOTA_COOR = {lat: 4.63, lng: -74.15};
@@ -13,10 +15,40 @@ export class MapContainer extends Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-            canchas: [{nombre: 'cancha 1',lat: 4.674, lng: -74.113},
-                {nombre: 'cancha 2',lat: 4.574, lng: -74.013},
-                {nombre: 'cancha 3',lat: 4.624, lng: -74.173}]}
+            isLoading: true,
+            info: [],
+            canchas: []
+        }
+        const setState = this.setState.bind(this)
+        this.setcanchasstate = this.setcanchasstate.bind(this)
+        this.onMarkerClick = this.onMarkerClick.bind(this)   
+        this.onMapClicked = this.onMapClicked.bind(this)
     }
+    
+    states = {
+        precios: [],
+        calificaciones: []
+    }
+      componentDidMount() {
+        axios.get(`https://back-end-proyect-daeperdomocr.c9users.io/canchas `)
+          .then(res => {
+            const canchas = res.data;
+          	//const b = eventos[0].name;
+            this.setState({ canchas });
+            for (var i=0;i<canchas.length;i++){
+                this.setcanchasstate(canchas[i])
+            }
+            console.log(this.state)
+            setTimeout(() => this.setState({ isLoading: false }), 1000);
+          })
+      }
+      
+      setcanchasstate(cancha){
+        //this.state.info[cancha.nombre]={precio: cancha.precio}
+        this.states.precios[cancha.nombre]=cancha.precio
+        this.states.calificaciones[cancha.nombre]=cancha.calificacion
+      }
+      
       onMarkerClick = (props, marker, e) =>
         this.setState({
           selectedPlace: props,
@@ -33,40 +65,55 @@ export class MapContainer extends Component {
         }
       };
       
+    
     render() {
+        if(this.state.isLoading){ 
+            return (<div>
+            
+                {Example}
+            
+                </div>); // render the loading component
+            }
+          	 
         return (
          <Map google={this.props.google} 
             onClick={this.onMapClicked}
             style={style}
             initialCenter={BOGOTA_COOR}
             zoom={12}>
-            
+            {/*
             <Marker
                 title={'Cancha1'}
                 name={'Cancha'}
                 onClick={this.onMarkerClick}
                 position={{lat: 4.624, lng: -74.063}} 
                 icon={BALLICON}/>
-                
+            */}
+            
             { this.state.canchas.map(cancha =>
         		(<Marker
         		onClick={this.onMarkerClick}
-                title={'Canchas'}
+                title={cancha.nombre}
                 name={cancha.nombre}
-                position={{lat: cancha.lat, lng: cancha.lng}} 
+                position={{lat: cancha.ubicacion.calle_principal, lng: cancha.ubicacion.calle_secundaria}} 
                 icon={BALLICON}/>
                 )
         	)}
+        	
             <InfoWindow
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}>
                 <div>
                   <h2>{this.state.selectedPlace.name}</h2>
+                  <p>{'Precio alquiler: '+this.states.precios[this.state.selectedPlace.name]}</p>
+                  <p>{'Calificación: '+this.states.calificaciones[this.state.selectedPlace.name]}</p>
                 </div>
             </InfoWindow>
           </Map>
         );
+        
       }
+    
 }
  
 export default GoogleApiWrapper({
