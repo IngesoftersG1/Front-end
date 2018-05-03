@@ -4,21 +4,25 @@ import axios from 'axios';
 import Example from '../Loading/logo'
 import '../../styles/styles.css'
 import BubbleChart from '@weknow/react-bubble-chart-d3';
-
+import session from '../../Reducers/sessionReducer';
 export default class Stats extends React.Component {
   state = {
-    eventos: [], isLoading: true
+    estadisticas: [], isLoading: true
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3001/canchas`)
+    axios.get(`http://localhost:3001/estadisticas/my_stats`, {
+    params: {
+    user_name: JSON.parse(sessionStorage.user).user_name+""
+  }
+})
       .then(res => {
-        const eventos = res.data;
-
-        this.setState({ eventos });
+        console.log(JSON.parse(sessionStorage.user).user_name);
+        const estadisticas = res.data;
+      	console.log(estadisticas)
+        this.setState({ estadisticas });
 
         setTimeout(() => this.setState({ isLoading: false }), 2000);
-
 
       })
   }
@@ -37,9 +41,12 @@ export default class Stats extends React.Component {
 
     return (
 
+
 <center>
+{ this.state.estadisticas.map(estadistica=>
+
             <div className="bubble">
-            <h1 className="title-stats"> Este es tu historial en Picaditos! </h1>
+            <h1 className="title-stats"> Este es tu registro en Picaditos! </h1>
 
 
 
@@ -72,18 +79,19 @@ export default class Stats extends React.Component {
         weight: 'bold',
       }}
   data={[
-    { label: 'PARTIDOS GANADOS', value: 10 , color: '#1aff1a'},
-    { label: 'PARTIDOS EMPATADOS', value: 5, color: '#ff751a'},
-    { label: 'PARTIDOS PERDIDOS', value: 3, color:'#ff4d4d' },
-    { label: 'GOLES ANOTADOS', value: 6, color:'#1affd1' },
-    { label: 'PUNTOS TOTALES', value: 15, color:'#0073e6' },
-    { label: 'PROM. DE GOLES/JUEGO', value: 1.98, color: '#cc99ff' },
-    { label: 'PARTIDOS JUGADOS', value: 12, color:'#ffff4d' },
+    { label: 'PARTIDOS GANADOS', value: estadistica[0] , color: '#1aff1a'},
+    { label: 'PARTIDOS EMPATADOS', value: estadistica[2], color: '#ff751a'},
+    { label: 'PARTIDOS PERDIDOS', value: estadistica[1], color:'#ff4d4d' },
+    { label: 'GOLES ANOTADOS', value: estadistica[3], color:'#1affd1' },
+    { label: 'PUNTOS TOTALES', value: (estadistica[0]*3+estadistica[2]), color:'#0073e6' },
+    { label: 'PROM. DE GOLES/JUEGO', value: (estadistica[3]/(estadistica[0]+estadistica[1]+estadistica[2])).toFixed(2), color: '#cc99ff' },
+    { label: 'PARTIDOS JUGADOS', value: (estadistica[0]+estadistica[1]+estadistica[2]), color:'#ffff4d' },
 
   ]}
 />
 
             </div>
+          )}
               </center>
       );
 
