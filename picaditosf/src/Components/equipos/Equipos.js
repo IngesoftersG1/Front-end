@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Example from '../Loading/logo'
 
+const divStyle = {
+  color: 'white',
+}
+
 export default class Equipos extends Component {
   state = {
     eventos: [], isLoading: true
@@ -21,9 +25,7 @@ export default class Equipos extends Component {
     axios.get(`http://localhost:3001/equipos `)
       .then(res => {
         const eventos = res.data;
-      	const b = eventos[0].name;
-
-        this.setState({ eventos });
+      	this.setState({ eventos });
 
         setTimeout(() => this.setState({ isLoading: false }), 1000);
 
@@ -47,7 +49,27 @@ export default class Equipos extends Component {
 
 <div>
 
+<div className="cont_2">
+		<div className="container">
 
+		  	<p  style={divStyle}>En esta pagina puede ver los equipos registrados si quiere crear o buscar un equipo puede hacelor llenando el siguiente formulario</p>
+        <div class="row">
+        <div class="col-sm-2" align="center"></div>
+        <div class="col-sm-2" align="center">
+        <a href='/createE'>
+            <button className="btn">Crear equipo</button>
+        </a>
+        </div>
+        <div class="col-sm-4" align="center"></div>
+        <div class="col-sm-2" align="center">
+        <a href='/BuscarEquipo'>
+            <button className="btn">Buscar equipo</button>
+        </a>
+        </div>
+        </div>
+
+		</div>
+</div>
 
 { this.state.eventos.map(evento =>
 	 <div className="cont_2">

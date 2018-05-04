@@ -31,7 +31,7 @@ function getfecha () {
   }
 
 
-class mensaje extends Component {
+class Mensaje extends Component {
 	constructor(props){
     super(props);
 
@@ -133,4 +133,4 @@ class mensaje extends Component {
 	}
 }
 
-export default mensaje
+export default Mensaje

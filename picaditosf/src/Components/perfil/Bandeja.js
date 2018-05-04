@@ -8,16 +8,18 @@ var a;
 this.state.eventos.map(evento => {evento[0].title})
 }
 */
-export default class Misequipos extends Component {
+export default class Bandeja extends Component {
   state = {
     eventos: [], isLoading: true
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3001/equipos/my_team`, {
+    axios.get(`http://localhost:3001/mensajes`, {
+/*
     params: {
-    user_name:'qwe'
-  }
+    user_name:"asd1"
+  }*/
+
 })
       .then(res => {
         const eventos = res.data;
@@ -51,36 +53,27 @@ export default class Misequipos extends Component {
 	 <div className="cont_2">
 		<div className="container">
 		<div className="row align-items-start">
-		  	<div className="col-md-2">
-		  		<img src={require('../../imagenes/team.jpg')} className="img-responsive profile-img"/>
-		  	</div>
-
-		  	<div className="col-md-8">
+		  	<div className="col-md-12">
 		  		<h1>
-		  		 {evento.nombre}
+		  		 {evento.user_id}
 		  	    </h1>
+		  		<div class="dropdown-divider"></div>
+		  		<h4>Asunto: {evento.asunto}</h4>
+		  		<div class="dropdown-divider"></div>
+		  		<h4>{evento.contenido}</h4>
+		  	    </div>
 
-		  		<h4>calificación</h4>
-		  	</div>
-
-		  	<div className="col-md-2 " >
-
-		  		   <button className="btn">Ver Informacion</button>
-
-		  	</div>
 		</div>
 		</div>
 		</div>
 		)}
-
-
-
-
-
-
-
-
-
+  		<div className="cont_2">
+			 <div align="center">
+		  	 <a href='/mensajes'>
+		  		   <button className="btn">Nuevo mensaje</button>
+		  	 </a>
+		  	 </div>
+		</div>
 	</div>
 
 

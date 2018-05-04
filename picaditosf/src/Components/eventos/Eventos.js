@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Example from '../Loading/logo'
 
+const divStyle = {
+  color: 'white',
+}
+
 export default class Eventos extends Component {
   state = {
     eventos: [], isLoading: true
@@ -45,6 +49,27 @@ export default class Eventos extends Component {
 
 <div>
 
+<div className="cont_2">
+		<div className="container">
+
+		  	<p  style={divStyle}>En esta pagina puede ver los torneos y partidos si desea crear o buscar un evento puede hacerlo llenando el siguiente formulario</p>
+        <div class="row">
+        <div class="col-sm-2" align="center"></div>
+        <div class="col-sm-2" align="center">
+        <a href='/createEv'>
+            <button className="btn">Crear evento</button>
+        </a>
+        </div>
+        <div class="col-sm-4" align="center"></div>
+        <div class="col-sm-2" align="center">
+        <a href='/BuscarEvento'>
+            <button className="btn">Buscar evento</button>
+        </a>
+        </div>
+        </div>
+
+		</div>
+</div>
 
 
 { this.state.eventos.map(evento =>
