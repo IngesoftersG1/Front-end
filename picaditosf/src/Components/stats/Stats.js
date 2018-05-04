@@ -84,7 +84,7 @@ export default class Stats extends React.Component {
     { label: 'PARTIDOS PERDIDOS', value: estadistica[1], color:'#ff4d4d' },
     { label: 'GOLES ANOTADOS', value: estadistica[3], color:'#1affd1' },
     { label: 'PUNTOS TOTALES', value: (estadistica[0]*3+estadistica[2]), color:'#0073e6' },
-    { label: 'PROM. DE GOLES/JUEGO', value: (estadistica[3]/(estadistica[0]+estadistica[1]+estadistica[2])).toFixed(2), color: '#cc99ff' },
+    { label: 'PROM. DE GOLES/JUEGO', value: (estadistica[3]/(estadistica[0]+estadistica[1]+estadistica[2])).toFixed(1), color: '#cc99ff' },
     { label: 'PARTIDOS JUGADOS', value: (estadistica[0]+estadistica[1]+estadistica[2]), color:'#ffff4d' },
 
   ]}
