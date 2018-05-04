@@ -136,7 +136,7 @@ class Register extends Component{
 		          value={this.state.apellidos}
 							className="form-control"
 							required/>
-
+{/*
 							<form id="form1" runat="server">
 							<br />Fecha de nacimiento
 	    <div>
@@ -250,6 +250,9 @@ class Register extends Component{
 <br />
 
 <button type="button" onclick="myFunction()">Try it</button>
+
+*/}
+
 
 						<input placeholder="Enter birth"
 							name="firstname"
