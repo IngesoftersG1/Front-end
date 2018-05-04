@@ -102,10 +102,18 @@ export default class Perfil extends Component {
           <br></br>
           <br></br>
 		  		</Link>
+<<<<<<< HEAD
           <Link to='/pdf'>
 
           <button className="btn btn-lg btn-success btn-block">Ver Estadisticas (PDF)</button>
         </Link>
+=======
+		  		<br/>
+		  		<Link to='/pdf'>
+		  			<button className="btn">ver estadisticas pdf version</button>
+		  		</Link>
+		
+>>>>>>> a1e48c63e815499cf29303dcbe584798da00ba3d
 		    </div>
 		    <div id="equip" className="tab-pane fade">
 		    	<h3>Mis equipos</h3>

@@ -18,13 +18,13 @@ class Header extends Component {
 
   logout (event) {
     event.preventDefault();
-    this.props.actions.logoutUser();    
+    this.props.actions.logoutUser();
     window.location.reload();
   }
 
 
-  test = event => {    
-    event.preventDefault();    
+  test = event => {
+    event.preventDefault();
     console.log("sessionstorage",sessionStorage);
     console.log("session?",!!sessionStorage.jwt);
     console.log(this.props);
@@ -37,7 +37,7 @@ class Header extends Component {
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
             <Link className="navbar-brand" to='/'>Picaditos!</Link>
-            <a className="test-btn" onClick={this.test}>test</a> 
+            <a className="test-btn" onClick={this.test}>test</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
@@ -56,11 +56,11 @@ class Header extends Component {
                   <Link className="nav-link" to='/canchas'>Canchas</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to='/mensajes'>Mensajes</Link>
+                  <Link className="nav-link" to='/bandeja'>Mensajes</Link>
                 </li>
               </ul>
               <form className="form-inline mt-2 mt-md-0">
-                <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>  
+                <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
                 <a href="#" className="btn">
                   <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_search-128.png" width="25"/>
                 </a>
@@ -76,7 +76,7 @@ class Header extends Component {
         <header>
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
               <Link className="navbar-brand" to='/'>Picaditos!</Link>
-              <a className="test-btn" onClick={this.test}>test</a> 
+              <a className="test-btn" onClick={this.test}>test</a>
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
@@ -89,7 +89,7 @@ class Header extends Component {
 Header.propTypes={
   actions: PropTypes.object.isRequired
 }
-function mapStateToProps(state, ownProps) {  
+function mapStateToProps(state, ownProps) {
   return {
     logged_in: state.session
   };
@@ -99,4 +99,4 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(sessionActions, dispatch)
   };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Header);  
+export default connect(mapStateToProps,mapDispatchToProps)(Header);

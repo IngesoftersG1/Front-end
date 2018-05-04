@@ -11,7 +11,7 @@ import Loading from './Loading/Loading'
 import Infousuario from './Info-usuario'
 
 import Example from './Loading/logo'
-
+import Bandeja from './perfil/Bandeja'
 import Eventos from './eventos/Eventos'
 
 import Misequipos from './perfil/Mis_equipos'
@@ -38,9 +38,11 @@ import BuscarEquipo from './equipos/BuscarEquipo'
 import Torneo from './eventos/Torneo'
 import Inicio from './Inicio'
 import Lostpass from './Lostpass'
-import mensajes from './perfil/Mensaje'
+import Mensajes from './perfil/Mensaje'
 import auth from './auth'
 import geteventlist from './geteventlist'
+import CrearE from './equipos/CrearEquipo.js'
+import CrearEv from './eventos/CrearEvento.js'
 
 import Stats from './stats/Stats'
 
@@ -64,7 +66,12 @@ const Main = () => (
       <Route exact path='/login' render={()=>(
           !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Login />)
       )}/>
-
+      <Route exact path='/createE' render={()=>(
+          !!sessionStorage.jwt ? (<CrearE />):(<Redirect to='/perfil' />)
+      )}/>
+      <Route exact path='/createEv' render={()=>(
+          !!sessionStorage.jwt ? (<CrearEv />):(<Redirect to='/perfil' />)
+      )}/>
 
       <Route path='/canchas' component={Canchas}/>
 
@@ -73,15 +80,9 @@ const Main = () => (
 
       )}/>
 
-      
+
 
       <Route exact path='/equipos' component={Equipos}/>
-
-
-
-    {/* <Route exact path='/perfil' component={Perfil}/>*/}
-
-
 
       <Route exact path='/perfil' render={()=>(
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
@@ -131,9 +132,16 @@ const Main = () => (
           !!sessionStorage.jwt ? (<Mispartidos />) : (<Redirect to='/login' />)
       )}/>
 
-    
 
-      <Route path='/mensajes' component={mensajes}/>
+
+       <Route exact path='/mensajes' render={()=>(
+           !!sessionStorage.jwt ? (<Mensajes />) : (<Redirect to='/login' />)
+       )}/>
+
+       <Route exact path='/bandeja' render={()=>(
+           !!sessionStorage.jwt ? (<Bandeja />) : (<Redirect to='/login' />)
+       )}/>
+
       <Route path='/pdf' component={MyPdfViewer}/>
 
       {/*<Route path='/pdf'  render={()=>(
