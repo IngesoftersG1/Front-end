@@ -7,7 +7,9 @@
 * Loading al realizar peticiones.(Edgar Garay)
 * Funcionalidades completas de la aplicación consumiendo endpoints del back end. (Edgar Garay y Diego Chacón)
 * Implementación del API de Google Maps para mostrar ubicaciones en un mapa.(David Perdomo)
-* Interfaz y estilos : Diego Chacón, Edgar Garay, David Hormaza y David Perdomo
+* Interfaz y estilos : (Diego Chacón, Edgar Garay, David Hormaza y David Perdomo)
+
+LINK HEROKU: https://guarded-cliffs-11980.herokuapp.com/
 
 
 
