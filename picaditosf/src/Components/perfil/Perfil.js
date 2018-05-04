@@ -20,7 +20,7 @@ export default class Perfil extends Component {
   storeUserName(name){
   	sessionStorage.setItem('check_user', name);
   }
- 
+
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
           axios.get(`http://localhost:3001/users/1?`, {
@@ -42,12 +42,12 @@ export default class Perfil extends Component {
         </div>); // render the loading component
     }
 
-  	
+
 
     return (
     <div>
 		{ this.state.user.map(user =>
-	
+
 	<div className="cont_2">
 		<div className="container">
 		  <div className="row align-items-start">
@@ -95,8 +95,17 @@ export default class Perfil extends Component {
 		    <div id="estat" className="tab-pane fade">
 		      <h3>Estadisticas</h3>
 		      	<Link to='/statistics'>
-		  			<button className="btn">ver estadisticas</button>
+            <br></br>
+            <br></br>
+		  			<button className="btn btn-lg btn-success btn-block">Ver Estadisticas (Gráficamente)</button>
+          <br></br>
+          <br></br>
+          <br></br>
 		  		</Link>
+          <Link to='/pdf'>
+
+          <button className="btn btn-lg btn-success btn-block">Ver Estadisticas (PDF)</button>
+        </Link>
 		    </div>
 		    <div id="equip" className="tab-pane fade">
 		    	<h3>Mis equipos</h3>
@@ -115,7 +124,7 @@ export default class Perfil extends Component {
 		  						<Link to='/equipo'>
 		  						<button className="btn btn-info prf-btn" onClick={() => this.storeEquipoName(equipo.nombre)}>Ver Equipo</button>
 		  	    				</Link>
-		  	    		
+
 								<Link to='/comingsoon'>
 		  						<button className="btn btn-info prf-btn">Editar Equipo</button>
 		  	    		</Link>
@@ -127,7 +136,7 @@ export default class Perfil extends Component {
 		 <div id="tor" className="tab-pane fade">
 		 <h3>Mis Torneos</h3>
 			{ this.state.user[0].torneos.map(torneo =>
-			
+
 			<div className="container">
 				<div className="row align-items-start">
 					<div className="col-md-6">
@@ -139,7 +148,7 @@ export default class Perfil extends Component {
 						<Link to='/torneo'>
 							<button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(torneo.nombre)}>Ver Torneo</button>
 						</Link>
-				
+
 						<Link to='/comingsoon'>
 							<button className="btn btn-info prf-btn">Editar Torneo</button>
 						</Link>
@@ -149,7 +158,7 @@ export default class Perfil extends Component {
 			)}
 			</div>
 
-		    
+
 		  </div>
 
 		</div>

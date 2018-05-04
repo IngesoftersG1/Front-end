@@ -76,7 +76,7 @@ export default class MyPdfViewer extends React.Component {
      <div>
       <div className="cont_2" align="center" >
         <PDF
-          file = "http://localhost:3001/pdfs/show_deporte.pdf?id=2"
+          file = "http://localhost:3001/pdfs/show_estadistica.pdf?user_id=2"
           onDocumentComplete={this.onDocumentComplete}
           onPageComplete={this.onPageComplete}
           page={this.state.page}
