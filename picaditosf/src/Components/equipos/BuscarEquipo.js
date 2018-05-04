@@ -73,7 +73,7 @@ export default class BuscarEquipo extends Component {
 
 					<h1>Buscar Equipo</h1>
 					<form className="form1" onSubmit={this.onSubmit}>
-				    <label htmlFor="psw">Nombre del Equipo</label>
+				    <label htmlFor="psw">Nombre del Capitán del Equipo</label>
 						<input placeholder="Enter name"
 							nombre="nombre"
 							type='text'

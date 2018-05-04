@@ -82,7 +82,7 @@ class CrearE extends Component{
     	}else if(response.status==200 || response.status==201){
         swal(
     			"Ha creado su equipo correctamente",
-    			"ya puede verlo en la seccion de mis equipos",
+    			"ya puede verlo en la seccion de Equipos",
     			"success"
         ).then((value) => {
 						window.location.href='/perfil'
