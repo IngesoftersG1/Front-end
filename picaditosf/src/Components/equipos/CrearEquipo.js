@@ -24,7 +24,14 @@ class CrearE extends Component{
       created_at: null,
       updated_at: null,
       deporte_id: '3',
-      capitan_name: "Malphite"
+      capitan_name: "Malphite",
+      users:
+        {
+        nombres:'',
+        apellidos:'',
+        user_name:'',
+        email:''
+        }
 
     }
     this.onSubmit = this.onSubmit.bind(this);
@@ -42,8 +49,14 @@ class CrearE extends Component{
       })
         .then(res => {
           const user = [res.data];
-          console.log(user[0].nombres)
+          console.log(user)
         this.setState({ capitan_name:user[0].user_name });
+        this.setState({ users:{nombres:user[0].nombres }});
+        this.setState({ users:{user_name:user[0].user_name }});
+        this.setState({ users:{apellidos:user[0].apellidos}});
+        this.setState({ users:{email:user[0].email }});
+          console.log("a")
+
   })
 }
 
