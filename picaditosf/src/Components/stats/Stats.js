@@ -5,13 +5,15 @@ import Example from '../Loading/logo'
 import '../../styles/styles.css'
 import BubbleChart from '@weknow/react-bubble-chart-d3';
 import session from '../../Reducers/sessionReducer';
+import * as consts from '../../consts';
+
 export default class Stats extends React.Component {
   state = {
     estadisticas: [], isLoading: true
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3001/estadisticas/my_stats`, {
+    axios.get(consts.SERVER_URL+`estadisticas/my_stats`, {
     params: {
     user_name: JSON.parse(sessionStorage.user).user_name+""
   }

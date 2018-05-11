@@ -5,6 +5,7 @@ import Example from '../Loading/logo'
 import MyPdfViewer from '../PDF/pdfview'
 import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
+import * as consts from '../../consts';
 
 
 export default class Perfil extends Component {
@@ -23,7 +24,7 @@ export default class Perfil extends Component {
 
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
-          axios.get(`http://localhost:3001/users/1?`, {
+          axios.get(consts.SERVER_URL+`users/1?`, {
     			params: {
 					user_name:JSON.parse(sessionStorage.user).user_name
 				}
@@ -41,7 +42,6 @@ export default class Perfil extends Component {
         {Example}
         </div>); // render the loading component
     }
-
 
 
     return (
@@ -136,7 +136,6 @@ export default class Perfil extends Component {
 		 <div id="tor" className="tab-pane fade">
 		 <h3>Mis Torneos</h3>
 			{ this.state.user[0].torneos.map(torneo =>
-
 			<div className="container">
 				<div className="row align-items-start">
 					<div className="col-md-6">

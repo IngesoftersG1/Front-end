@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import Example from '../Loading/logo'
+import Example from '../Loading/logo';
+import * as consts from '../../consts';
 var a;
 /*
 {
@@ -22,7 +23,7 @@ export default class Torneo extends Component {
   	sessionStorage.setItem('check_equipo', name);
   }
   componentDidMount() {
-    axios.get(`http://localhost:3001/torneos/1?`, {
+    axios.get(consts.SERVER_URL+`torneos/1?`, {
     params: {
     nombre: sessionStorage.check_torneo
   }

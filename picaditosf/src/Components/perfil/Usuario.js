@@ -5,6 +5,7 @@ import Example from '../Loading/logo'
 import MyPdfViewer from '../PDF/pdfview'
 import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
+import * as consts from '../../consts';
 
 
 export default class Usuario extends Component {
@@ -23,7 +24,7 @@ export default class Usuario extends Component {
  
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
-          axios.get(`http://localhost:3001/users/1?`, {
+          axios.get(consts.SERVER_URL+`users/1?`, {
     			params: {
 					user_name: sessionStorage.check_user
 				}

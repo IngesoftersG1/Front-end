@@ -1,11 +1,12 @@
 
 import React, { Component } from "react";
 import axios from 'axios';
+import * as consts from '../../consts';
 
 export default function Userchange () {
 
 
-    axios.patch('http://localhost:3001/users', {
+    axios.patch(consts.SERVER_URL+'users', {
     params: {
     user_name:'Vladimir'
   }

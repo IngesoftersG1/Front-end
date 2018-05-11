@@ -3,7 +3,7 @@ import PDF from 'react-pdf-js';
 import myPDF from './sample.pdf'
 import Example from '../Loading/logo'
 import '../../styles/styles.css'
-
+import * as consts from '../../consts';
 
 
 export default class MyPdfViewer extends React.Component {
@@ -76,7 +76,7 @@ export default class MyPdfViewer extends React.Component {
      <div>
       <div className="cont_2" align="center" >
         <PDF
-          file = "http://localhost:3001/pdfs/show_estadistica.pdf?user_id=2"
+          file = {consts.SERVER_URL+"pdfs/show_estadistica.pdf?user_id=2"}
           onDocumentComplete={this.onDocumentComplete}
           onPageComplete={this.onPageComplete}
           page={this.state.page}

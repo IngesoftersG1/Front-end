@@ -13,7 +13,7 @@ export function logoutUser(){
 export function loginUser(credentials) {  
   return function(dispatch) {
     return sessionApi.login(credentials).then(response => {
-      console.log("chacRES",response);
+      //console.log("chacRES",response);
       //debugger;
       sessionStorage.setItem('jwt', response.jwt);
       sessionStorage.setItem('user',JSON.stringify(response.user));

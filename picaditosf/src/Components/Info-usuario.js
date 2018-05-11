@@ -1,6 +1,6 @@
-
 import React, { Component } from "react";
 import axios from 'axios';
+import * as consts from '../consts';
 
 export default class user extends Component {
   state = {
@@ -8,7 +8,7 @@ export default class user extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3001/geteventslist`)
+    axios.get(consts.SERVER_URL+`geteventslist`)
       .then(res => {
         const usuarios = res.data;
         this.setState({ usuarios });

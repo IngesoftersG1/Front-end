@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Example from '../Loading/logo'
+import * as consts from '../../consts';
 var a;
 /*
 {
@@ -14,7 +15,7 @@ export default class Bandeja extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3001/mensajes`, {
+    axios.get(consts.SERVER_URL+`mensajes`, {
 /*
     params: {
     user_name:"asd1"

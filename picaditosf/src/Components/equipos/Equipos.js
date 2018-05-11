@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Example from '../Loading/logo'
+import * as consts from '../../consts';
 
 const divStyle = {
   color: 'white',
@@ -22,7 +23,7 @@ export default class Equipos extends Component {
   }
   componentDidMount() {
 
-    axios.get(`http://localhost:3001/equipos `)
+    axios.get(consts.SERVER_URL+`equipos `)
       .then(res => {
         const eventos = res.data;
       	this.setState({ eventos });

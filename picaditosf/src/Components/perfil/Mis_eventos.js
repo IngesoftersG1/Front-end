@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Example from '../Loading/logo'
+import * as consts from '../../consts';
 
 /*
 {
@@ -14,7 +15,7 @@ export default class Miseventos extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:3001/torneos/my_tournaments`, {
+    axios.get(consts.SERVER_URL+`torneos/my_tournaments`, {
     params: {
     user_name:'Vladimir'
   }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Example from '../Loading/logo'
+import * as consts from '../../consts';
 
 const divStyle = {
   color: 'white',
@@ -21,7 +22,7 @@ export default class Eventos extends Component {
   	sessionStorage.setItem('check_equipo', name);
   }
   componentDidMount() {
-    axios.get(`http://localhost:3001/torneos `)
+    axios.get(consts.SERVER_URL+`torneos `)
       .then(res => {
         const eventos = res.data;
 
@@ -38,10 +39,8 @@ export default class Eventos extends Component {
  render() {
     if(this.state.isLoading){
     return (<div>
-
         {Example}
-
-        </div>); // render the loading component
+      </div>); // render the loading component
     }
 
 
@@ -100,17 +99,7 @@ export default class Eventos extends Component {
 		</div>
 		)}
 
-
-
-
-
-
-
-
-
 	</div>
-
-
 
     )
   }

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Example from '../Loading/logo'
+import * as consts from '../../consts';
+
 var a;
 /*
 {
@@ -19,7 +21,7 @@ export default class BuscarEquipo extends Component {
 
  render() {
    if(this.state.isLoading){
-   axios.get(`http://localhost:3001/equipos/my_team`, {
+   axios.get(consts.SERVER_URL+`equipos/my_team`, {
    params: {
    user_name:this.state.nombre
    }

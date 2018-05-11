@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import Example from '../Loading/logo'
+import Example from '../Loading/logo';
+import * as consts from '../../consts';
 var a;
 /*
 {
@@ -15,7 +16,7 @@ export default class BuscarEvento extends Component {
 
   componentDidMount() {
     setTimeout(() => this.setState({ isLoading: false }), 2000);
-    axios.get(`http://localhost:3001/equipos/my_team`, {
+    axios.get(consts.SERVER_URL+`equipos/my_team`, {
     params: {
     user_name:'Malphite'
   }

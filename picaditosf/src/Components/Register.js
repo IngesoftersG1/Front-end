@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import '../styles/styles.css'
 import a from './Login'
 import swal from 'sweetalert2'
+import * as consts from '../consts'
 
 
 // The Roster component matches one of two different routes
@@ -27,8 +28,7 @@ class Register extends Component{
 		const info = JSON.stringify(this.state)
 		console.log("json",info)
 
-		const request = new Request(`http://localhost:3001/users`, {
-
+		const request = new Request(consts.SERVER_URL+`users`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'

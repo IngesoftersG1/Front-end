@@ -6,6 +6,7 @@ import swal from 'sweetalert2'
 import Select from 'react-select';
 import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
+import * as consts from '../../consts';
 
 const divStyle = {
   color: 'black',
@@ -34,7 +35,7 @@ class CrearEv extends Component{
   }
 
   componentDidMount() {
-        axios.get(`http://localhost:3001/users/1?`, {
+        axios.get(consts.SERVER_URL+`users/1?`, {
         params: {
         user_name:JSON.parse(sessionStorage.user).user_name
         }

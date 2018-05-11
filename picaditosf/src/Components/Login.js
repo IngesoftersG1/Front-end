@@ -7,6 +7,7 @@ import '../styles/styles.css'
 import axios from 'axios';
 import swal from 'sweetalert2'
 import { GoogleLogin } from 'react-google-login';
+import * as consts from '../consts';
 
 export var a;
 
@@ -44,7 +45,7 @@ class Login extends Component {
   verificator(data){
 		const info = JSON.stringify({TokenId:data})
 		console.log("json",info)
-		const request = new Request(`http://localhost:3001/user_sign_in/google`, {
+		const request = new Request(consts.SERVER_URL+`user_sign_in/google`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'

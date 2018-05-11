@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import '../../styles/styles.css'
 import session from '../../Reducers/sessionReducer';
+import * as consts from '../../consts';
 
 import swal from 'sweetalert2'
 //fecha , contenido , usuario_2_name ,user_id , asunto
@@ -51,7 +52,7 @@ class Mensaje extends Component {
 
 		const info = JSON.stringify(this.state)
 		console.log("json",info)
-		const request = new Request(`http://localhost:3001/mensajes`, {
+		const request = new Request(consts.SERVER_URL+`mensajes`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
