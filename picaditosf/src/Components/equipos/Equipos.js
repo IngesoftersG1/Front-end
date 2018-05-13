@@ -89,7 +89,7 @@ export default class Equipos extends Component {
 		  	</div>
 
 		  	<div className="col-md-2 " >
-							<Link to='/equipo'>
+							<Link to={'/equipo/'+evento.nombre} params='param'>
 		  		  		<button className="btn btn-info prf-btn" onClick={() => this.storeEquipoName(evento.nombre)}>Ver Equipo</button>
 							</Link>
 		  	</div>

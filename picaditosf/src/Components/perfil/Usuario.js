@@ -100,7 +100,7 @@ export default class Usuario extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-2">
-		  						<Link to='/equipo'>
+		  						<Link to={'/equipo/'+equipo.nombre}>
 		  						<button className="btn btn-info prf-btn" onClick={() => this.storeEquipoName(equipo.nombre)}>Ver Equipo</button>
 		  	    				</Link>
 		  	    		</div>

@@ -1,13 +1,14 @@
 import * as sessionActions from '../Actions/sessionsActions'
 import React, { Component } from "react"
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Route  , Link } from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import  '../styles/navstyles.css'
 
 import session from '../Reducers/sessionReducer';
-
+//
+import Perfil from './perfil/Perfil'
 // The Header creates links that can be used to navigate
 // between routes.
 class Header extends Component {
@@ -62,7 +63,7 @@ class Header extends Component {
               <form className="form-inline mt-2 mt-md-0">
                 <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
                 <a href="#" className="btn">
-                  <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_search-128.png" width="25"/>
+                  <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/magnifyingglass-256.png" width="25"/>
                 </a>
                 <Link onClick={this.logout} className="nav-link" to="/login">
                   <button className="btn btn-danger">Cerrar sesión</button></Link>

@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Example from '../Loading/logo'
+import BuscarEvento from './BuscarEvento'
+import '../../styles/styles.css'
 import * as consts from '../../consts';
 
 const divStyle = {
   color: 'white',
 }
-
-export default class Eventos extends Component {
+export default class Eventos extends React.Component {
   state = {
     eventos: [], isLoading: true
   }
@@ -42,25 +43,19 @@ export default class Eventos extends Component {
         {Example}
       </div>); // render the loading component
     }
-
-
     return (
 
 <div>
-
+{/*
 <div className="cont_2">
 		<div className="container">
-
 		  	<p  style={divStyle}>En esta pagina puede ver los torneos y partidos si desea crear o buscar un evento puede hacerlo llenando el siguiente formulario</p>
-        <div class="row">
-        <div class="col-sm-2" align="center"></div>
-        <div class="col-sm-2" align="center">
-        <a href='/createEv'>
-            <button className="btn">Crear evento</button>
-        </a>
+        <div className="row">
+        <div className="col-sm-2" align="center"></div>
+        <div className="col-sm-2" align="center">
         </div>
-        <div class="col-sm-4" align="center"></div>
-        <div class="col-sm-2" align="center">
+        <div className="col-sm-4" align="center"></div>
+        <div className="col-sm-2" align="center">
         <a href='/BuscarEvento'>
             <button className="btn">Buscar evento</button>
         </a>
@@ -68,38 +63,44 @@ export default class Eventos extends Component {
         </div>
 
 		</div>
+</div>*/}
+<div className="cont_2">
+  <h1>Eventos</h1>
+  <div className="scrollable row">
+    <div className="text-center cont_card col-md-3">
+      <div className="">
+        <a href='/createEv'>
+          <img src='https://cdn0.iconfinder.com/data/icons/flat-social-media-icons-set-round-style-1/550/netvibes-512.png' className="img-responsive profile-img"/>
+      	  <h4>Crear Evento</h4>
+      	</a>
+      	</div>
+    </div>
+    
+    { this.state.eventos.map(evento =>
+    <div className="text-center cont_card col-md-3">
+      	<Link to='/torneo'>
+      	  <div onClick={() => this.storeTorneoName(evento.nombre)}>
+      	    <img src={require('../../imagenes/trofeo-icon.jpg')} className="img-responsive profile-img" alt="Ver torneo"/>
+      		  <h4>{evento.nombre}</h4>
+      		  {/*<p style={divStyle}>Organizador: {evento.organizador_name}</p>*/}
+      	  </div>
+        </Link>
+      	<div className="" >
+      	{/*	<Link to='/torneo'>
+      		  <button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(evento.nombre)}>Ver Torneo</button>
+    			</Link>*/}
+      	</div>
+    </div>
+    )}
+  </div>
+  <div className="" align="center">
+    <a href='/BuscarEvento'>
+        <button className="btn">Buscar evento</button>
+    </a>
+    </div>
+  </div>
+
 </div>
-
-
-{ this.state.eventos.map(evento =>
-	 <div className="cont_2">
-		<div className="container">
-		<div className="row align-items-start">
-		  	<div className="col-md-2">
-		  		<img src={require('../../imagenes/team.jpg')} className="img-responsive profile-img"/>
-		  	</div>
-
-		  	<div className="col-md-8">
-		  		<h1>
-		  		 {evento.nombre}
-		  	    </h1>
-
-		  		<h4>Organizador: {evento.organizador_name}</h4>
-		  	</div>
-
-		  	<div className="col-md-2 " >
-
-		  		   <Link to='/torneo'>
-		  		  		<button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(evento.nombre)}>Ver Torneo</button>
-							</Link>
-
-		  	</div>
-		</div>
-		</div>
-		</div>
-		)}
-
-	</div>
 
     )
   }

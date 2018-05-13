@@ -7,7 +7,10 @@ import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
 
-export default class Perfil extends Component {
+export default class Equipo extends Component {
+  constructor(props,context) {
+    super(props,context);
+  }
   state = {
     equipos: [], isLoading: true, users:[]
   }
@@ -22,6 +25,7 @@ export default class Perfil extends Component {
 	}
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
+          console.log("PARAMS", this.props)
           axios.get(consts.SERVER_URL+`equipos/1?`, {
     			params: {
 					nombre: sessionStorage.check_equipo
@@ -60,11 +64,6 @@ export default class Perfil extends Component {
 			  	<div className="row">
 
 			  		<h1>{equipo.data.nombre}</h1>
-						
-						
-						
-				  		
-
 						
 			  	</div>
 			  	<div className="row">
