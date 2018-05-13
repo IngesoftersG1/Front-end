@@ -75,11 +75,30 @@ class Header extends Component {
       return(
         <header>
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
+              <div className="col-md-6">
               <Link className="navbar-brand" to='/'>Picaditos!</Link>
               <a className="test-btn" onClick={this.test}>test</a>
+              </div>
+              
+              <div className="col-md-6" style={{textAlign:"right"}}>
+        
+              <Link className="nav-brand" to="/login">
+                  <button className="btn btn-success" style={{marginRight:12}}>Inicia Sesion</button>
+              </Link>
+              
+              
+              
+              
+              <Link className="nav-brand" to="/register">
+                <button className="btn ">Registrate</button>  
+              </Link>
+              </div>
+              
+              
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
+              
             </nav>
         </header>
       )

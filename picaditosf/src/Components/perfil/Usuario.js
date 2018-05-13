@@ -43,7 +43,7 @@ export default class Usuario extends Component {
         </div>); // render the loading component
     }
 
-  	let names = JSON.parse(sessionStorage.user).nombres + " " + JSON.parse(sessionStorage.user).apellidos
+  	
 
     return (
     <div>
