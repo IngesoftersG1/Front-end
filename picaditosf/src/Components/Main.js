@@ -43,7 +43,7 @@ import auth from './auth'
 import geteventlist from './geteventlist'
 import CrearE from './equipos/CrearEquipo.js'
 import CrearEv from './eventos/CrearEvento.js'
-
+import Tablon from './Tablon/tablon.js'
 import Stats from './stats/Stats'
 
 
@@ -56,6 +56,7 @@ const Main = () => (
  <main>
     <Switch>
       <Route exact path='/Landing' component={Landing}/>
+      <Route exact path='/Tablon' component={Tablon}/>
       <Route exact path='/geteventlist' component={geteventlist}/>
       <Route exact path='/' render={()=>(
           !!sessionStorage.jwt ? (<Inicio />) : (<Inicio />)
