@@ -13,21 +13,9 @@ export default class Torneo extends Component {
   state = {
     torneo: [], isLoading: true
   }
-  storeTorneoName(name){
-  	sessionStorage.setItem('check_torneo', name);
-  }
-  storeUserName(name){
-  	sessionStorage.setItem('check_user', name);
-  }
-  storeEquipoName(name){
-  	sessionStorage.setItem('check_equipo', name);
-  }
+  
   componentDidMount() {
-    axios.get(consts.SERVER_URL+`torneos/1?`, {
-    params: {
-    nombre: sessionStorage.check_torneo
-  }
-})
+    axios.get(consts.SERVER_URL+`torneos/torneo_id/?id=`+this.props.match.params.id)
       .then(res => {
         const torneo = [res];
         console.log(torneo)
@@ -69,7 +57,7 @@ export default class Torneo extends Component {
 
           <h1>{torneo.data.nombre}</h1>
           <div className="prf-btns">
-            <Link to='/editperfil'>
+            <Link to='/comingsoon'>
               <button className="btn btn-info prf-btn">Inscribir Equipo</button>
             </Link>
 
@@ -121,8 +109,8 @@ export default class Torneo extends Component {
                 </h4>
               </div>
               <div className="col-md-2">
-                <Link to='/equipo'>
-                <button className="btn btn-info prf-btn" onClick={() => this.storeEquipoName(equipo.nombre)}>Ver Equipo</button>
+              <Link to={`/equipo/${equipo.id}`}>
+                <button className="btn btn-info prf-btn">Ver Equipo</button>
                   </Link>
               </div>
             </div>
