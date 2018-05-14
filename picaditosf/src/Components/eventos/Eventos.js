@@ -12,18 +12,14 @@ export default class Eventos extends Component {
   state = {
     eventos: [], isLoading: true
   }
-	
+
   componentDidMount() {
     axios.get(consts.SERVER_URL+`torneos `)
-      .then(res => {
+        .then(res => {
         const eventos = res.data;
-
         this.setState({ eventos });
-
         setTimeout(() => this.setState({ isLoading: false }), 1000);
-
-
-      })
+    })
   }
 
 

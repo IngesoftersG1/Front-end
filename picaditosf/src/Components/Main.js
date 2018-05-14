@@ -43,6 +43,7 @@ import auth from './auth'
 import geteventlist from './geteventlist'
 import CrearE from './equipos/CrearEquipo.js'
 import CrearEv from './eventos/CrearEvento.js'
+import Busqueda from './Busqueda/busqueda.js'
 
 import Stats from './stats/Stats'
 
@@ -55,6 +56,8 @@ import Stats from './stats/Stats'
 const Main = () => (
  <main>
     <Switch>
+
+      <Route path='/busqueda' component={Busqueda}/>
       <Route exact path='/Landing' component={Landing}/>
       <Route exact path='/geteventlist' component={geteventlist}/>
       <Route exact path='/' render={()=>(
@@ -75,7 +78,7 @@ const Main = () => (
 
       <Route path='/canchas' component={Canchas}/>
 
-       
+
       <Route path='/equipo/:id' component={Equipo}/>
 
       <Route exact path='/equipos' component={Equipos}/>
@@ -83,12 +86,12 @@ const Main = () => (
       <Route exact path='/perfil' render={()=>(
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>
-      
+
       <Route exact path='/usuario/:id' component={Usuario}/>
       {/*<Route exact path='/usuario' render={()=>(
           !!sessionStorage.jwt ? (<Usuario />) : (<Redirect to='/' />)
       )}/>
-      */}  
+      */}
       <Route exact path='/editperfil' component={Edit}/>
 
       <Route exact path='/comingsoon' component={UnderConstruction}/>
