@@ -75,16 +75,7 @@ const Main = () => (
 
       <Route path='/canchas' component={Canchas}/>
 
-       tablon-anuncios
-      <Route path='/equipo' render={()=>(
-          !!sessionStorage.jwt ? (<Equipo />) : (<Equipo />)
-
-      {/*<Route path='/equipo' render={()=>(
-          !!sessionStorage.jwt ? (<Equipo />) : (<Redirect to='/login' />)
-
-
-      )}/>
-      */}
+       
       <Route path='/equipo/:id' component={Equipo}/>
 
       <Route exact path='/equipos' component={Equipos}/>

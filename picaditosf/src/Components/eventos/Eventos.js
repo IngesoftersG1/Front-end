@@ -12,15 +12,7 @@ export default class Eventos extends Component {
   state = {
     eventos: [], isLoading: true
   }
-	storeTorneoName(name){
-  	sessionStorage.setItem('check_torneo', name);
-  }
-  storeUserName(name){
-  	sessionStorage.setItem('check_user', name);
-  }
-  storeEquipoName(name){
-  	sessionStorage.setItem('check_equipo', name);
-  }
+	
   componentDidMount() {
     axios.get(consts.SERVER_URL+`torneos `)
       .then(res => {
@@ -89,8 +81,8 @@ export default class Eventos extends Component {
 
 		  	<div className="col-md-2 " >
 
-		  		   <Link to='/torneo'>
-		  		  		<button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(evento.nombre)}>Ver Torneo</button>
+		  		  	<Link to={`/torneo/${evento.id}`}>
+		  		  		<button className="btn btn-info prf-btn" >Ver Torneo</button>
 							</Link>
 
 		  	</div>

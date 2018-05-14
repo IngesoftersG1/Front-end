@@ -12,27 +12,7 @@ export default class Inicio extends Component {
   state = {
     tablon: [], isLoading: true
   }
-  delay (URL) {
-    setTimeout( function() { window.location = URL }, 500 );
-  }
-  storeEquipoName(id){
-  	axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+id)
-    		.then(res => {
-          sessionStorage.setItem('check_equipo', res.data.nombre);
-          setTimeout(() => this.setState({ isLoading: false }), 500)	
-      })
-	}
-	storeTorneoName(id){
-  	axios.get(consts.SERVER_URL+`torneos/torneo_id/?id=`+id)
-    		.then(res => {
-          sessionStorage.setItem('check_torneo', res.data.nombre);	
-          setTimeout(() => this.setState({ isLoading: false }), 500)
-      })
-  }
   
-  storeUserName(name){
-  	    sessionStorage.setItem('check_user', name);
-  }
 	
   componentDidMount() {
          
@@ -101,8 +81,8 @@ export default class Inicio extends Component {
   
           <div className="col-md-2 " >
 
-                <Link to='/usuario'>
-                <button className="btn btn-info prf-btn"  onClick={() => this.storeUserName(anuncio.user_id)}>Ver Usuario</button>
+                <Link to={`/usuario/${anuncio.user_id}`}>
+                <button className="btn btn-info prf-btn" >Ver Usuario</button>
                 </Link>
           </div>
       </div>
@@ -127,9 +107,9 @@ export default class Inicio extends Component {
           </div>
 
         <div className="col-md-2 " >
-              <DelayLink to="/torneo" delay={200}>
-              <button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(anuncio.torneo_id)}>Ver Torneo</button>
-              </DelayLink>
+        <Link to={`/torneo/${anuncio.torneo_id}`}>
+                <button className="btn btn-info prf-btn">Ver Torneo</button>
+                </Link>
         </div>
     </div>
     </div>
@@ -153,9 +133,9 @@ export default class Inicio extends Component {
           </div>
 
         <div className="col-md-2 " >
-              <DelayLink to="/equipo" delay={200}>
-              <button className="btn btn-info prf-btn" onClick={() => this.storeEquipoName(anuncio.equipo_id)}>Ver Equipo</button>
-              </DelayLink>
+              <Link to={`/equipo/${anuncio.equipo_id}`}>
+              <button className="btn btn-info prf-btn">Ver Equipo</button>
+              </Link>
         </div>
     </div>
     </div>
@@ -184,8 +164,8 @@ export default class Inicio extends Component {
             </div>
   
           <div className="col-md-2 " >
-                <Link to='/usuario'>
-                <button className="btn btn-info prf-btn" onClick={() => this.storeUserName(anuncio.user_id)}>Ver Usuario</button>
+                <Link to={`/usuario/${anuncio.user_id}`}>
+                <button className="btn btn-info prf-btn" >Ver Usuario</button>
                 </Link>
           </div>
       </div>
@@ -216,9 +196,9 @@ export default class Inicio extends Component {
             </div>
   
           <div className="col-md-2 " >
-                <DelayLink to="/equipo" delay={200}>  
-                <button className="btn btn-info prf-btn" onClick={() => this.storeEquipoName(anuncio.equipo_id)}>Ver Equipo</button>
-                </DelayLink>
+              <Link to={`/equipo/${anuncio.equipo_id}`}>
+              <button className="btn btn-info prf-btn">Ver Equipo</button>
+              </Link>
           </div>
       </div>
       </div>
@@ -249,9 +229,9 @@ export default class Inicio extends Component {
             </div>
   
           <div className="col-md-2 " >
-                <DelayLink to="/torneo" delay={200}>
-                <button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(anuncio.torneo_id)}>Ver Torneo</button>
-                </DelayLink>
+                <Link to={`/torneo/${anuncio.torneo_id}`}>
+                <button className="btn btn-info prf-btn">Ver Torneo</button>
+                </Link>
           </div>
       </div>
       </div>
