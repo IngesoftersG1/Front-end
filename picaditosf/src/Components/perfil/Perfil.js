@@ -12,9 +12,7 @@ export default class Perfil extends Component {
   state = {
     user: [], isLoading: true
   }
-  storeEquipoName(name){
-  	sessionStorage.setItem('check_equipo', name);
-	}
+  
 	storeTorneoName(name){
   	sessionStorage.setItem('check_torneo', name);
   }
@@ -121,8 +119,9 @@ export default class Perfil extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-6">
-		  						<Link to='/equipo'>
-		  						<button className="btn btn-info prf-btn" onClick={() => this.storeEquipoName(equipo.nombre)}>Ver Equipo</button>
+								
+		  						<Link to={`/equipo/${equipo.id}`}>
+		  						<button className="btn btn-info prf-btn">Ver Equipo</button>
 		  	    				</Link>
 
 								<Link to='/comingsoon'>
@@ -144,7 +143,7 @@ export default class Perfil extends Component {
 						</h4>
 					</div>
 					<div className="col-md-6">
-						<Link to='/torneo'>
+						<Link to={`/torneo/${torneo.id}`}>
 							<button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(torneo.nombre)}>Ver Torneo</button>
 						</Link>
 

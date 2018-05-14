@@ -75,22 +75,24 @@ const Main = () => (
 
       <Route path='/canchas' component={Canchas}/>
 
-      <Route path='/equipo' render={()=>(
+      {/*<Route path='/equipo' render={()=>(
           !!sessionStorage.jwt ? (<Equipo />) : (<Redirect to='/login' />)
 
       )}/>
-
-
+      */}
+      <Route path='/equipo/:id' component={Equipo}/>
 
       <Route exact path='/equipos' component={Equipos}/>
 
       <Route exact path='/perfil' render={()=>(
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>
-      <Route exact path='/usuario' render={()=>(
+      
+      <Route exact path='/usuario/:id' component={Usuario}/>
+      {/*<Route exact path='/usuario' render={()=>(
           !!sessionStorage.jwt ? (<Usuario />) : (<Redirect to='/' />)
       )}/>
-
+      */}  
       <Route exact path='/editperfil' component={Edit}/>
 
       <Route exact path='/comingsoon' component={UnderConstruction}/>
@@ -105,10 +107,12 @@ const Main = () => (
 
 
       <Route path='/eventos' component={Eventos}/>
+      <Route path='/Torneo/:id' component={Torneo}/>
+      {/*
       <Route path='/Torneo' render={()=>(
           !!sessionStorage.jwt ? (<Torneo />) : (<Redirect to='/login' />)
       )}/>
-
+        */}
       <Route path='/BuscarEquipo' component={BuscarEquipo}/>
       <Route path='/BuscarEvento' component={BuscarEvento}/>
       <Route path='/BuscarPartido' component={BuscarPartido}/>

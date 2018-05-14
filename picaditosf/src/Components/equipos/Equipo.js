@@ -7,26 +7,17 @@ import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
 
-export default class Perfil extends Component {
+export default class Equipo extends Component {
   state = {
     equipos: [], isLoading: true, users:[]
   }
-  storeTorneoName(name){
-	sessionStorage.setItem('check_torneo', name);
-	}
-	storeUserName(name){
-	sessionStorage.setItem('check_user', name);
-	}
-	storeEquipoName(name){
-	sessionStorage.setItem('check_equipo', name);
-	}
+  
   componentDidMount() {
+					console.log(this.props.match.params.id)
           setTimeout(() => this.setState({ isLoading: false }), 500);
-          axios.get(consts.SERVER_URL+`equipos/1?`, {
-    			params: {
-					nombre: sessionStorage.check_equipo
-				}
-			})
+          axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+this.props.match.params.id
+    			
+			)
     		.then(res => {
         	const equipos = [res];
         	console.log(equipos)
@@ -43,7 +34,7 @@ export default class Perfil extends Component {
         </div>); // render the loading component
     }
 
-  	let names = JSON.parse(sessionStorage.user).nombres + " " + JSON.parse(sessionStorage.user).apellidos
+  	
 
     return (
 
@@ -107,8 +98,8 @@ export default class Perfil extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-2">
-						  	<Link to='/usuario'>
-		  		  				<button className="btn btn-info prf-btn" onClick={() => this.storeUserName(user.user_name)}>Ver Usuario</button>
+						  	<Link to={`/usuario/${user.user_name}`}>
+		  		  				<button className="btn btn-info prf-btn">Ver Usuario</button>
 							</Link>
 		  	    		</div>
 		  	    	</div>
@@ -129,8 +120,8 @@ export default class Perfil extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-2">
-						  <Link to='/torneo'>
-		  		  		<button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(torneo.nombre)}>Ver Torneo</button>
+								<Link to={`/torneo/${torneo.id}`}>
+		  		  		<button className="btn btn-info prf-btn" >Ver Torneo</button>
 							</Link>
 		  	    		</div>
 		  	    	</div>
