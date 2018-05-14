@@ -19,7 +19,15 @@ export default class Perfil extends Component {
   storeUserName(name){
   	sessionStorage.setItem('check_user', name);
   }
-
+	editButton(props) {
+		const cap = props.cap;
+		if (JSON.parse(sessionStorage.user).user_name == cap) {
+			return<Link to='/comingsoon'>
+						<button className="btn btn-info prf-btn">Editar Equipo</button>
+						</Link>
+		}
+		return null;
+	}
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
           axios.get(consts.SERVER_URL+`users/1?`, {
@@ -30,7 +38,7 @@ export default class Perfil extends Component {
     		.then(res => {
         	const user = [res.data];
       		console.log(user)
-    		this.setState({ user });
+    		  this.setState({ user });
       })
       }
 
@@ -124,9 +132,8 @@ export default class Perfil extends Component {
 		  						<button className="btn btn-info prf-btn">Ver Equipo</button>
 		  	    				</Link>
 
-								<Link to='/comingsoon'>
-		  						<button className="btn btn-info prf-btn">Editar Equipo</button>
-		  	    		</Link>
+								<this.editButton cap={equipo.capitan_name} />
+								
 								</div>
 		  	    	</div>
 		  		</div>

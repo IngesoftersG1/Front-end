@@ -34,7 +34,7 @@ export default class Usuario extends Component {
         </div>); // render the loading component
     }
 
-  
+
 
     return (
     <div>

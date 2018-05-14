@@ -58,7 +58,7 @@ const Main = () => (
       <Route exact path='/Landing' component={Landing}/>
       <Route exact path='/geteventlist' component={geteventlist}/>
       <Route exact path='/' render={()=>(
-          !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Inicio />)
+          !!sessionStorage.jwt ? (<Inicio />) : (<Inicio />)
       )}/>
       <Route exact path='/register'  render={()=>(
           !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Register />)
@@ -75,8 +75,13 @@ const Main = () => (
 
       <Route path='/canchas' component={Canchas}/>
 
+       tablon-anuncios
+      <Route path='/equipo' render={()=>(
+          !!sessionStorage.jwt ? (<Equipo />) : (<Equipo />)
+
       {/*<Route path='/equipo' render={()=>(
           !!sessionStorage.jwt ? (<Equipo />) : (<Redirect to='/login' />)
+
 
       )}/>
       */}
@@ -110,7 +115,7 @@ const Main = () => (
       <Route path='/Torneo/:id' component={Torneo}/>
       {/*
       <Route path='/Torneo' render={()=>(
-          !!sessionStorage.jwt ? (<Torneo />) : (<Redirect to='/login' />)
+          !!sessionStorage.jwt ? (<Torneo />) : (<Torneo />)
       )}/>
         */}
       <Route path='/BuscarEquipo' component={BuscarEquipo}/>
