@@ -37,8 +37,10 @@ class Header extends Component {
       return (
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
+
             
-            <Link className="navbar-brand" to='/'><img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/flame-32.png" width="25"/>  Picaditos!</Link>
+            <Link className="navbar-brand" to='/tablon'><img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/flame-32.png" width="25"/>  Picaditos!</Link>
+
             <a className="test-btn" onClick={this.test}>test</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -66,7 +68,7 @@ class Header extends Component {
                 <a href="#" className="btn">
                   <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/magnifyingglass-256.png" width="30"/>
                 </a>
-                <Link onClick={this.logout} className="nav-link" to="/login">
+                <Link onClick={this.logout} className="nav-link" to="/">
                   <button className="btn btn-danger">Cerrar sesión</button></Link>
               </form>
             </div>
@@ -77,11 +79,31 @@ class Header extends Component {
       return(
         <header>
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
+              <div className="col-md-6">
               <Link className="navbar-brand" to='/'>Picaditos!</Link>
+              <Link className="navbar-brand" to='/tablon'>Anuncios</Link>
               <a className="test-btn" onClick={this.test}>test</a>
+              </div>
+              
+              <div className="col-md-6" style={{textAlign:"right"}}>
+        
+              <Link className="nav-brand" to="/login">
+                  <button className="btn btn-success" style={{marginRight:12}}>Inicia Sesion</button>
+              </Link>
+              
+              
+              
+              
+              <Link className="nav-brand" to="/register">
+                <button className="btn ">Registrate</button>  
+              </Link>
+              </div>
+              
+              
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
               </button>
+              
             </nav>
         </header>
       )

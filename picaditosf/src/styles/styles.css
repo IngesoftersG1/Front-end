@@ -157,6 +157,14 @@ SITE
 	margin: auto;
 	margin-top: 100px;
 }
+.tablon{
+	background-color: rgba(0, 0, 0, 0.8);
+	max-width: 1200px;
+	min-width: 	400px;
+	padding: 40px;
+	margin: auto;
+	margin-top: 100px;
+}
 
 .scrollable{
   max-height:450px;

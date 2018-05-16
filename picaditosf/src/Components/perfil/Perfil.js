@@ -15,16 +15,22 @@ export default class Perfil extends Component {
     isLoading: true,
     imgprf: null
   }
-  storeEquipoName(name){
-  	sessionStorage.setItem('check_equipo', name);
-	}
+  
 	storeTorneoName(name){
   	sessionStorage.setItem('check_torneo', name);
   }
   storeUserName(name){
   	sessionStorage.setItem('check_user', name);
   }
-
+	editButton(props) {
+		const cap = props.cap;
+		if (JSON.parse(sessionStorage.user).user_name == cap) {
+			return<Link to='/comingsoon'>
+						<button className="btn btn-info prf-btn">Editar Equipo</button>
+						</Link>
+		}
+		return null;
+	}
   componentDidMount() {
       setTimeout(() => this.setState({ isLoading: false }), 1000)
 	  
@@ -59,6 +65,7 @@ export default class Perfil extends Component {
   		console.log('user',user)
 		this.setState({ user });
 		this.setState({ isLoading: false })
+
       })
  
     }
@@ -148,13 +155,13 @@ export default class Perfil extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-6">
-		  						<Link to='/equipo'>
-		  						<button className="btn btn-info prf-btn" onClick={() => this.storeEquipoName(equipo.nombre)}>Ver Equipo</button>
+								
+		  						<Link to={`/equipo/${equipo.id}`}>
+		  						<button className="btn btn-info prf-btn">Ver Equipo</button>
 		  	    				</Link>
 
-								<Link to='/comingsoon'>
-		  						<button className="btn btn-info prf-btn">Editar Equipo</button>
-		  	    		</Link>
+								<this.editButton cap={equipo.capitan_name} />
+								
 								</div>
 		  	    	</div>
 		  		</div>
@@ -171,7 +178,7 @@ export default class Perfil extends Component {
 						</h4>
 					</div>
 					<div className="col-md-6">
-						<Link to='/torneo'>
+						<Link to={`/torneo/${torneo.id}`}>
 							<button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(torneo.nombre)}>Ver Torneo</button>
 						</Link>
 
