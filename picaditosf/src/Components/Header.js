@@ -36,7 +36,7 @@ class Header extends Component {
       return (
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
-            <Link className="navbar-brand" to='/'>Picaditos!</Link>
+            <Link className="navbar-brand" to='/tablon'>Picaditos!</Link>
             <a className="test-btn" onClick={this.test}>test</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -64,7 +64,7 @@ class Header extends Component {
                 <a href="#" className="btn">
                   <img src="https://cdn4.iconfinder.com/data/icons/glyphs/24/icons_search-128.png" width="25"/>
                 </a>
-                <Link onClick={this.logout} className="nav-link" to="/login">
+                <Link onClick={this.logout} className="nav-link" to="/">
                   <button className="btn btn-danger">Cerrar sesión</button></Link>
               </form>
             </div>
@@ -77,6 +77,7 @@ class Header extends Component {
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
               <div className="col-md-6">
               <Link className="navbar-brand" to='/'>Picaditos!</Link>
+              <Link className="navbar-brand" to='/tablon'>Anuncios</Link>
               <a className="test-btn" onClick={this.test}>test</a>
               </div>
               

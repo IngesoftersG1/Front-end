@@ -20,7 +20,7 @@ import Mispartidos from './perfil/Mis_equipos'
 import Usuario from './perfil/Usuario'
 
 
-import Landing from './Landing'
+
 import Register from './Register'
 import Login from './Login'
 import Canchas from './canchas/Canchas'
@@ -35,6 +35,7 @@ import Equipos from './equipos/Equipos.js'
 import Equipo from './equipos/Equipo.js'
 import BuscarEquipo from './equipos/BuscarEquipo'
 
+import Tablon from './Tablon'
 import Torneo from './eventos/Torneo'
 import Inicio from './Inicio'
 import Lostpass from './Lostpass'
@@ -58,16 +59,16 @@ const Main = () => (
     <Switch>
 
       <Route path='/busqueda' component={Busqueda}/>
-      <Route exact path='/Landing' component={Landing}/>
+      
       <Route exact path='/geteventlist' component={geteventlist}/>
       <Route exact path='/' render={()=>(
           !!sessionStorage.jwt ? (<Inicio />) : (<Inicio />)
       )}/>
       <Route exact path='/register'  render={()=>(
-          !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Register />)
+          !!sessionStorage.jwt ? (<Redirect to='/tablon' />) : (<Register />)
       )}/>
       <Route exact path='/login' render={()=>(
-          !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Login />)
+          !!sessionStorage.jwt ? (<Redirect to='/tablon' />) : (<Login />)
       )}/>
       <Route exact path='/createE' render={()=>(
           !!sessionStorage.jwt ? (<CrearE />):(<Redirect to='/perfil' />)
@@ -77,7 +78,7 @@ const Main = () => (
       )}/>
 
       <Route path='/canchas' component={Canchas}/>
-
+      <Route path='/tablon' component={Tablon}/>
 
       <Route path='/equipo/:id' component={Equipo}/>
 
