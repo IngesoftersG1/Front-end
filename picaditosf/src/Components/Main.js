@@ -40,7 +40,6 @@ import Torneo from './eventos/Torneo'
 import Inicio from './Inicio'
 import Lostpass from './Lostpass'
 import Mensajes from './perfil/Mensaje'
-import auth from './auth'
 import geteventlist from './geteventlist'
 import CrearE from './equipos/CrearEquipo.js'
 import CrearEv from './eventos/CrearEvento.js'
@@ -78,9 +77,12 @@ const Main = () => (
       )}/>
 
       <Route path='/canchas' component={Canchas}/>
+
       <Route path='/tablon' component={Tablon}/>
 
-      <Route path='/equipo/:id' component={Equipo}/>
+
+      <Route exact path='/equipo/:id' component={Equipo}/>
+
 
       <Route exact path='/equipos' component={Equipos}/>
 
@@ -157,7 +159,6 @@ const Main = () => (
 
       <Route exact path='/Lostpass' component={Lostpass}/>
       <Route exact path='/token' />
-      <Route exact path='/auth' component={auth}/>
 
     </Switch>
   </main>

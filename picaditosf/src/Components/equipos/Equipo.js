@@ -8,6 +8,11 @@ import axios from 'axios';
 import * as consts from '../../consts';
 
 export default class Equipo extends Component {
+
+  constructor(props,context) {
+    super(props,context);
+  }
+
   state = {
     equipos: [], isLoading: true, users:[]
   }
@@ -15,9 +20,13 @@ export default class Equipo extends Component {
   componentDidMount() {
 					console.log(this.props.match.params.id)
           setTimeout(() => this.setState({ isLoading: false }), 500);
+
+    
           axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+this.props.match.params.id
     			
 			)
+
+    
     		.then(res => {
         	const equipos = [res];
         	console.log(equipos)
@@ -51,11 +60,6 @@ export default class Equipo extends Component {
 			  	<div className="row">
 
 			  		<h1>{equipo.data.nombre}</h1>
-						
-						
-						
-				  		
-
 						
 			  	</div>
 			  	<div className="row">

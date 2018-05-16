@@ -91,8 +91,10 @@ export default class Usuario extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-2">
+
 								<Link to={`/equipo/${equipo.id}`}>
 		  						<button className="btn btn-info prf-btn">Ver Equipo</button>
+
 		  	    				</Link>
 		  	    		</div>
 		  	    	</div>

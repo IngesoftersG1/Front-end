@@ -45,32 +45,19 @@ export default class BuscarEvento extends Component {
 <div>
 
 			<div className="text-center">
-				<div className="cont_1">
-
-					<h1>Buscar Equipo</h1>
-					<form className="form1" onSubmit={this.onSubmit}>
-				    <label htmlFor="psw">Nombre del Equipo</label>
-						<input placeholder="Enter name"
-							nombre="nombre"
-							type='text'
-		                onChange={event => this.setState({nombre: event.target.value})}
-		                value={this.state.nombre}
-							className="form-control"
-				        	required/>
-
-				        <br/>
-
-
-						<button type="submit" className="btn btn-lg btn-success btn-block">Buscar Equipo</button>
-						<br/>
-					</form>
-
-					<div>
-						<a href='/equipos'>
-						<button className="btn btn-lg btn-success btn-block">Volver</button>
-						</a>
-					</div>
-				</div>
+				<form className="form1" onSubmit={this.onSubmit}>
+			    <label htmlFor="psw">Nombre del evento</label>
+					<input placeholder="Enter name"
+						nombre="nombre"
+						type='text'
+	                onChange={event => this.setState({nombre: event.target.value})}
+	                value={this.state.nombre}
+						className="form-control"
+			        	required/>
+			        <br/>
+					<button type="submit" className="btn btn-lg btn-success btn-block">Buscar Equipo</button>
+					<br/>
+				</form>
 			</div>
 		)
 

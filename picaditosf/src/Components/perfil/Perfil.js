@@ -7,10 +7,13 @@ import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
 
+const defaultimage = require('../../imagenes/perfil.jpg')
 
 export default class Perfil extends Component {
   state = {
-    user: [], isLoading: true
+    user: [], 
+    isLoading: true,
+    imgprf: null
   }
   
 	storeTorneoName(name){
@@ -29,18 +32,43 @@ export default class Perfil extends Component {
 		return null;
 	}
   componentDidMount() {
-          setTimeout(() => this.setState({ isLoading: false }), 500);
-          axios.get(consts.SERVER_URL+`users/1?`, {
-    			params: {
-					user_name:JSON.parse(sessionStorage.user).user_name
-				}
-			})
-    		.then(res => {
-        	const user = [res.data];
-      		console.log(user)
-    		  this.setState({ user });
+      setTimeout(() => this.setState({ isLoading: false }), 1000)
+	  
+      let imgbaseurl = consts.SERVER_URL+'uploads/item/picture/'+JSON.parse(sessionStorage.user).user_name
+      
+      axios.get(imgbaseurl+'/picture.jpeg')
+		.then(response => {
+	    	this.state.imgprf = imgbaseurl+'/picture.jpeg'
+	    	this.setState({ isLoading: false })
+	    })
+	    .catch((error) => {
+	    	console.log(error)
+	    	axios.get(imgbaseurl+'/picture.png')
+		    	.then(resp => {
+		    		console.log('status',resp.status);
+		    		this.state.imgprf = imgbaseurl+'/picture.png'
+		    		this.setState({ isLoading: false })
+		    	})
+		    	.catch((e) => {
+		    		console.log(e)
+		    		this.state.imgprf = defaultimage
+		    	})
+	    })
+	  
+      axios.get(consts.SERVER_URL+`users/1?`, {
+			params: {
+				user_name:JSON.parse(sessionStorage.user).user_name
+			}
+		})
+		.then(res => {
+    	const user = [res.data];
+  		console.log('user',user)
+		this.setState({ user });
+		this.setState({ isLoading: false })
+
       })
-      }
+ 
+    }
 
  render() {
     if(this.state.isLoading){
@@ -58,7 +86,7 @@ export default class Perfil extends Component {
 		<div className="container">
 		  <div className="row align-items-start">
 		  	<div className="col-md-2">
-		  		<img src={require('../../imagenes/perfil.jpg')} className="img-responsive profile-img"/>
+		  		<img src={this.state.imgprf} className="img-responsive profile-img"/>
 		  	</div>
 		  	<div className="col-md-10">
 

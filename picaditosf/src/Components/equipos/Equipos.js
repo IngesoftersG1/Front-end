@@ -81,8 +81,10 @@ export default class Equipos extends Component {
 		  	</div>
 
 		  	<div className="col-md-2 " >
+
               <Link to={`/equipo/${evento.id}`}>
 		  		  		<button className="btn btn-info prf-btn">Ver Equipo</button>
+
 							</Link>
 		  	</div>
 		</div>
