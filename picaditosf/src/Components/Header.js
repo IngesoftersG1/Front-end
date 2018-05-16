@@ -37,7 +37,8 @@ class Header extends Component {
       return (
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
-            <Link className="navbar-brand" to='/'>Picaditos!</Link>
+            
+            <Link className="navbar-brand" to='/'><img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/flame-32.png" width="25"/>  Picaditos!</Link>
             <a className="test-btn" onClick={this.test}>test</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
@@ -63,7 +64,7 @@ class Header extends Component {
               <form className="form-inline mt-2 mt-md-0">
                 <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
                 <a href="#" className="btn">
-                  <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/magnifyingglass-256.png" width="25"/>
+                  <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/magnifyingglass-256.png" width="30"/>
                 </a>
                 <Link onClick={this.logout} className="nav-link" to="/login">
                   <button className="btn btn-danger">Cerrar sesión</button></Link>

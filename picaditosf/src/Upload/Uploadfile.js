@@ -1,5 +1,7 @@
 import React from 'react'
 import '../styles/styles.css'
+import * as consts from '../consts'
+import session from '../Reducers/sessionReducer';
 
 class Uploadfile extends React.Component {
 
@@ -11,9 +13,9 @@ class Uploadfile extends React.Component {
 
 	sendImageToController(file){
 		console.log("payload",file)
-		const imag = JSON.stringify({picture: file.picture});
+		const imag = JSON.stringify({picture: file.picture,username:JSON.parse(sessionStorage.user).user_name});
 		console.log("imag",imag)
-	  fetch(`http://localhost:3001/items`, {
+	  fetch(consts.SERVER_URL+`/items`, {
 	    headers: new Headers({
         'Content-Type': 'application/json'
       }),
