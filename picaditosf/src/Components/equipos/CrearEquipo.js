@@ -98,6 +98,12 @@ class CrearE extends Component{
     .catch(error => {
       return error;
     });
+
+    
+
+
+
+
 	}
 
   onSubmit(e){

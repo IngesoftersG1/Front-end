@@ -87,7 +87,7 @@ const Main = () => (
       <Route exact path='/perfil' render={()=>(
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>
-      <Route exact path='/usuario' render={()=>(
+      <Route exact path='/usuario/:rating*' render={()=>(
           !!sessionStorage.jwt ? (<Usuario />) : (<Redirect to='/' />)
       )}/>
 

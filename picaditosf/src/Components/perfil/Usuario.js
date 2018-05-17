@@ -10,7 +10,7 @@ import * as consts from '../../consts';
 
 export default class Usuario extends Component {
   state = {
-    usuario: [], isLoading: true
+    usuario: [], isLoading: true, calificacion: '2',
   }
   storeEquipoName(name){
   	sessionStorage.setItem('check_equipo', name);
@@ -21,7 +21,7 @@ export default class Usuario extends Component {
   storeUserName(name){
   	sessionStorage.setItem('check_user', name);
   }
- 
+
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
           axios.get(consts.SERVER_URL+`users/1?`, {
@@ -33,11 +33,16 @@ export default class Usuario extends Component {
         	const user = [res.data];
       		console.log(user)
     		this.setState({ user});
+
       })
       }
 
+
+
+
  render() {
     if(this.state.isLoading){
+      console.log(this.state.calificacion)
     return (<div>
         {Example}
         </div>); // render the loading component
@@ -48,7 +53,7 @@ export default class Usuario extends Component {
     return (
     <div>
 	{ this.state.user.map(user =>
-	
+
 	<div className="cont_2">
 		<div className="container">
 		  <div className="row align-items-start">
@@ -58,23 +63,58 @@ export default class Usuario extends Component {
 		  	<div className="col-md-10">
 
 			  	<div className="row">
+          <div class="col-sm-4"><h1>{user.nombres}</h1></div>
+          </div>
 
-			  		<h1>{user.nombres}</h1>
-			  	</div>
 
 			  	<div className="row">
-					<h4>@{user.user_name}</h4>
+          <div class="col-sm-4"><h4>@{user.user_name}</h4></div>
+          <div class="col-sm-4"><center><h5></h5></center> </div>
+          <div class="col-sm-4"><center>
+          <form className="rating" >
+          <input type="radio" id="star5" name="raiting" value="5" onChange={event =>  this.setState({calificacion: "5"})} /><label class = "full" for="star5" title="5"></label>
+          <input type="radio" id="star4half" name="rating" value="4 and a half"/><label class="half" for="star4half" title="4.5"></label>
+          <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="4"></label>
+          <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="3.5"></label>
+          <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="3"></label>
+          <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="2.5"></label>
+          <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="2"></label>
+          <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="1.5"></label>
+          <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="1"></label>
+          <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="0.5"></label>
+
+
+        </form></center>
+
+
+
+        <button onClick = {this.o} className="btnstarts">Calificar</button>
+
+          </div>
+
+
 		  		</div>
+
+
 		  	</div>
 		 	</div>
 	  </div>
+
+
+
+
+
+
 		<div className="container">
 		  <ul className="nav nav-tabs">
-		   
+
 		    <li className="active tablink"><a data-toggle="tab" href="#info">Información</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#estat">Estadisticas</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#equip">Mis Equipos</a></li>
 		  </ul>
+
+
+<br></br><br></br>
 
 		  <div className="tab-content">
 		    <div id="info" className="tab-pane active">
@@ -88,6 +128,8 @@ export default class Usuario extends Component {
 		    </div>
 		    <div id="equip" className="tab-pane fade">
 		    	<h3>Mis equipos</h3>
+
+
 
 
 		    { this.state.user[0].equipos.map(equipo =>
