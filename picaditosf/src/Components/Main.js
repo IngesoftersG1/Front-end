@@ -30,7 +30,7 @@ import Configuracion from './perfil/Configuracion'
 import Edit from './perfil/Edit'
 
 import UnderConstruction from './UnderConstruction'
-
+import Partido from './partidos/Partido'
 import Equipos from './equipos/Equipos.js'
 import Equipo from './equipos/Equipo.js'
 import BuscarEquipo from './equipos/BuscarEquipo'
@@ -77,7 +77,7 @@ const Main = () => (
       )}/>
 
       <Route path='/canchas' component={Canchas}/>
-
+      <Route path='/partido' component={Partido}/>
       <Route path='/tablon' component={Tablon}/>
 
 

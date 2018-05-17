@@ -12,7 +12,15 @@ export default class Tablon extends Component {
   state = {
     tablon: [], isLoading: true
   }
-  
+  removeButton() {
+    
+		if (sessionStorage.user && JSON.parse(sessionStorage.user).admin) {
+			return<Link to='/comingsoon'>
+						<button className="btn btn-danger prf-btn">Eliminar anuncio</button>
+						</Link>
+		}
+		return null;
+	}
 	
   componentDidMount() {
          
@@ -71,7 +79,7 @@ export default class Tablon extends Component {
             <div className="row align-items-start" style={{textAlign:"left"}}>
           
   
-            <div className="col-md-10">
+            <div className="col-md-9">
               <h1>
               {anuncio.titulo}
               </h1>
@@ -79,11 +87,12 @@ export default class Tablon extends Component {
             <h4>{anuncio.descripcion}</h4>
             </div>
   
-          <div className="col-md-2 " >
+          <div className="col-md-3 " >
 
                 <Link to={`/usuario/${anuncio.user_id}`}>
                 <button className="btn btn-info prf-btn" >Ver Usuario</button>
                 </Link>
+                <this.removeButton />
           </div>
       </div>
       </div>
@@ -98,7 +107,7 @@ export default class Tablon extends Component {
           <div className="row align-items-start" style={{textAlign:"left"}}>
         
 
-          <div className="col-md-10">
+          <div className="col-md-9">
             <h1>
             {anuncio.titulo}
             </h1>
@@ -106,10 +115,11 @@ export default class Tablon extends Component {
           <h4>{anuncio.descripcion}</h4>
           </div>
 
-        <div className="col-md-2 " >
+        <div className="col-md-3 " >
         <Link to={`/torneo/${anuncio.torneo_id}`}>
                 <button className="btn btn-info prf-btn">Ver Torneo</button>
                 </Link>
+                <this.removeButton />
         </div>
     </div>
     </div>
@@ -124,7 +134,7 @@ export default class Tablon extends Component {
           <div className="row align-items-start" style={{textAlign:"left"}}>
         
 
-          <div className="col-md-10">
+          <div className="col-md-9">
             <h1>
             {anuncio.titulo}
             </h1>
@@ -132,10 +142,11 @@ export default class Tablon extends Component {
           <h4>{anuncio.descripcion}</h4>
           </div>
 
-        <div className="col-md-2 " >
+        <div className="col-md-3 " >
               <Link to={`/equipo/${anuncio.equipo_id}`}>
               <button className="btn btn-info prf-btn">Ver Equipo</button>
               </Link>
+              <this.removeButton />
         </div>
     </div>
     </div>
@@ -155,7 +166,7 @@ export default class Tablon extends Component {
             <div className="row align-items-start" style={{textAlign:"left"}}>
           
   
-            <div className="col-md-10">
+            <div className="col-md-9">
               <h1>
               {anuncio.titulo}
               </h1>
@@ -163,10 +174,11 @@ export default class Tablon extends Component {
             <h4>{anuncio.descripcion}</h4>
             </div>
   
-          <div className="col-md-2 " >
+          <div className="col-md-3 " >
                 <Link to={`/usuario/${anuncio.user_id}`}>
                 <button className="btn btn-info prf-btn" >Ver Usuario</button>
                 </Link>
+                <this.removeButton />
           </div>
       </div>
       </div>
@@ -187,7 +199,7 @@ export default class Tablon extends Component {
             <div className="row align-items-start" style={{textAlign:"left"}}>
           
   
-            <div className="col-md-10">
+            <div className="col-md-9">
               <h1>
               {anuncio.titulo}
               </h1>
@@ -195,10 +207,11 @@ export default class Tablon extends Component {
             <h4>{anuncio.descripcion}</h4>
             </div>
   
-          <div className="col-md-2 " >
+          <div className="col-md-3 " >
               <Link to={`/equipo/${anuncio.equipo_id}`}>
               <button className="btn btn-info prf-btn">Ver Equipo</button>
               </Link>
+              <this.removeButton />
           </div>
       </div>
       </div>
@@ -220,7 +233,7 @@ export default class Tablon extends Component {
             <div className="row align-items-start" style={{textAlign:"left"}}>
           
   
-            <div className="col-md-10">
+            <div className="col-md-9">
               <h1>
               {anuncio.titulo}
               </h1>
@@ -228,10 +241,11 @@ export default class Tablon extends Component {
             <h4>{anuncio.descripcion}</h4>
             </div>
   
-          <div className="col-md-2 " >
+          <div className="col-md-3 " >
                 <Link to={`/torneo/${anuncio.torneo_id}`}>
                 <button className="btn btn-info prf-btn">Ver Torneo</button>
                 </Link>
+                <this.removeButton />
           </div>
       </div>
       </div>

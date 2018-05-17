@@ -16,9 +16,7 @@ export default class Perfil extends Component {
     imgprf: null
   }
   
-	storeTorneoName(name){
-  	sessionStorage.setItem('check_torneo', name);
-  }
+
   storeUserName(name){
   	sessionStorage.setItem('check_user', name);
   }
