@@ -2,16 +2,18 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Example from '../Loading/logo'
+import session from '../../Reducers/sessionReducer';
 import * as consts from '../../consts';
 var a;
 /*
 {
-this.state.eventos.map(evento => {evento[0].title})
+this.state.mensajes.map(evento => {evento[0].title})
 }
 */
 export default class Bandeja extends Component {
   state = {
-    eventos: [], isLoading: true
+    mensajes: [], isLoading: true,
+    bandeja: []
   }
 
   componentDidMount() {
@@ -21,16 +23,32 @@ export default class Bandeja extends Component {
     user_name:"asd1"
   }*/
 
-})
+    })
       .then(res => {
-        const eventos = res.data;
+        const mensajesres = res.data;
       	console.log(res)
-        this.setState({ eventos });
+        this.setState({mensajes: mensajesres });
+        
+        let newBandeja = []
+        mensajesres.forEach(function(men) {
+          console.log("men",men)
+          if(men.usuario_2_name==JSON.parse(sessionStorage.user).user_name){
+            newBandeja.push(men)
+          }
+        });
+        
+        this.setState({bandeja: newBandeja})
+        console.log("bandeja",this.state.bandeja)
 
         setTimeout(() => this.setState({ isLoading: false }), 2000);
 
       })
+      
+      console.log("bandeja",this.state.bandeja)
+    
   }
+  
+
 
 
 
@@ -50,18 +68,16 @@ export default class Bandeja extends Component {
 
 
 
-{ this.state.eventos.map(evento =>
+{ this.state.bandeja.map(mensaje =>
 	 <div className="cont_2">
 		<div className="container">
 		<div className="row align-items-start">
 		  	<div className="col-md-12">
-		  		<h1>
-		  		 {evento.user_id}
-		  	    </h1>
+		  		<h1>{'From: ' + mensaje.user_id}</h1>
 		  		<div class="dropdown-divider"></div>
-		  		<h4>Asunto: {evento.asunto}</h4>
+		  		<h4>Asunto: {mensaje.asunto}</h4>
 		  		<div class="dropdown-divider"></div>
-		  		<h4>{evento.contenido}</h4>
+		  		<h4>{mensaje.contenido}</h4>
 		  	    </div>
 
 		</div>

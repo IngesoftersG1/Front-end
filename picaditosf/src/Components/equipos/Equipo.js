@@ -58,9 +58,15 @@ export default class Equipo extends Component {
 		  	<div className="col-md-10">
 
 			  	<div className="row">
-
 			  		<h1>{equipo.data.nombre}</h1>
-						
+			  		<div className="prf-btns">
+				  		<Link to='/'>
+				  			<button className="btn btn-info prf-btn">Aplicar</button>
+				  		</Link>
+				  		<Link to='/'>
+				  			<button className="btn btn-warning prf-btn">Invitar</button>
+				  		</Link>
+				  	</div>
 			  	</div>
 			  	<div className="row">
 			  		<div className="row align-items-start">

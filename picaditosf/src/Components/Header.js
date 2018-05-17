@@ -17,6 +17,7 @@ class Header extends Component {
     this.logout = this.logout.bind(this);
   }
 
+  
   logout (event) {
     event.preventDefault();
     this.props.actions.logoutUser();
@@ -29,6 +30,15 @@ class Header extends Component {
     console.log("sessionstorage",sessionStorage);
     console.log("session?",!!sessionStorage.jwt);
     console.log(this.props);
+  }
+  
+  showMessages(){
+    let sinleer = 8
+    if (sinleer>0){
+      return <span style={{'font-weight':'bold','color':'white','background-color':'red','border-radius':'50%',padding:'2px 6px 2px 6px'}}>
+              {sinleer}</span>
+    }
+    return null
   }
 
   render () {
@@ -60,7 +70,7 @@ class Header extends Component {
                   <Link className="nav-link" to='/canchas'>Canchas</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to='/bandeja'>Mensajes</Link>
+                  <Link className="nav-link" to='/bandeja'>Mensajes <this.showMessages /></Link>
                 </li>
               </ul>
               <form className="form-inline mt-2 mt-md-0">

@@ -31,9 +31,8 @@ export default class Equipos extends Component {
  render() {
     if(this.state.isLoading){
     return (<div>
-
         {Example}
-        </div>); // render the loading component
+      </div>); // render the loading component
     }
 
     return (
