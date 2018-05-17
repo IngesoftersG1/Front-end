@@ -7,26 +7,26 @@ import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
 
-export default class Perfil extends Component {
+export default class Equipo extends Component {
+
+  constructor(props,context) {
+    super(props,context);
+  }
+
   state = {
     equipos: [], isLoading: true, users:[]
   }
-  storeTorneoName(name){
-	sessionStorage.setItem('check_torneo', name);
-	}
-	storeUserName(name){
-	sessionStorage.setItem('check_user', name);
-	}
-	storeEquipoName(name){
-	sessionStorage.setItem('check_equipo', name);
-	}
+  
   componentDidMount() {
+					console.log(this.props.match.params.id)
           setTimeout(() => this.setState({ isLoading: false }), 500);
-          axios.get(consts.SERVER_URL+`equipos/1?`, {
-    			params: {
-					nombre: sessionStorage.check_equipo
-				}
-			})
+
+    
+          axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+this.props.match.params.id
+    			
+			)
+
+    
     		.then(res => {
         	const equipos = [res];
         	console.log(equipos)
@@ -43,7 +43,7 @@ export default class Perfil extends Component {
         </div>); // render the loading component
     }
 
-  	let names = JSON.parse(sessionStorage.user).nombres + " " + JSON.parse(sessionStorage.user).apellidos
+  	
 
     return (
 
@@ -60,11 +60,6 @@ export default class Perfil extends Component {
 			  	<div className="row">
 
 			  		<h1>{equipo.data.nombre}</h1>
-						
-						
-						
-				  		
-
 						
 			  	</div>
 			  	<div className="row">
@@ -86,6 +81,7 @@ export default class Perfil extends Component {
 		    <li className="active tablink"><a data-toggle="tab" href="#info">Informacion</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#jug">Jugadores</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#tor">Torneos</a></li>
+			<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
 		  </ul>
 
 		  <div className="tab-content">
@@ -107,8 +103,8 @@ export default class Perfil extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-2">
-						  	<Link to='/usuario'>
-		  		  				<button className="btn btn-info prf-btn" onClick={() => this.storeUserName(user.user_name)}>Ver Usuario</button>
+						  	<Link to={`/usuario/${user.user_name}`}>
+		  		  				<button className="btn btn-info prf-btn">Ver Usuario</button>
 							</Link>
 		  	    		</div>
 		  	    	</div>
@@ -129,8 +125,34 @@ export default class Perfil extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-2">
-						  <Link to='/torneo'>
-		  		  		<button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(torneo.nombre)}>Ver Torneo</button>
+								<Link to={`/torneo/${torneo.id}`}>
+		  		  		<button className="btn btn-info prf-btn" >Ver Torneo</button>
+							</Link>
+		  	    		</div>
+		  	    	</div>
+
+		  		</div>
+					 )}
+				</div>
+				<div id="par" className="tab-pane fade">
+					<h3> Partidos </h3>
+					{ this.state.equipos[0].data.partidos.map(partido =>
+
+					<div className="container">
+					<div className="row align-items-start">
+						<div className="col-md-6">
+		  					<h4>
+		  					 {partido[1].nombre} Vs {partido[2].nombre}
+		  	    			</h4>
+		  	    		</div>
+						<div className="col-md-2">
+		  					<h3>
+		  					 {partido[0].marcador_local} - {partido[0].marcador_visitante}
+		  	    			</h3>
+		  	    		</div>
+		  	    		<div className="col-md-2">
+								<Link to={`/partido/${partido[0].id}`}>
+		  		  		<button className="btn btn-info prf-btn" >Ver partido</button>
 							</Link>
 		  	    		</div>
 		  	    	</div>

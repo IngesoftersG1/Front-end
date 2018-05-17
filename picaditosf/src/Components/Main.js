@@ -20,7 +20,7 @@ import Mispartidos from './perfil/Mis_equipos'
 import Usuario from './perfil/Usuario'
 
 
-import Landing from './Landing'
+
 import Register from './Register'
 import Login from './Login'
 import Canchas from './canchas/Canchas'
@@ -30,19 +30,20 @@ import Configuracion from './perfil/Configuracion'
 import Edit from './perfil/Edit'
 
 import UnderConstruction from './UnderConstruction'
-
+import Partido from './partidos/Partido'
 import Equipos from './equipos/Equipos.js'
 import Equipo from './equipos/Equipo.js'
 import BuscarEquipo from './equipos/BuscarEquipo'
 
+import Tablon from './Tablon'
 import Torneo from './eventos/Torneo'
 import Inicio from './Inicio'
 import Lostpass from './Lostpass'
 import Mensajes from './perfil/Mensaje'
-import auth from './auth'
 import geteventlist from './geteventlist'
 import CrearE from './equipos/CrearEquipo.js'
 import CrearEv from './eventos/CrearEvento.js'
+import Busqueda from './Busqueda/busqueda.js'
 
 import Stats from './stats/Stats'
 
@@ -55,16 +56,18 @@ import Stats from './stats/Stats'
 const Main = () => (
  <main>
     <Switch>
-      <Route exact path='/Landing' component={Landing}/>
+
+      <Route path='/busqueda' component={Busqueda}/>
+
       <Route exact path='/geteventlist' component={geteventlist}/>
       <Route exact path='/' render={()=>(
-          !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Inicio />)
+          !!sessionStorage.jwt ? (<Inicio />) : (<Inicio />)
       )}/>
       <Route exact path='/register'  render={()=>(
-          !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Register />)
+          !!sessionStorage.jwt ? (<Redirect to='/tablon' />) : (<Register />)
       )}/>
       <Route exact path='/login' render={()=>(
-          !!sessionStorage.jwt ? (<Redirect to='/perfil' />) : (<Login />)
+          !!sessionStorage.jwt ? (<Redirect to='/tablon' />) : (<Login />)
       )}/>
       <Route exact path='/createE' render={()=>(
           !!sessionStorage.jwt ? (<CrearE />):(<Redirect to='/perfil' />)
@@ -75,22 +78,23 @@ const Main = () => (
 
       <Route path='/canchas' component={Canchas}/>
 
-      <Route path='/equipo' render={()=>(
-          !!sessionStorage.jwt ? (<Equipo />) : (<Redirect to='/login' />)
-
-      )}/>
+      <Route path='/tablon' component={Tablon}/>
 
 
+      <Route exact path='/equipo/:id' component={Equipo}/>
+      <Route exact path='/partido/:id' component={Partido}/>
 
       <Route exact path='/equipos' component={Equipos}/>
 
       <Route exact path='/perfil' render={()=>(
           !!sessionStorage.jwt ? (<Perfil />) : (<Redirect to='/' />)
       )}/>
-      <Route exact path='/usuario/:rating*' render={()=>(
+
+      <Route exact path='/usuario/:id' component={Usuario}/>
+      {/*<Route exact path='/usuario' render={()=>(
           !!sessionStorage.jwt ? (<Usuario />) : (<Redirect to='/' />)
       )}/>
-
+      */}
       <Route exact path='/editperfil' component={Edit}/>
 
       <Route exact path='/comingsoon' component={UnderConstruction}/>
@@ -105,10 +109,12 @@ const Main = () => (
 
 
       <Route path='/eventos' component={Eventos}/>
+      <Route path='/Torneo/:id' component={Torneo}/>
+      {/*
       <Route path='/Torneo' render={()=>(
-          !!sessionStorage.jwt ? (<Torneo />) : (<Redirect to='/login' />)
+          !!sessionStorage.jwt ? (<Torneo />) : (<Torneo />)
       )}/>
-
+        */}
       <Route path='/BuscarEquipo' component={BuscarEquipo}/>
       <Route path='/BuscarEvento' component={BuscarEvento}/>
       <Route path='/BuscarPartido' component={BuscarPartido}/>
@@ -153,7 +159,6 @@ const Main = () => (
 
       <Route exact path='/Lostpass' component={Lostpass}/>
       <Route exact path='/token' />
-      <Route exact path='/auth' component={auth}/>
 
     </Switch>
   </main>

@@ -26,7 +26,7 @@ export default class Usuario extends Component {
           setTimeout(() => this.setState({ isLoading: false }), 500);
           axios.get(consts.SERVER_URL+`users/1?`, {
     			params: {
-					user_name: sessionStorage.check_user
+					user_name: this.props.match.params.id
 				}
 			})
     		.then(res => {
@@ -48,7 +48,7 @@ export default class Usuario extends Component {
         </div>); // render the loading component
     }
 
-  	let names = JSON.parse(sessionStorage.user).nombres + " " + JSON.parse(sessionStorage.user).apellidos
+
 
     return (
     <div>
@@ -142,8 +142,10 @@ export default class Usuario extends Component {
 		  	    			</h4>
 		  	    		</div>
 		  	    		<div className="col-md-2">
-		  						<Link to='/equipo'>
-		  						<button className="btn btn-info prf-btn" onClick={() => this.storeEquipoName(equipo.nombre)}>Ver Equipo</button>
+
+								<Link to={`/equipo/${equipo.id}`}>
+		  						<button className="btn btn-info prf-btn">Ver Equipo</button>
+
 		  	    				</Link>
 		  	    		</div>
 		  	    	</div>

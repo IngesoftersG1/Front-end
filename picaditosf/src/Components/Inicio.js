@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import '../styles/styles.css'
 
 
-
 const Inicio = () => (	
 	<div>
 	<div className="text-center ">

@@ -122,19 +122,17 @@ REGISTER
 /*
 LOGIN
 */
-
 .profile-img{
-	/* cambia estos dos valores para definir el tamaño de tu círculo */
-    height: 100px;
-    width: 100px;
-    /* los siguientes valores son independientes del tamaño del círculo */
-    border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
 	margin-left: 0!important;
 }
 
 .tablink{
 	margin: 10px;
 }
+
 /*upload*/
 
 /*acordion*/
@@ -151,28 +149,6 @@ LOGIN
 }
 
 /*
-#accordion {
-  text-align: center;
-  background-color: blue;
-
-}
-
-.card{
-  background-color: #A9F5BC;
-}
-
- .card-header > .panel-heading {
-    background-color:#A9F5BC;
-
- }
- .btn{
-   color: #333;
-  background-color: solid blue;
-  border: .05rem solid #fff;
-
-
- }
-
  */
 
 
@@ -195,16 +171,39 @@ SITE
 	margin: auto;
 	margin-top: 100px;
 }
+.tablon{
+	background-color: rgba(0, 0, 0, 0.8);
+	max-width: 1200px;
+	min-width: 	400px;
+	padding: 40px;
+	margin: auto;
+	margin-top: 100px;
+}
 
+.scrollable{
+  max-height:450px;
+  overflow-y: scroll;
+  margin: 0.8em;
+  padding: 0.8em;
+}
 
 /* features */
 .cont_3{
 	padding: 30px;
 	background-color: rgba(255, 255, 255, 1);
 	width: 	100%;
-
 }
 
+.cont_card{
+  width: 140px;
+  height: 200px;
+  margin: 1em;
+}
+
+.cont_partido{
+  font-size:large;
+  color: white;
+}
 /*Loading*/
 .cont_4{
 
@@ -248,12 +247,10 @@ SITE
 }
 
 
-
 .features-icons {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-
 .bubble{
   margin-top: 150px;
   margin-bottom: 80px;
@@ -262,7 +259,6 @@ SITE
 
   width: 1500px;
 }
-
 .title-stats{
   padding-top: 30px;
   margin-bottom: 0px;
@@ -311,3 +307,25 @@ h1 { font-size: 1.5em; margin: 10px; }
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+#ligth_font{
+  font-weight: 100;
+}
+/*--SCROLLBAR--*/
+
+/* width
+::-webkit-scrollbar {
+    width: 10px;
+}
+/* Track
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+/* Handle on hover
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}*/
