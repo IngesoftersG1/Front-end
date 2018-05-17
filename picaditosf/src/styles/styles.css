@@ -206,6 +206,8 @@ SITE
 .mapg {
     height: 500px!important;
     overflow: hidden;
+    margin-bottom: 50px;
+    
 }
 /*temp*/
 .carousel { z-index: -99;

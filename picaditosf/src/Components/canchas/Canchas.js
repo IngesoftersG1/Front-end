@@ -53,17 +53,16 @@ export default class Canchas extends Component {
     <div>    
       <div className="cont_2">    
     	  <h1>Canchas</h1>
-        {/*<p> esta es la pagina de las canchas aqui deberia salir el mapa y lo demas </p>
-        	<div id="map"></div>*/}
-        <div className="" align="center" >
-          <Link to='/solicitudcancha'>
-            <button className="btn" style={{width:'100%','margin-bottom':'3px'}} >
-              <b>Solicitar agregar cancha</b></button>
-          </Link>
-  		  </div>
         <div className="mapg">
           <MapContainer />
         </div>
+        
+        <div className="" align="center" style={{width:'85%','max-width':'720px','z-index':'1000',position:'absolute'}} >
+          <Link to='/solicitudcancha'>
+            <button className="btn" align="center" style={{width:'100%','margin-top':'-70px'}} >
+              <b>Solicitar agregar cancha</b></button>
+          </Link>
+  		  </div>
         
         
       

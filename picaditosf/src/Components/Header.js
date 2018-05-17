@@ -33,7 +33,7 @@ class Header extends Component {
   }
   
   showMessages(){
-    let sinleer = 0
+    let sinleer = 8
     if (sinleer>0){
       return <span style={{'font-weight':'bold','color':'white','background-color':'red','border-radius':'50%',padding:'2px 6px 2px 6px'}}>
               {sinleer}</span>
