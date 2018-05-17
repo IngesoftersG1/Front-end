@@ -78,34 +78,41 @@ class Header extends Component {
     }else{
       return(
         <header>
-            <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
-              <div className="col-md-6">
-              <Link className="navbar-brand" to='/'>Picaditos!</Link>
-              <Link className="navbar-brand" to='/tablon'>Anuncios</Link>
-              <a className="test-btn" onClick={this.test}>test</a>
+          <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
+
+            
+            <Link className="navbar-brand" to='/'><img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/flame-32.png" width="25"/>  Picaditos!</Link>
+
+            <a className="test-btn" onClick={this.test}>test</a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarCollapse">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item">
+                  <Link className="nav-link" to='/tablon'>Anuncios</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to='/eventos'>Torneos</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to='/equipos'>Equipos</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to='/canchas'>Canchas</Link>
+                </li>
+              </ul>
+              <div className="form-inline mt-2 mt-md-0">
+                <Link className="nav-link" to="/login">
+                      <button className="btn btn-success">Inicia Sesion</button>
+                  </Link>
+                <Link className="nav-link" to="/register">
+                    <button className="btn ">Registrate</button>  </Link>
               </div>
-              
-              <div className="col-md-6" style={{textAlign:"right"}}>
-        
-              <Link className="nav-brand" to="/login">
-                  <button className="btn btn-success" style={{marginRight:12}}>Inicia Sesion</button>
-              </Link>
-              
-              
-              
-              
-              <Link className="nav-brand" to="/register">
-                <button className="btn ">Registrate</button>  
-              </Link>
-              </div>
-              
-              
-              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              
-            </nav>
+            </div>
+          </nav>
         </header>
+        
       )
     }
   }
