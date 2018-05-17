@@ -44,6 +44,7 @@ import geteventlist from './geteventlist'
 import CrearE from './equipos/CrearEquipo.js'
 import CrearEv from './eventos/CrearEvento.js'
 import Busqueda from './Busqueda/busqueda.js'
+import CrearCancha from './canchas/CrearCancha'
 
 import Stats from './stats/Stats'
 
@@ -138,7 +139,9 @@ const Main = () => (
           !!sessionStorage.jwt ? (<Mispartidos />) : (<Redirect to='/login' />)
       )}/>
 
-
+       <Route exact path='/solicitudcancha' render={()=>(
+           !!sessionStorage.jwt ? (<CrearCancha />) : (<Redirect to='/login' />)
+       )}/>
 
        <Route exact path='/mensajes' render={()=>(
            !!sessionStorage.jwt ? (<Mensajes />) : (<Redirect to='/login' />)

@@ -204,7 +204,8 @@ SITE
 
 /*canchas*/
 .mapg {
-    height: 500px;
+    height: 500px!important;
+    overflow: hidden;
 }
 /*temp*/
 .carousel { z-index: -99;

@@ -39,7 +39,7 @@ export default class Canchas extends Component {
     */
   test = event => {    
     event.preventDefault();  
-    window.location.reload()
+    //window.location.reload()
   }
 
  render() {
@@ -55,11 +55,18 @@ export default class Canchas extends Component {
     	  <h1>Canchas</h1>
         {/*<p> esta es la pagina de las canchas aqui deberia salir el mapa y lo demas </p>
         	<div id="map"></div>*/}
+        <div className="" align="center" >
+          <Link to='/solicitudcancha'>
+            <button className="btn" style={{width:'100%','margin-bottom':'3px'}} >
+              <b>Solicitar agregar cancha</b></button>
+          </Link>
+  		  </div>
         <div className="mapg">
           <MapContainer />
         </div>
         
-        <button className="btn" onClick={this.test}>map</button>
+        
+      
     	 {/* <Link to='/'><button>Inicio</button></Link>	
     	  <Link to='/BuscarPartido'><button>Buscar partido</button></Link> */} 			  	
     	</div>	
