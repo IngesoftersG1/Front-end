@@ -52,13 +52,156 @@ h4,h3,h5 {
 
 .logo1{
 	margin: 5px;
-	width: 100px;
+	width: 120px;
+}
+
+.logopag{
+	margin: 5px;
+	width: 120px;
+}
+
+.lead{
+  font-weight: bolder;
+}
+
+.nav-link{
+  font-weight: bolder;
+  font-size: 20px;
+  margin-right: 40px;
+}
+
+#head1:hover{
+   background:#b34700;
+}
+
+#register:hover{
+  background-color: #3377ff;
+  color:white;
+
+}
+
+#buttons{
+  margin-right: 0px;
+}
+
+#gly1{
+
+  font-size: 20px;
+}
+
+#gly2{
+
+  font-size: 20px;
+}
+
+#gly3{
+
+  font-size: 20px;
+}
+
+#gly1:hover{
+  color: #002b80;
+  cursor: pointer;
+
+}
+
+#gly2:hover{
+  color: #cc5200;
+  cursor: pointer;
+
+}
+
+#gly3:hover{
+  color: #006600;
+  cursor: pointer;
+
 }
 
 .idx-btn{
   min-width: 120px;
   margin: 10px;
 }
+
+
+/*swing*/
+
+@-webkit-keyframes swing
+{
+    15%
+    {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+    30%
+    {
+        -webkit-transform: translateX(-5px);
+       transform: translateX(-5px);
+    }
+    50%
+    {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    65%
+    {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+    80%
+    {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+@keyframes swing
+{
+    15%
+    {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+    30%
+    {
+        -webkit-transform: translateX(-5px);
+        transform: translateX(-5px);
+    }
+    50%
+    {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    65%
+    {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+    80%
+    {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+.logo1:hover{
+  -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+        cursor: pointer;
+}
+
+
+
 /*
 LOGIN STTYLES
 */
