@@ -7,7 +7,8 @@ import * as consts from '../../consts';
 
 const BOGOTA_COOR = {lat: 4.63, lng: -74.15};
 const BALLICON = "https://cdn0.iconfinder.com/data/icons/customicondesign-office7-shadow-png/32/Sport-football-pitch.png"
-const style =  {width: '700px', height: '500px'}
+const style =  {width: '85%', height: '60%', 'max-width': '720px', position: 'relative'}
+
 
 export class MapContainer extends Component {
     constructor(props) {
