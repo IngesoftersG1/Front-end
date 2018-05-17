@@ -77,12 +77,12 @@ const Main = () => (
       )}/>
 
       <Route path='/canchas' component={Canchas}/>
-      <Route path='/partido' component={Partido}/>
+      
       <Route path='/tablon' component={Tablon}/>
 
 
       <Route exact path='/equipo/:id' component={Equipo}/>
-
+      <Route exact path='/partido/:id' component={Partido}/>
 
       <Route exact path='/equipos' component={Equipos}/>
 

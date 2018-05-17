@@ -81,6 +81,7 @@ export default class Equipo extends Component {
 		    <li className="active tablink"><a data-toggle="tab" href="#info">Informacion</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#jug">Jugadores</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#tor">Torneos</a></li>
+			<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
 		  </ul>
 
 		  <div className="tab-content">
@@ -126,6 +127,32 @@ export default class Equipo extends Component {
 		  	    		<div className="col-md-2">
 								<Link to={`/torneo/${torneo.id}`}>
 		  		  		<button className="btn btn-info prf-btn" >Ver Torneo</button>
+							</Link>
+		  	    		</div>
+		  	    	</div>
+
+		  		</div>
+					 )}
+				</div>
+				<div id="par" className="tab-pane fade">
+					<h3> Partidos </h3>
+					{ this.state.equipos[0].data.partidos.map(partido =>
+
+					<div className="container">
+					<div className="row align-items-start">
+						<div className="col-md-6">
+		  					<h4>
+		  					 {partido[1].nombre} Vs {partido[2].nombre}
+		  	    			</h4>
+		  	    		</div>
+						<div className="col-md-2">
+		  					<h3>
+		  					 {partido[0].marcador_local} - {partido[0].marcador_visitante}
+		  	    			</h3>
+		  	    		</div>
+		  	    		<div className="col-md-2">
+								<Link to={`/partido/${partido[0].id}`}>
+		  		  		<button className="btn btn-info prf-btn" >Ver partido</button>
 							</Link>
 		  	    		</div>
 		  	    	</div>

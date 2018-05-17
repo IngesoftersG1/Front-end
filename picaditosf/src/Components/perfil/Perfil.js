@@ -177,7 +177,7 @@ export default class Perfil extends Component {
 					</div>
 					<div className="col-md-6">
 						<Link to={`/torneo/${torneo.id}`}>
-							<button className="btn btn-info prf-btn" onClick={() => this.storeTorneoName(torneo.nombre)}>Ver Torneo</button>
+							<button className="btn btn-info prf-btn">Ver Torneo</button>
 						</Link>
 
 						<Link to='/comingsoon'>

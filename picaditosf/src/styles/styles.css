@@ -186,6 +186,10 @@ SITE
   margin: 1em;
 }
 
+.cont_partido{
+  font-size:large;
+  color: white;
+} 
 /*Loading*/
 .cont_4{
 
@@ -246,6 +250,9 @@ SITE
   margin-bottom: 0px;
 }
 
+#ligth_font{
+  font-weight: 100;
+}
 /*--SCROLLBAR--*/
 
 /* width 
