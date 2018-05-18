@@ -51,7 +51,7 @@ const Inicio = () => (
             </div>
 
               <h3>Facil de usar</h3>
-              <p className="lead mb-0" id="gly1" >Descubre una interfaz intuitiva y sencilla de usar!</p>
+              <p className="lead mb-0" id="gly1" >Descubre una interfaz amigable y fácil de usar!</p>
               <br/>
           </div>
 

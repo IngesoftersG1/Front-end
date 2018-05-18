@@ -36,17 +36,17 @@ export default class Eventos extends React.Component {
 <div>
 
 <div className="cont_2">
-  <h1>Eventos</h1>
+  <h1>Torneos Abiertos</h1>
   <div className="scrollable row">
     <div className="text-center cont_card col-md-3">
       <div className="">
         <a href='/createEv'>
           <img src='https://cdn0.iconfinder.com/data/icons/flat-social-media-icons-set-round-style-1/550/netvibes-512.png' className="img-responsive profile-img"/>
-      	  <h4>Crear Evento</h4>
+      	  <h4>Crear Torneo</h4>
       	</a>
       	</div>
     </div>
-    
+
     { this.state.eventos.map(evento =>
     <div className="text-center cont_card col-md-3">
       	<Link to={`/torneo/${evento.id}`}>
@@ -66,7 +66,7 @@ export default class Eventos extends React.Component {
   </div>
   <div className="" align="center">
     <a href='/BuscarEvento'>
-        <button className="btn">Buscar evento</button>
+        <button className="btn btn-lg btn-success btn-block" id="search">Buscar torneo</button>
     </a>
     </div>
   </div>

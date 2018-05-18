@@ -106,7 +106,9 @@ const Main = () => (
 
       */}
 
-      <Route exact path='/statistics' component={Stats}/>
+      <Route path='/statistics' render={()=>(
+          !!sessionStorage.jwt ? (<Stats />) : (<Redirect to='/' />)
+      )}/>
 
 
       <Route path='/eventos' component={Eventos}/>

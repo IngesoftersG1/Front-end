@@ -12,7 +12,7 @@ export default class Equipos extends Component {
   state = {
     eventos: [], isLoading: true
   }
-	
+
   componentDidMount() {
 
     axios.get(consts.SERVER_URL+`equipos `)
@@ -47,10 +47,10 @@ export default class Equipos extends Component {
             	  <h4>Crear Equipo</h4>
             	</a>
             	</div>
-          </div>  
+          </div>
           { this.state.eventos.map(equipo =>
           <div className="text-center cont_card col-md-3">
-            <Link to={`/equipo/${equipo.id}`}> 
+            <Link to={`/equipo/${equipo.id}`}>
               <img src={require('../../imagenes/team.jpg')} className="img-responsive profile-img"/>
               <h4>{equipo.nombre}</h4>
             </Link>
@@ -59,7 +59,7 @@ export default class Equipos extends Component {
       </div>
       <div className="" align="center">
         <a href='/BuscarEquipo'>
-          <button className="btn">Buscar equipo</button>
+          <button className="btn btn-lg btn-success btn-block" id="search">Buscar equipo</button>
         </a>
   		</div>
     </div>
