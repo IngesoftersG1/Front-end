@@ -15,10 +15,23 @@ export default class Bandeja extends Component {
     mensajes: [], isLoading: true,
     bandeja: []
   }
-  readUnread(status){
-    
+  
 
+  readButton(mensaje){
+    console.log(mensaje)
+    function readUnread(mensaje){
+      axios.put(consts.SERVER_URL+'mensajes/'+mensaje.id+'?', {
+        read: !(mensaje.read)
+      })
+      window.location.reload()
+    }
+    if(mensaje.mensaje.read){
+      return  <button className="btn btn-success" onClick={ () =>readUnread(mensaje.mensaje)}>Marcar como no leido</button>       
+    }      
+      return  <button className="btn btn-success" onClick={ () =>readUnread(mensaje.mensaje)}>Marcar como leido</button> 
+  
   }
+
   componentDidMount() {
     axios.get(consts.SERVER_URL+`mensajes`, {
 /*
@@ -82,7 +95,7 @@ export default class Bandeja extends Component {
 		  		<div class="dropdown-divider"></div>
 		  		<h4>{mensaje.contenido}</h4>
 		  	    </div>
-
+            <this.readButton mensaje = {mensaje}/>
 		</div>
 		</div>
 		</div>
