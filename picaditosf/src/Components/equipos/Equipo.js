@@ -16,17 +16,17 @@ export default class Equipo extends Component {
   state = {
     equipos: [], isLoading: true, users:[]
   }
-
+  
   componentDidMount() {
 					console.log(this.props.match.params.id)
           setTimeout(() => this.setState({ isLoading: false }), 500);
 
-
+    
           axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+this.props.match.params.id
-
+    			
 			)
 
-
+    
     		.then(res => {
         	const equipos = [res];
         	console.log(equipos)
@@ -43,7 +43,7 @@ export default class Equipo extends Component {
         </div>); // render the loading component
     }
 
-
+  	
 
     return (
 
@@ -58,15 +58,9 @@ export default class Equipo extends Component {
 		  	<div className="col-md-10">
 
 			  	<div className="row">
+
 			  		<h1>{equipo.data.nombre}</h1>
-			  		<div className="prf-btns">
-				  		<Link to='/'>
-				  			<button className="btn btn-info prf-btn">Aplicar</button>
-				  		</Link>
-				  		<Link to='/'>
-				  			<button className="btn btn-warning prf-btn">Invitar</button>
-				  		</Link>
-				  	</div>
+						
 			  	</div>
 			  	<div className="row">
 			  		<div className="row align-items-start">
@@ -87,7 +81,6 @@ export default class Equipo extends Component {
 		    <li className="active tablink"><a data-toggle="tab" href="#info">Informacion</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#jug">Jugadores</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#tor">Torneos</a></li>
-			<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
 		  </ul>
 
 		  <div className="tab-content">
@@ -140,8 +133,30 @@ export default class Equipo extends Component {
 		  		</div>
 					 )}
 				</div>
+		  <div id="par" className="tab-pane fade">
+					<h3> Partidos </h3>
+					{ this.state.equipos[0].data.partidos.map(partido =>
 
+					<div className="container">
+					<div className="row align-items-start">
+						<div className="col-md-6">
+		  					<h4>
+		  					 {partido[1].nombre} Vs {partido[2].nombre}
+		  	    			</h4>
+		  	    		</div>
+						<div className="col-md-2">
+		  					<h3>
+		  					 {partido[0].marcador_local} - {partido[0].marcador_visitante}
+		  	    			</h3>
+		  	    		</div>
+		  	    		<div className="col-md-2">
+								<Link to={`/partido/${partido[0].id}`}>
+		  		  		<button className="btn btn-info prf-btn" >Ver partido</button>
+							</Link>
+		  	    		</div>
+		  	    	</div>
 		  </div>
+		  
 
 		</div>
 	</div>
