@@ -132,8 +132,8 @@ export default class Equipo extends Component {
 
 		  		</div>
 					 )}
-				</div>
-		  <div id="par" className="tab-pane fade">
+					 
+			<div id="par" className="tab-pane fade">
 					<h3> Partidos </h3>
 					{ this.state.equipos[0].data.partidos.map(partido =>
 
@@ -155,8 +155,12 @@ export default class Equipo extends Component {
 							</Link>
 		  	    		</div>
 		  	    	</div>
+
+		  		</div>
+					 )}
+				
+				</div>
 		  </div>
-		  
 
 		</div>
 	</div>
