@@ -15,7 +15,10 @@ export default class Bandeja extends Component {
     mensajes: [], isLoading: true,
     bandeja: []
   }
+  readUnread(status){
+    
 
+  }
   componentDidMount() {
     axios.get(consts.SERVER_URL+`mensajes`, {
 /*

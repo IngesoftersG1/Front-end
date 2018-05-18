@@ -230,7 +230,7 @@ export default class Equipo extends Component {
 					 )}
 				</div>
 
-
+					{ this.state.equipos[0].data.partidos.map(partido =>
 					<div className="container">
 					<div className="row align-items-start">
 						<div className="col-md-6">
@@ -258,7 +258,7 @@ export default class Equipo extends Component {
 		  </div>
 
 		</div>
-	</div>
+	
 
 		)}
 
