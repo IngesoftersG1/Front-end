@@ -34,8 +34,36 @@ export default class Equipo extends Component {
     			this.setState({equipos});
       })
   }
-  
+
+	sendSolicitud(e){
+		e.preventDefault();
+		{/*axios.post(consts.SERVER_URL+'/request', { })
+	  .then(function(response){
+	    console.log('saved successfully')
+	  }); */}
+	  return null
+	}
 	
+	aceptSolicitud(e){
+		e.preventDefault();
+		{/*axios.post(consts.SERVER_URL+'/request', { })
+	  .then(function(response){
+	    console.log('saved successfully')
+	  }); */}
+	  return null
+	}
+	
+	denSolicitud(e){
+		e.preventDefault();
+		{/*axios.delete(url, { params: requestData })
+			.then(function(response) {
+			console.log(response.data));
+			})
+			.catch(function(error) {
+			console.log(error);
+			}); */}
+	  return null
+	}
       
  btnsAplicar(eusers){
 	console.log(eusers)

@@ -23,6 +23,7 @@ class Header extends Component {
   
   componentDidMount() {
     setTimeout(() => this.setState({ isLoading: false }), 2000);
+
     if(this.props.logged_in){
     axios.get(consts.SERVER_URL+`users/1?`, {
   			params: {

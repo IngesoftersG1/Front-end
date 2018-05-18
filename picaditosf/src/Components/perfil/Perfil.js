@@ -67,6 +67,17 @@ export default class Perfil extends Component {
       })
  
     }
+    
+    showConfirm(conf){
+    	console.log("conf?",conf)
+    	if (conf.conf){
+    		return null
+    	}else {
+    		return   <div class="alert alert-danger">
+						<strong>Tu cuanta no esta verificada!</strong> Por favor ingresa a tu correo
+					</div>
+    	}
+    }
 
  render() {
     if(this.state.isLoading){
@@ -82,6 +93,8 @@ export default class Perfil extends Component {
 
 	<div className="cont_2">
 		<div className="container">
+			<this.showConfirm conf={user.confirmed} />
+
 		  <div className="row align-items-start">
 		  	<div className="col-md-2">
 		  		<img src={this.state.imgprf} className="img-responsive profile-img"/>
