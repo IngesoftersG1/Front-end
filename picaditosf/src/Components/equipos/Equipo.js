@@ -25,18 +25,25 @@ export default class Equipo extends Component {
           axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+this.props.match.params.id
     			
 			)
-
-    
     		.then(res => {
         	const equipos = [res];
         	console.log(equipos)
         	const usuarios = equipos[0].data.users
         	console.log(usuarios)
-    		this.setState({equipos});
+    			this.setState({equipos});
       })
-      }
+  }
+  
+	sendSolicitud(e){
+		e.preventDefault();
+		{/*axios.post(consts.SERVER_URL+'/request', { })
+	  .then(function(response){
+	    console.log('saved successfully')
+	  }); */}
+	  return null
+	}
       
- btnAplicar(eusers){
+ btnsAplicar(eusers){
  	let userarr = eusers.eusers.users
  	let exist = false
  	console.log('aplusers',userarr)
@@ -46,7 +53,8 @@ export default class Equipo extends Component {
  		}
   });
   if(!exist){
-  	return <button className="btn btn-info prf-btn">Aplicar</button>
+  	return <div><button className="btn btn-info prf-btn" onClick={() => this.sendSolicitud}>Aplicar</button>
+  		<button className="btn btn-warning prf-btn">Invitar</button></div>
   }
  	return null
  }
@@ -65,10 +73,22 @@ export default class Equipo extends Component {
  	if(capitan.cap == JSON.parse(sessionStorage.user).user_name){
 		return	<div id="sol" className="tab-pane fade">
 				<h3> Solicitudes </h3>
+				<div className="row align-items-start">
+					<div className="col-md-6">
+						<h4>Nombre usuario</h4>
+	    		</div>
+	    		<div className="col-md-6">
+	    			<button className="btn btn-success">Aceptar</button> 
+	    			<button className="btn btn-warning">Rechazar</button> 
+	    		</div>
+				</div>
+				
 		  </div>
  	}
  	return null
  }
+ 
+ 
 
  render() {
     if(this.state.isLoading){
@@ -92,12 +112,9 @@ export default class Equipo extends Component {
 			  	<div className="row">
 			  		<h1>{equipo.data.nombre}</h1>
 			  		<div className="prf-btns">
-				  		<Link to='/'>
-				  			<this.btnAplicar eusers={equipo.data} />
-				  		</Link>
-				  		<Link to='/'>
-				  			<button className="btn btn-warning prf-btn">Invitar</button>
-				  		</Link>
+				  		
+				  		<this.btnsAplicar eusers={equipo.data} />
+				  		
 				  	</div>
 			  	</div>
 			  	<div className="row">
