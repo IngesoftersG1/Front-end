@@ -41,7 +41,8 @@ class Mensaje extends Component {
       contenido: '',
       usuario_2_name: '',
       user_id: JSON.parse(sessionStorage.user).user_name,
-      asunto:''
+      asunto:'',
+      read:false
     }
 
     this.onSubmit = this.onSubmit.bind(this);

@@ -35,6 +35,40 @@ export default class Equipo extends Component {
     		this.setState({equipos});
       })
       }
+      
+ btnAplicar(eusers){
+ 	let userarr = eusers.eusers.users
+ 	let exist = false
+ 	console.log('aplusers',userarr)
+ 	userarr.forEach(function(user) {
+ 		if(user.user_name == JSON.parse(sessionStorage.user).user_name){
+ 			exist = true
+ 		}
+  });
+  if(!exist){
+  	return <button className="btn btn-info prf-btn">Aplicar</button>
+  }
+ 	return null
+ }
+ 
+ liSolicitud(capitan){
+ 	console.log('cap',capitan)
+ 	if(capitan.cap == JSON.parse(sessionStorage.user).user_name){
+		return	<li className="tablink"><a data-toggle="tab" href="#sol">Solicitudes</a></li>
+ 	}
+ 	return null
+ }
+ 
+ divSolicitud(capitan){
+ 	console.log('cap2',capitan)
+ 	console.log('user',JSON.parse(sessionStorage.user).user_name)
+ 	if(capitan.cap == JSON.parse(sessionStorage.user).user_name){
+		return	<div id="sol" className="tab-pane fade">
+				<h3> Solicitudes </h3>
+		  </div>
+ 	}
+ 	return null
+ }
 
  render() {
     if(this.state.isLoading){
@@ -43,9 +77,7 @@ export default class Equipo extends Component {
         </div>); // render the loading component
     }
 
-  	
-
-    return (
+  	return (
 
     <div>
     	{ this.state.equipos.map(equipo =>
@@ -61,7 +93,7 @@ export default class Equipo extends Component {
 			  		<h1>{equipo.data.nombre}</h1>
 			  		<div className="prf-btns">
 				  		<Link to='/'>
-				  			<button className="btn btn-info prf-btn">Aplicar</button>
+				  			<this.btnAplicar eusers={equipo.data} />
 				  		</Link>
 				  		<Link to='/'>
 				  			<button className="btn btn-warning prf-btn">Invitar</button>
@@ -87,7 +119,8 @@ export default class Equipo extends Component {
 		    <li className="active tablink"><a data-toggle="tab" href="#info">Informacion</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#jug">Jugadores</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#tor">Torneos</a></li>
-			<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
+				<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
+				<this.liSolicitud cap = {equipo.data.capitan_name} />
 		  </ul>
 
 		  <div className="tab-content">
@@ -166,6 +199,7 @@ export default class Equipo extends Component {
 		  		</div>
 					 )}
 				</div>
+				<this.divSolicitud cap = {equipo.data.capitan_name}/>
 		  </div>
 
 		</div>

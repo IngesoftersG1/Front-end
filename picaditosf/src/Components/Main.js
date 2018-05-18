@@ -39,6 +39,7 @@ import Tablon from './Tablon'
 import Torneo from './eventos/Torneo'
 import Inicio from './Inicio'
 import Lostpass from './Lostpass'
+import Confirmation from './Confirmation'
 import Mensajes from './perfil/Mensaje'
 import geteventlist from './geteventlist'
 import CrearE from './equipos/CrearEquipo.js'
@@ -162,6 +163,7 @@ const Main = () => (
 
       <Route exact path='/Lostpass' component={Lostpass}/>
       <Route exact path='/token' />
+      <Route path='/confirmateuser@tokennumbers/:user_name' component={Confirmation}/>
 
     </Switch>
   </main>
