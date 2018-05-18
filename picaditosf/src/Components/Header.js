@@ -137,7 +137,7 @@ class Header extends Component {
               </ul>
               <div className="form-inline mt-2 mt-md-0">
                 <Link className="nav-link" to="/login">
-                      <button className="btn btn-success">Inicia Sesion</button>
+                      <button className="btn btn-success">Iniciar Sesion</button>
                   </Link>
                 <Link className="nav-link" to="/register">
                     <button className="btn ">Registrate</button>  </Link>
@@ -209,16 +209,16 @@ class Header extends Component {
             <div className="collapse navbar-collapse" id="navbarCollapse">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <Link className="nav-link" id="head1" to='/tablon'>Anuncios</Link>
+                  <Link className="nav-link" to='/tablon'>Anuncios</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" id="head1" to='/eventos'>Torneos</Link>
+                  <Link className="nav-link" to='/eventos'>Torneos</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" id="head1" to='/equipos'>Equipos</Link>
+                  <Link className="nav-link" to='/equipos'>Equipos</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" id="head1" to='/canchas'>Canchas</Link>
+                  <Link className="nav-link" to='/canchas'>Canchas</Link>
                 </li>
               </ul>
               <div className="form-inline mt-2 mt-md-0">

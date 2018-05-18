@@ -131,18 +131,18 @@ class Login extends Component {
           </div>
           <button type="submit"
             disabled={!this.validateForm()}
-            className="btn btn-lg btn-success btn-block">Iniciar sesion
+            className="btn btn-lg btn-block">Iniciar sesion
           </button>
 
-          <p>o</p>
-
+          <p></p>
+          
           <GoogleLogin clientId="506449915249-mpnernms8pplsn9m3m1mnlsgvphj3km9.apps.googleusercontent.com"
                      className="btn btn-lg btn-block btn-google"
                      onSuccess={this.responseGoogle}
                      onFailure={this.responseGoogle}>
-            <span> Iniciar sesion con Google + </span>
+            <span><img src="http://reeoo.qiniudn.com/Google-icon.png!icon512" style={{'border-radius':'50%'}} width="30"/>
+               {' Ingresar con Google +'}</span>
           </GoogleLogin>
-
         </form>
       </div>
     );

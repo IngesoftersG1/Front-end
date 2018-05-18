@@ -61,13 +61,13 @@ h4,h3,h5 {
 }
 
 .lead{
-  font-weight: bolder;
+  /*font-weight: bolder;*/
 }
 
 .nav-link{
-  font-weight: bolder;
+  /*font-weight: bolder;
   font-size: 20px;
-  margin-right: 40px;
+  margin-right: 40px;*/
 }
 
 #head1:hover{
