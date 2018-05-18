@@ -23,6 +23,7 @@ class Header extends Component {
   
   componentDidMount() {
     setTimeout(() => this.setState({ isLoading: false }), 2000);
+    if(this.props.logged_in){
     axios.get(consts.SERVER_URL+`users/1?`, {
   			params: {
 				user_name: JSON.parse(sessionStorage.user).user_name
@@ -32,7 +33,7 @@ class Header extends Component {
 	  	const mes = [res.data];
 			console.log('mess',mes)
 			this.num_mensajes=mes[0].mensajes_sin_leer;
-		})
+		})}
 	}
 
   
