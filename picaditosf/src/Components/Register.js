@@ -253,7 +253,7 @@ class Register extends Component{
 
 */}
 
-
+					  <label htmlFor="psw">Fecha de Nacimiento</label>		
 						<input placeholder="Enter birth"
 							name="firstname"
 							type='text'

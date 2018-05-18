@@ -16,15 +16,16 @@ export default class Equipo extends Component {
   state = {
     equipos: [], isLoading: true, users:[]
   }
-  
+
   componentDidMount() {
-					console.log(this.props.match.params.id)
+		console.log(this.props.match.params.id)
           setTimeout(() => this.setState({ isLoading: false }), 500);
 
-    
+
           axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+this.props.match.params.id
-    			
+
 			)
+
     		.then(res => {
         	const equipos = [res];
         	console.log(equipos)
@@ -33,7 +34,7 @@ export default class Equipo extends Component {
     			this.setState({equipos});
       })
   }
-  
+
 	sendSolicitud(e){
 		e.preventDefault();
 		{/*axios.post(consts.SERVER_URL+'/request', { })
@@ -65,47 +66,90 @@ export default class Equipo extends Component {
 	}
       
  btnsAplicar(eusers){
+	console.log(eusers)
  	let userarr = eusers.eusers.users
- 	let exist = false
+	let exist = false
+	function sendSolicitud(equipo_id){
+		console.log(equipo_id)
+		axios.post(consts.SERVER_URL+'requests/?', { 
+			user_id: JSON.parse(sessionStorage.user).user_name,
+			equipo_id: equipo_id,
+			request_type: "User_to_equipo"
+	
+		   }) 
+	   
+	}
  	console.log('aplusers',userarr)
  	userarr.forEach(function(user) {
+		if(!!sessionStorage.jwt){
  		if(user.user_name == JSON.parse(sessionStorage.user).user_name){
  			exist = true
- 		}
+		 }
+		}
   });
-  if(!exist){
-  	return <div><button className="btn btn-info prf-btn" onClick={() => this.sendSolicitud}>Aplicar</button>
+  if(!exist && !!sessionStorage.jwt){
+	
+  	return <div><button className="btn btn-info prf-btn" onClick={() => sendSolicitud(eusers.eusers.id)}>Aplicar</button>
   		<button className="btn btn-warning prf-btn">Invitar</button></div>
   }
  	return null
  }
  
  liSolicitud(capitan){
+	if(!!sessionStorage.jwt){
  	console.log('cap',capitan)
- 	if(capitan.cap == JSON.parse(sessionStorage.user).user_name){
-		return	<li className="tablink"><a data-toggle="tab" href="#sol">Solicitudes</a></li>
- 	}
+ 	if(capitan.cap.capitan_name == JSON.parse(sessionStorage.user).user_name){
+		if(capitan.cap.solicitudes_pendientes>0){
+		return	<li className="tablink"><a data-toggle="tab" href="#sol">Solicitudes <span style={{'font-weight':'bold','color':'white','background-color':'red','border-radius':'50%',padding:'2px 6px 2px 6px'}}>
+		{capitan.cap.solicitudes_pendientes}</span></a></li>}
+		else{
+			return	<li className="tablink"><a data-toggle="tab" href="#sol">Solicitudes</a></li>
+		}
+	 }
+	}
  	return null
  }
  
  divSolicitud(capitan){
- 	console.log('cap2',capitan)
- 	console.log('user',JSON.parse(sessionStorage.user).user_name)
- 	if(capitan.cap == JSON.parse(sessionStorage.user).user_name){
-		return	<div id="sol" className="tab-pane fade">
-				<h3> Solicitudes </h3>
+	function accpSolicitud(user_id, equipo_id){
+		
+		axios.post(consts.SERVER_URL+'equipos_users/?', { 
+			user_id: user_id,
+			equipo_id: equipo_id,
+			
+		})
+	   
+	 }
+	 function delSolicitud(solicitud_id){
+		
+		axios.delete(consts.SERVER_URL+'requests/'+solicitud_id)
+		window.location.reload()
+	 }
+	
+	 console.log(capitan)
+	 
+ 	if(!!sessionStorage.jwt){
+ 	if(capitan.cap.capitan_name == JSON.parse(sessionStorage.user).user_name){
+		return 	<div id="sol" className="tab-pane fade">
+		<h3>Solicitudes</h3>
+		{ capitan.cap.solicitudes.map(solicitud =>
+		
+				
 				<div className="row align-items-start">
 					<div className="col-md-6">
-						<h4>Nombre usuario</h4>
+						<h4>{solicitud.user_id} quiere unirse a tu equipo</h4>
 	    		</div>
 	    		<div className="col-md-6">
-	    			<button className="btn btn-success">Aceptar</button> 
-	    			<button className="btn btn-danger">Rechazar</button> 
+	    			<button className="btn btn-success" onClick={function(event){ accpSolicitud(solicitud.user_id, capitan.cap.id); delSolicitud(solicitud.id)}}>Aceptar</button> 
+	    			<button className="btn btn-warning" onClick={() => delSolicitud(solicitud.id) 	} >Rechazar</button> 
 	    		</div>
 				</div>
 				
-		  </div>
- 	}
+		  
+		)}
+		</div>
+	 }
+	}
  	return null
  }
  
@@ -118,7 +162,9 @@ export default class Equipo extends Component {
         </div>); // render the loading component
     }
 
+
   	return (
+
 
     <div>
     	{ this.state.equipos.map(equipo =>
@@ -134,7 +180,7 @@ export default class Equipo extends Component {
 			  		<h1>{equipo.data.nombre}</h1>
 			  		<div className="prf-btns">
 				  		
-				  		<this.btnsAplicar eusers={equipo.data} />
+				  		<this.btnsAplicar eusers={equipo.data}/>
 				  		
 				  	</div>
 			  	</div>
@@ -158,7 +204,7 @@ export default class Equipo extends Component {
 		    <li className="tablink"><a data-toggle="tab" href="#jug">Jugadores</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#tor">Torneos</a></li>
 				<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
-				<this.liSolicitud cap = {equipo.data.capitan_name} />
+				<this.liSolicitud cap = {equipo.data} />
 		  </ul>
 
 		  <div className="tab-content">
@@ -211,10 +257,8 @@ export default class Equipo extends Component {
 		  		</div>
 					 )}
 				</div>
-				<div id="par" className="tab-pane fade">
-					<h3> Partidos </h3>
-					{ this.state.equipos[0].data.partidos.map(partido =>
 
+					{ this.state.equipos[0].data.partidos.map(partido =>
 					<div className="container">
 					<div className="row align-items-start">
 						<div className="col-md-6">
@@ -237,11 +281,12 @@ export default class Equipo extends Component {
 		  		</div>
 					 )}
 				</div>
-				<this.divSolicitud cap = {equipo.data.capitan_name}/>
+				<this.divSolicitud cap = {equipo.data}/>
+
 		  </div>
 
 		</div>
-	</div>
+	
 
 		)}
 

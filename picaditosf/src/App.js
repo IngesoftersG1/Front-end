@@ -4,16 +4,16 @@ import Main from './Components/Main'
 import './styles/styles.css'
 
 const App = () => (
-  <div>  	
-		<Main />    
-	 	<Header /> 
+  <div>
+		<Main />
+	 	<Header />
     <footer className="footer">
       <div className="container">
       	<div className="text-center">
-        	<span>2018 - Ingesofters :v.</span>
+        	<span>2018. Ingesofters. Copyright. All rights reserved.</span>
       	</div>
       </div>
-    </footer>   
+    </footer>
   </div>
 )
 

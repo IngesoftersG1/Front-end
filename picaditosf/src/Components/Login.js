@@ -131,7 +131,7 @@ class Login extends Component {
           </div>
           <button type="submit"
             disabled={!this.validateForm()}
-            className="btn btn-lg btn-block">Iniciar sesion
+            className="btn btn-lg btn-success btn-block">Iniciar sesion
           </button>
 
           <p>o</p>

@@ -1,8 +1,9 @@
 import React from 'react'
 import '../styles/styles.css'
 import * as consts from '../consts'
-import session from '../Reducers/sessionReducer'
-import swal from 'sweetalert2'
+import session from '../Reducers/sessionReducer';
+import swal from 'sweetalert2';
+
 
 class Uploadfile extends React.Component {
 
@@ -26,13 +27,13 @@ class Uploadfile extends React.Component {
 	  .then(response => response.json())
 	  .then(imageFromController => {
 	    console.log("img",imageFromController)
-	    swal(
-    			"Has cambiado tu foto de perfil! ",
-    			"continue a login",
-					"success"
-					).then((value) => {
-						window.location.href='/perfil'
-					})
+			swal(
+				"Se ha actualizado su foto de perfil",
+				"continue",
+				"success"
+				).then((value) => {
+					window.location.href='/perfil'
+			})
 	    //this.setState({uploads: this.state.uploads.concat(imageFromController)})
 	  })
 	}
