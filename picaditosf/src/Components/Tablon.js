@@ -13,7 +13,7 @@ export default class Tablon extends Component {
     tablon: [], isLoading: true
   }
   removeButton() {
-    
+
 		if (sessionStorage.user && JSON.parse(sessionStorage.user).admin) {
 			return<Link to='/comingsoon'>
 						<button className="btn btn-danger prf-btn">Eliminar anuncio</button>
@@ -21,9 +21,9 @@ export default class Tablon extends Component {
 		}
 		return null;
 	}
-	
+
   componentDidMount() {
-         
+
           axios.get(consts.SERVER_URL+`tablons`)
     		.then(res => {
         	const tablon = res.data;
@@ -58,7 +58,7 @@ export default class Tablon extends Component {
 			  </div>
 			</div>
       <div className="tablon">
-		  
+
       <div className="container">
         <ul className="nav nav-tabs">
           <li className="active tablink"><a data-toggle="tab" href="#all">Todos los anuncios</a></li>
@@ -66,27 +66,27 @@ export default class Tablon extends Component {
           <li className="tablink"><a data-toggle="tab" href="#equip">Equipos</a></li>
           <li className="tablink"><a data-toggle="tab" href="#tor">Torneos</a></li>
         </ul>
-  
+
         <div className="tab-content">
           <div id="all" className="tab-pane active">
-          
-            
+
+
           { this.state.tablon[0].anuncios.map(anuncio =>
-  
-  
-    <div className="cont_2">  
+
+
+    <div className="cont_2">
             <div className="container">
             <div className="row align-items-start" style={{textAlign:"left"}}>
-          
-  
+
+
             <div className="col-md-9">
               <h1>
               {anuncio.titulo}
               </h1>
-  
+
             <h4>{anuncio.descripcion}</h4>
             </div>
-  
+
           <div className="col-md-3 " >
 
                 <Link to={`/usuario/${anuncio.user_id}`}>
@@ -100,12 +100,12 @@ export default class Tablon extends Component {
       )}
 
       { this.state.tablon[1].anuncios.map(anuncio =>
-  
-  
-  <div className="cont_2">  
+
+
+  <div className="cont_2">
           <div className="container">
           <div className="row align-items-start" style={{textAlign:"left"}}>
-        
+
 
           <div className="col-md-9">
             <h1>
@@ -127,12 +127,12 @@ export default class Tablon extends Component {
     )}
 
     { this.state.tablon[2].anuncios.map(anuncio =>
-  
-  
-  <div className="cont_2">  
+
+
+  <div className="cont_2">
           <div className="container">
           <div className="row align-items-start" style={{textAlign:"left"}}>
-        
+
 
           <div className="col-md-9">
             <h1>
@@ -152,28 +152,28 @@ export default class Tablon extends Component {
     </div>
     </div>
     )}
-      
+
           </div>
-          
+
           <div id="jug" className="tab-pane">
-          
-            
+
+
           { this.state.tablon[0].anuncios.map(anuncio =>
-  
-  
-    <div className="cont_2">  
+
+
+    <div className="cont_2">
             <div className="container">
             <div className="row align-items-start" style={{textAlign:"left"}}>
-          
-  
+
+
             <div className="col-md-9">
               <h1>
               {anuncio.titulo}
               </h1>
-  
+
             <h4>{anuncio.descripcion}</h4>
             </div>
-  
+
           <div className="col-md-3 " >
                 <Link to={`/usuario/${anuncio.user_id}`}>
                 <button className="btn btn-info prf-btn" >Ver Usuario</button>
@@ -185,28 +185,28 @@ export default class Tablon extends Component {
       </div>
       )}
 
-    
-          </div>     
-       
+
+          </div>
+
           <div id="equip" className="tab-pane">
-          
-            
+
+
           { this.state.tablon[2].anuncios.map(anuncio =>
-  
-  
-    <div className="cont_2">  
+
+
+    <div className="cont_2">
             <div className="container">
             <div className="row align-items-start" style={{textAlign:"left"}}>
-          
-  
+
+
             <div className="col-md-9">
               <h1>
               {anuncio.titulo}
               </h1>
-  
+
             <h4>{anuncio.descripcion}</h4>
             </div>
-  
+
           <div className="col-md-3 " >
               <Link to={`/equipo/${anuncio.equipo_id}`}>
               <button className="btn btn-info prf-btn">Ver Equipo</button>
@@ -218,29 +218,29 @@ export default class Tablon extends Component {
       </div>
       )}
 
-    
-          </div>  
+
+          </div>
 
 
             <div id="tor" className="tab-pane">
-          
-            
+
+
           { this.state.tablon[1].anuncios.map(anuncio =>
-  
-  
-    <div className="cont_2">  
+
+
+    <div className="cont_2">
             <div className="container">
             <div className="row align-items-start" style={{textAlign:"left"}}>
-          
-  
+
+
             <div className="col-md-9">
               <h1>
               {anuncio.titulo}
               </h1>
-  
+
             <h4>{anuncio.descripcion}</h4>
             </div>
-  
+
           <div className="col-md-3 " >
                 <Link to={`/torneo/${anuncio.torneo_id}`}>
                 <button className="btn btn-info prf-btn">Ver Torneo</button>
@@ -252,41 +252,30 @@ export default class Tablon extends Component {
       </div>
       )}
 
-    
-          </div>  
-  
+
+          </div>
+
         </div>
 
-      
+
           </div>
-        
+
       </div>
 
 
 
 
 
-      
+
       </div>
-	  
-    	
-    <div className= 'Footerfont'> 
-    
+
+
+    <div className= 'Footerfont'>
+
     </div>
-      
+
 </div>
     )
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-    

@@ -86,14 +86,15 @@ export default class BuscarEquipo extends Component {
 
 				        <br/>
 
-
-						<button onClick={() => this.setState({isLoading: true})} className="btn btn-lg btn-success btn-block">Buscar Equipo</button>
-						<br/>
+            <center>
+						<button onClick={() => this.setState({isLoading: true})} className="btn btn-lg btn-success btn-block" id="search">Buscar Equipo</button>
+            </center>
+            <br/>
 					</form>
 
 					<div>
 						<a href='/equipos'>
-						<button className="btn btn-lg btn-success btn-block">Volver</button>
+						<button className="btn btn-danger" id="return">Volver</button>
 						</a>
 					</div>
 				</div>

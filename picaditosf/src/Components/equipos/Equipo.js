@@ -16,15 +16,16 @@ export default class Equipo extends Component {
   state = {
     equipos: [], isLoading: true, users:[]
   }
-  
+
   componentDidMount() {
 		console.log(this.props.match.params.id)
           setTimeout(() => this.setState({ isLoading: false }), 500);
 
-    
+
           axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+this.props.match.params.id
-    			
+
 			)
+
     		.then(res => {
         	const equipos = [res];
         	console.log(equipos)
@@ -133,7 +134,9 @@ export default class Equipo extends Component {
         </div>); // render the loading component
     }
 
+
   	return (
+
 
     <div>
     	{ this.state.equipos.map(equipo =>
@@ -226,9 +229,7 @@ export default class Equipo extends Component {
 		  		</div>
 					 )}
 				</div>
-				<div id="par" className="tab-pane fade">
-					<h3> Partidos </h3>
-					{ this.state.equipos[0].data.partidos.map(partido =>
+
 
 					<div className="container">
 					<div className="row align-items-start">
@@ -253,6 +254,7 @@ export default class Equipo extends Component {
 					 )}
 				</div>
 				<this.divSolicitud cap = {equipo.data}/>
+
 		  </div>
 
 		</div>

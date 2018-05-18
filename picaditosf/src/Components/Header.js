@@ -36,7 +36,7 @@ class Header extends Component {
 		})}
 	}
 
-  
+
   logout (event) {
     event.preventDefault();
     this.props.actions.logoutUser();
@@ -50,10 +50,12 @@ class Header extends Component {
     console.log("session?",!!sessionStorage.jwt);
     console.log(this.props);
   }
+
   
   showMessages(sinleer){
     console.log('sinleerparam',sinleer.sinleer)
     if (sinleer.sinleer>0){
+
       return <span style={{'font-weight':'bold','color':'white','background-color':'red','border-radius':'50%',padding:'2px 6px 2px 6px'}}>
               {sinleer.sinleer}</span>
     }
@@ -152,8 +154,8 @@ class Header extends Component {
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
 
-            
-            <Link className="navbar-brand" to='/tablon'><img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/flame-32.png" width="25"/>  Picaditos!</Link>
+
+            <Link className="navbar-brand" to='/tablon'><img src={require('../imagenes/fireball.png')} width="25"/>  Picaditos!</Link>
 
             <a className="test-btn" onClick={this.test}>test</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -162,19 +164,21 @@ class Header extends Component {
             <div className="collapse navbar-collapse" id="navbarCollapse">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <Link className="nav-link" to='/perfil'>Perfil</Link>
+                  <Link className="nav-link" id="head1" to='/perfil'>Perfil</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to='/eventos'>Torneos</Link>
+                  <Link className="nav-link" id="head1" to='/eventos'>Torneos</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to='/equipos'>Equipos</Link>
+                  <Link className="nav-link" id="head1" to='/equipos'>Equipos</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to='/canchas'>Canchas</Link>
+                  <Link className="nav-link" id="head1" to='/canchas'>Canchas</Link>
                 </li>
                 <li className="nav-item">
+
                   <Link className="nav-link" to='/bandeja'>Mensajes <this.showMessages sinleer={this.num_mensajes}  /></Link>
+
                 </li>
               </ul>
               <form className="form-inline mt-2 mt-md-0">
@@ -194,8 +198,8 @@ class Header extends Component {
         <header>
           <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-success">
 
-            
-            <Link className="navbar-brand" to='/'><img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/flame-32.png" width="25"/>  Picaditos!</Link>
+
+            <Link className="navbar-brand" to='/'><img src={require('../imagenes/fireball.png')} width="25"/>  Picaditos!</Link>
 
             <a className="test-btn" onClick={this.test}>test</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -204,29 +208,29 @@ class Header extends Component {
             <div className="collapse navbar-collapse" id="navbarCollapse">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <Link className="nav-link" to='/tablon'>Anuncios</Link>
+                  <Link className="nav-link" id="head1" to='/tablon'>Anuncios</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to='/eventos'>Torneos</Link>
+                  <Link className="nav-link" id="head1" to='/eventos'>Torneos</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to='/equipos'>Equipos</Link>
+                  <Link className="nav-link" id="head1" to='/equipos'>Equipos</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to='/canchas'>Canchas</Link>
+                  <Link className="nav-link" id="head1" to='/canchas'>Canchas</Link>
                 </li>
               </ul>
               <div className="form-inline mt-2 mt-md-0">
-                <Link className="nav-link" to="/login">
-                      <button className="btn btn-success">Inicia Sesion</button>
+                <Link className="nav-link" id ="buttons" to="/login">
+                      <button className="btn btn-success">Inicia Sesión</button>
                   </Link>
-                <Link className="nav-link" to="/register">
-                    <button className="btn ">Registrate</button>  </Link>
+                <Link className="nav-link" id = "buttons" to="/register">
+                    <button className="btn" id ="register">Regístrate</button>  </Link>
               </div>
             </div>
           </nav>
         </header>
-        
+
       )
     }
   }
