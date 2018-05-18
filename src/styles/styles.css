@@ -1,0 +1,477 @@
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  line-height: 50px; /* Vertically center the text there */
+  background-color:  rgba(0, 0, 0, 0);
+  color: white;
+}
+
+/*
+LANDING STYLES
+*/
+
+h1{
+	color: white;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+h4,h3,h5 {
+  color:white;
+}
+
+.stars{
+  color:white;
+  padding-top: 20px;
+  padding-bottom: 0px;
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  margin: 10px;
+  color: #333;
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
+
+.logo1{
+	margin: 5px;
+	width: 120px;
+}
+
+.logopag{
+	margin: 5px;
+	width: 120px;
+}
+
+.lead{
+  font-weight: bolder;
+}
+
+.nav-link{
+  font-weight: bolder;
+  font-size: 20px;
+  margin-right: 40px;
+}
+
+#head1:hover{
+   background:#b34700;
+}
+
+#register:hover{
+  background-color: #3377ff;
+  color:white;
+
+}
+
+#buttons{
+  margin-right: 0px;
+}
+
+#gly1{
+
+  font-size: 20px;
+}
+
+#gly2{
+
+  font-size: 20px;
+}
+
+#gly3{
+
+  font-size: 20px;
+}
+
+#gly1:hover{
+  color: #002b80;
+  cursor: pointer;
+
+}
+
+#gly2:hover{
+  color: #cc5200;
+  cursor: pointer;
+
+}
+
+#gly3:hover{
+  color: #006600;
+  cursor: pointer;
+
+}
+
+.idx-btn{
+  min-width: 120px;
+  margin: 10px;
+}
+
+
+/*swing*/
+
+@-webkit-keyframes swing
+{
+    15%
+    {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+    30%
+    {
+        -webkit-transform: translateX(-5px);
+       transform: translateX(-5px);
+    }
+    50%
+    {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    65%
+    {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+    80%
+    {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+@keyframes swing
+{
+    15%
+    {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+    30%
+    {
+        -webkit-transform: translateX(-5px);
+        transform: translateX(-5px);
+    }
+    50%
+    {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    65%
+    {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+    80%
+    {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+.logo1:hover{
+  -webkit-animation: swing 1s ease;
+        animation: swing 1s ease;
+        -webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+        cursor: pointer;
+}
+
+
+
+/*
+LOGIN STTYLES
+*/
+
+.cont_1{
+	background-color: rgba(0, 0, 0, 0.8);
+	max-width: 650px;
+	min-height: 520px;
+	max-height: 850px;
+	padding: 40px;
+	margin: auto;
+	margin-top: 80px;
+	margin-bottom: 30px;
+	color: #EBEBEB;
+}
+
+.cont_1 p {
+	text-align: center;
+	color: #EBEBEB;
+	font-size:  18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.btn-google {
+	  background: #E93F2E;
+	  color: #fff;
+	  border-width: 1px;
+	  border-style: solid;
+	  border-color: #b72213;
+	}
+
+.btn-google:active, .btn-google:hover {
+	  background: #b72213;
+	  color: #fff;
+	}
+
+/*
+REGISTER
+*/
+
+.form1{
+	text-align: left;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #333;
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
+
+.btnstarts{
+  height: 30px;
+  margin-left: 20px;
+  background-color: #66ff66;
+  color: #003300;
+  border-style: none;
+}
+
+/*
+LOGIN
+*/
+.profile-img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+	margin-left: 0!important;
+}
+
+.tablink{
+	margin: 10px;
+}
+
+/*upload*/
+
+/*acordion*/
+
+.imgprev{
+  text-align: center;
+  margin: 5px 15px;
+  height: 200px;
+  width: 200px;
+  border-left: 1px solid blue;
+  border-right: 1px solid blue;
+  border-top: 1px solid blue;
+  border-bottom: 1px solid blue;
+}
+
+/*
+ */
+
+
+.imgprev img{
+  width: 100%;
+  height: 100%;
+}
+.btn-link{
+  color:black!important;
+}
+
+/*
+SITE
+*/
+.cont_2{
+	background-color: rgba(0, 0, 0, 0.8);
+	max-width: 800px;
+	min-width: 	400px;
+	padding: 40px;
+	margin: auto;
+	margin-top: 100px;
+}
+.tablon{
+	background-color: rgba(0, 0, 0, 0.8);
+	max-width: 1200px;
+	min-width: 	400px;
+	padding: 40px;
+	margin: auto;
+	margin-top: 100px;
+}
+
+.scrollable{
+  max-height:450px;
+  overflow-y: scroll;
+  margin: 0.8em;
+  padding: 0.8em;
+}
+
+/* features */
+.cont_3{
+	padding: 30px;
+	background-color: rgba(255, 255, 255, 1);
+	width: 	100%;
+}
+
+.cont_card{
+  width: 140px;
+  height: 200px;
+  margin: 1em;
+}
+
+.cont_partido{
+  font-size:large;
+  color: white;
+}
+/*Loading*/
+.cont_4{
+
+	width: 400px;
+	height: 200px;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.prf-btns{
+  margin-left: 20px;
+}
+.prf-btn {
+  margin: 5px;
+}
+
+/*canchas*/
+.mapg {
+    height: 500px!important;
+    overflow: hidden;
+    margin-bottom: 50px;
+    
+}
+/*temp*/
+.carousel { z-index: -99;
+		position: fixed;
+		margin-top: -100px;} /* keeps this behind all content */
+.carousel .item {
+    position: fixed;
+    width: 100%; height: 100%;
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+    -ms-transition: opacity 2s;
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+}
+
+
+.Footerfont{
+	background-color: rgba(0, 0, 0, 1);
+	width:100%;
+	padding: 5;
+	height:40px;
+}
+
+
+.features-icons {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.bubble{
+  margin-top: 150px;
+  margin-bottom: 80px;
+  background-color: black;
+  opacity: 0.88;
+
+  width: 1500px;
+}
+.title-stats{
+  padding-top: 30px;
+  margin-bottom: 0px;
+}
+
+/*starts for ranking*/
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > input { display: none; }
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #ddd;
+ float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+#ligth_font{
+  font-weight: 100;
+}
+/*--SCROLLBAR--*/
+
+/* width
+::-webkit-scrollbar {
+    width: 10px;
+}
+/* Track
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+/* Handle on hover
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}*/
