@@ -23,16 +23,20 @@ class Header extends Component {
   
   componentDidMount() {
     setTimeout(() => this.setState({ isLoading: false }), 2000);
-    axios.get(consts.SERVER_URL+`users/1?`, {
-  			params: {
-				user_name: JSON.parse(sessionStorage.user).user_name
-			}
-		})
-		.then(res => {
-	  	const mes = [res.data];
-			console.log('mess',mes)
-			this.num_mensajes=mes[0].mensajes_sin_leer;
-		})
+    if(sessionStorage.user){
+      
+      axios.get(consts.SERVER_URL+`users/1?`, {
+    			params: {
+  				user_name: JSON.parse(sessionStorage.user).user_name
+  			}
+  		})
+  		.then(res => {
+  	  	const mes = [res.data];
+  			console.log('mess',mes)
+  			this.num_mensajes=mes[0].mensajes_sin_leer;
+  		})
+
+    }
 	}
 
   

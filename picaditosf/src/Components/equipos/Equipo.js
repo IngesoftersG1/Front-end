@@ -42,6 +42,27 @@ export default class Equipo extends Component {
 	  }); */}
 	  return null
 	}
+	
+	aceptSolicitud(e){
+		e.preventDefault();
+		{/*axios.post(consts.SERVER_URL+'/request', { })
+	  .then(function(response){
+	    console.log('saved successfully')
+	  }); */}
+	  return null
+	}
+	
+	denSolicitud(e){
+		e.preventDefault();
+		{/*axios.delete(url, { params: requestData })
+			.then(function(response) {
+			console.log(response.data));
+			})
+			.catch(function(error) {
+			console.log(error);
+			}); */}
+	  return null
+	}
       
  btnsAplicar(eusers){
  	let userarr = eusers.eusers.users
@@ -79,7 +100,7 @@ export default class Equipo extends Component {
 	    		</div>
 	    		<div className="col-md-6">
 	    			<button className="btn btn-success">Aceptar</button> 
-	    			<button className="btn btn-warning">Rechazar</button> 
+	    			<button className="btn btn-danger">Rechazar</button> 
 	    		</div>
 				</div>
 				
