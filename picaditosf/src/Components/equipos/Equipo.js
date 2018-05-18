@@ -175,8 +175,8 @@ export default class Equipo extends Component {
 		    <li className="active tablink"><a data-toggle="tab" href="#info">Informacion</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#jug">Jugadores</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#tor">Torneos</a></li>
-				<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
-				<this.liSolicitud cap = {equipo.data} />
+			<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
+			<this.liSolicitud cap = {equipo.data} />
 		  </ul>
 
 		  <div className="tab-content">
@@ -229,7 +229,7 @@ export default class Equipo extends Component {
 		  		</div>
 					 )}
 				</div>
-
+				<div id="par" className="tab-pane fade">
 					{ this.state.equipos[0].data.partidos.map(partido =>
 					<div className="container">
 					<div className="row align-items-start">
@@ -254,6 +254,8 @@ export default class Equipo extends Component {
 					 )}
 				</div>
 				<this.divSolicitud cap = {equipo.data}/>
+				</div>
+				
 
 		  </div>
 
