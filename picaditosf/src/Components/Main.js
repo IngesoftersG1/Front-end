@@ -59,7 +59,7 @@ const Main = () => (
  <main>
     <Switch>
 
-      <Route path='/busqueda' component={Busqueda}/>
+      <Route path='/busqueda/:busq*' component={Busqueda}/>
 
       <Route exact path='/geteventlist' component={geteventlist}/>
       <Route exact path='/' render={()=>(
