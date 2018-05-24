@@ -23,7 +23,7 @@ export default class Usuario extends Component {
   }
 
   componentDidMount() {
-          setTimeout(() => this.setState({ isLoading: false }), 500);
+          setTimeout(() => this.setState({ isLoading: false }), 2500);
           axios.get(consts.SERVER_URL+`users/1?`, {
     			params: {
 					user_name: this.props.match.params.id
@@ -33,11 +33,9 @@ export default class Usuario extends Component {
         	const user = [res.data];
       		console.log(user)
     		this.setState({ user});
-
+				this.setState({ isLoading: false})
       })
       }
-
-
 
 
  render() {
@@ -53,7 +51,7 @@ export default class Usuario extends Component {
     return (
     <div>
 	{ this.state.user.map(user =>
-
+	<div>
 	<div className="cont_2">
 		<div className="container">
 		  <div className="row align-items-start">
@@ -99,12 +97,8 @@ export default class Usuario extends Component {
 		  	</div>
 		 	</div>
 	  </div>
-
-
-
-
-
-
+	</div>
+	<div className="cont_2w">
 		<div className="container">
 		  <ul className="nav nav-tabs">
 
@@ -114,7 +108,7 @@ export default class Usuario extends Component {
 		  </ul>
 
 
-<br></br><br></br>
+<br></br>
 
 		  <div className="tab-content">
 		    <div id="info" className="tab-pane active">
@@ -159,12 +153,12 @@ export default class Usuario extends Component {
 
 		</div>
 	</div>
+	</div>
 		)}
 	</div>
 
 
 
-    )
-  }
+  )}
 
 }
