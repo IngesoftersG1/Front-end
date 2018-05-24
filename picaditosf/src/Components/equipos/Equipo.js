@@ -6,6 +6,7 @@ import MyPdfViewer from '../PDF/pdfview'
 import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
+import swal from 'sweetalert2'
 
 export default class Equipo extends Component {
 
@@ -35,35 +36,7 @@ export default class Equipo extends Component {
       })
   }
 
-	sendSolicitud(e){
-		e.preventDefault();
-		{/*axios.post(consts.SERVER_URL+'/request', { })
-	  .then(function(response){
-	    console.log('saved successfully')
-	  }); */}
-	  return null
-	}
 	
-	aceptSolicitud(e){
-		e.preventDefault();
-		{/*axios.post(consts.SERVER_URL+'/request', { })
-	  .then(function(response){
-	    console.log('saved successfully')
-	  }); */}
-	  return null
-	}
-	
-	denSolicitud(e){
-		e.preventDefault();
-		{/*axios.delete(url, { params: requestData })
-			.then(function(response) {
-			console.log(response.data));
-			})
-			.catch(function(error) {
-			console.log(error);
-			}); */}
-	  return null
-	}
       
  btnsAplicar(eusers){
 	console.log(eusers)
@@ -71,12 +44,31 @@ export default class Equipo extends Component {
 	let exist = false
 	function sendSolicitud(equipo_id){
 		console.log(equipo_id)
-		axios.post(consts.SERVER_URL+'requests/?', { 
-			user_id: JSON.parse(sessionStorage.user).user_name,
-			equipo_id: equipo_id,
-			request_type: "User_to_equipo"
-	
-		   }) 
+		swal({
+			title: '¿Seguro?',
+			text: 'El cápitan del otro equipo recibira tu solicitud',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Si',
+			cancelButtonText: 'No'
+		  }).then((result) => {
+			if (result.value) {
+			  swal(
+				'¡Solicitud enviada!',
+				'',
+				'success'
+			  )
+			  
+			axios.post(consts.SERVER_URL+'requests/?', { 
+				user_id: JSON.parse(sessionStorage.user).user_name,
+				equipo_id: equipo_id,
+				request_type: "User_to_equipo"
+		
+			   }) 
+			} 
+			
+		  })
+		
 	   
 	}
  	console.log('aplusers',userarr)
@@ -111,19 +103,60 @@ export default class Equipo extends Component {
  }
  
  divSolicitud(capitan){
-	function accpSolicitud(user_id, equipo_id){
+	function accpSolicitud(user_id, equipo_id, solicitud_id){
+		swal({
+			title: '¿Seguro?',
+			text: 'Esta accion no se puede deshacer',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Si',
+			cancelButtonText: 'No'
+		  }).then((result) => {
+			if (result.value) {
+			  swal(
+				'Aceptado',
+				'El jugador ha sido añadido a tu equipo',
+				'success'
+			  ).then((value) => {
+				window.location.reload()
+			  })
+			  axios.post(consts.SERVER_URL+'equipos_users/?', { 
+				user_id: user_id,
+				equipo_id: equipo_id,
+			  		
+			})
+				axios.delete(consts.SERVER_URL+'requests/'+solicitud_id);
+			} 
+		  })
+		  
+			  	
 		
-		axios.post(consts.SERVER_URL+'equipos_users/?', { 
-			user_id: user_id,
-			equipo_id: equipo_id,
-			
-		})
-	   
 	 }
+
+
 	 function delSolicitud(solicitud_id){
+		swal({
+			title: '¿Seguro?',
+			text: 'Esta accion no se puede deshacer',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Si',
+			cancelButtonText: 'No'
+		  }).then((result) => {
+			if (result.value) {
+			  swal(
+				'Denegado',
+				'La solicitud has sido rechazada',
+				'error'
+			  ).then((value) => {
+				window.location.reload()
+			})
+			  
+				axios.delete(consts.SERVER_URL+'requests/'+solicitud_id)
+			} 
+			window.location.reload();
+		  })
 		
-		axios.delete(consts.SERVER_URL+'requests/'+solicitud_id)
-		window.location.reload()
 	 }
 	
 	 console.log(capitan)
@@ -140,7 +173,7 @@ export default class Equipo extends Component {
 						<h4>{solicitud.user_id} quiere unirse a tu equipo</h4>
 	    		</div>
 	    		<div className="col-md-6">
-	    			<button className="btn btn-success" onClick={function(event){ accpSolicitud(solicitud.user_id, capitan.cap.id); delSolicitud(solicitud.id)}}>Aceptar</button> 
+	    			<button className="btn btn-success" onClick={function(event){ accpSolicitud(solicitud.user_id, capitan.cap.id, solicitud.id)}}>Aceptar</button> 
 	    			<button className="btn btn-warning" onClick={() => delSolicitud(solicitud.id) 	} >Rechazar</button> 
 	    		</div>
 				</div>

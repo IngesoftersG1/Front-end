@@ -17,7 +17,9 @@ class InscribirTorneo extends Component {
     super(props);
 
     this.state = {
-       user: [], isLoading: true
+			 user: [], 
+			 isLoading: true,
+			 torneo: []
     }
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -32,10 +34,18 @@ class InscribirTorneo extends Component {
     	const user = [res.data];
   		console.log('user',user)
 		this.setState({ user });
-		this.setState({ isLoading: false })
+	
 
       })
-        
+			axios.get(consts.SERVER_URL+`torneos/torneo_id/?id=`+this.props.match.params.id)
+      .then(res => {
+        const torneo = [res];
+        console.log(torneo)
+        this.setState({ torneo });
+
+        setTimeout(() => this.setState({ isLoading: false }), 2000);
+
+      })
         
     }
 
@@ -87,7 +97,7 @@ class InscribirTorneo extends Component {
 		return (
 			<div className="text-center">
 				<div className="cont_1">
-					<h1>Nuevo Mensaje</h1>
+					<h1>Inscribirse en {this.torneo[0].nombre}</h1>
 					<form className="form1" onSubmit={this.onSubmit}>
 						<label htmlFor="name">Destinatario</label>
 						<input placeholder="example_usuario"
@@ -98,7 +108,7 @@ class InscribirTorneo extends Component {
 							className="form-control"
 							required/>
 
-						<label htmlFor="psw">Asunto</label>
+						<label htmlFor="psw">Test</label>
 						<input placeholder="Asunto"
 							name="asunto"
 							type='text'
@@ -107,7 +117,7 @@ class InscribirTorneo extends Component {
 							className="form-control"
 							required/>
 
-						<label htmlFor="psw">Contenido</label>
+						<label htmlFor="psw">Tes</label>
 						<textarea rows="5" placeholder="Escribe tu mensaje"
 							name="contenido"
 							type='text'
