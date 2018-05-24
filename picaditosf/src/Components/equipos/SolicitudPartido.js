@@ -62,7 +62,19 @@ class SolicitudPartido extends Component {
       //deporte: this.state.partido,
       //fecha: this.state.fecha,
       //ubicacion: this.state.ubicacion
-	  })    
+	  })
+	  .then(res => {
+	    swal(
+				"Solicitud enviada correctamente",
+				"continue",
+				"success"
+				).then((value) => {
+					window.location.reload()
+			})
+	  })
+	  .catch(error =>{
+	    
+	  })
 	}
 
   onSubmit(e){
