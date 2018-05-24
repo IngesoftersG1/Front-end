@@ -154,7 +154,7 @@ export default class Equipo extends Component {
 			  
 				axios.delete(consts.SERVER_URL+'requests/'+solicitud_id)
 			} 
-			window.location.reload();
+		
 		  })
 		
 	 }

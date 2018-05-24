@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Example from '../Loading/logo';
 import * as consts from '../../consts';
-var a;
+import swal from 'sweetalert2'
+
 /*
 {
 this.state.eventos.map(evento => {evento[0].title})
@@ -25,6 +26,122 @@ export default class Torneo extends Component {
 
       })
   }
+
+  btnsAplicar(torneo){
+    console.log(torneo)
+    if(!!sessionStorage.jwt){  
+    if(torneo.torneo.data.organizador_name!=JSON.parse(sessionStorage.user).user_name){
+    
+      return <div>
+        <Link to={`/inscribir/${torneo.torneo.data.id}`}>
+        <button className="btn btn-info prf-btn" >Inscribirse al torneo</button>
+        </Link>
+        </div>
+    }
+  }
+     return null
+   }
+   liSolicitud(organizador){
+    console.log('cap',organizador)
+    if(!!sessionStorage.jwt){
+     
+     if(organizador.organizador.organizador_name == JSON.parse(sessionStorage.user).user_name){
+      if(organizador.organizador.solicitudes_pendientes>0){
+      return	<li className="tablink"><a data-toggle="tab" href="#sol">Solicitudes <span style={{'font-weight':'bold','color':'white','background-color':'red','border-radius':'50%',padding:'2px 6px 2px 6px'}}>
+      {organizador.organizador.solicitudes_pendientes}</span></a></li>}
+      else{
+        return	<li className="tablink"><a data-toggle="tab" href="#sol">Solicitudes</a></li>
+      }
+     }
+    }
+     return null
+   }
+
+   divSolicitud(organizador){
+    function accpSolicitud(equipo_id, torneo_id, solicitud_id){
+      swal({
+        title: '¿Seguro?',
+        text: 'Esta accion no se puede deshacer',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No'
+        }).then((result) => {
+        if (result.value) {
+          swal(
+          'Aceptado',
+          'El jugador ha sido añadido a tu equipo',
+          'success'
+          ).then((value) => {
+          window.location.reload()
+          })
+          axios.post(consts.SERVER_URL+'equipos_torneos/?', { 
+          torneo_id: torneo_id,
+          equipo_id: equipo_id,
+              
+        })
+          axios.delete(consts.SERVER_URL+'requests/'+solicitud_id);
+        } 
+        })
+        
+            
+      
+     }
+  
+  
+     function delSolicitud(solicitud_id){
+       console.log(solicitud_id)
+      swal({
+        title: '¿Seguro?',
+        text: 'Esta accion no se puede deshacer',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No'
+        }).then((result) => {
+        if (result.value) {
+          swal(
+          'Denegado',
+          'La solicitud has sido rechazada',
+          'error'
+          ).then((value) => {
+          window.location.reload()
+        })
+          
+          axios.delete(consts.SERVER_URL+'requests/'+solicitud_id)
+        } 
+        
+        })
+      
+     }
+    
+     
+     
+     if(!!sessionStorage.jwt){
+     if(organizador.organizador.organizador_name == JSON.parse(sessionStorage.user).user_name){
+      return 	<div id="sol" className="tab-pane fade">
+      <h3>Solicitudes</h3>
+      { organizador.organizador.solicitudes.map(solicitud =>
+      
+          
+          <div className="row align-items-start">
+            <div className="col-md-6">
+              <h5>{solicitud[1].nombre} quiere inscribirse a tu torneo</h5>
+            </div>
+            <div className="col-md-6">
+              <button className="btn btn-success" onClick={function(event){ accpSolicitud(solicitud[0].equipo_id, organizador.organizador.id, solicitud[0].id)}}>Aceptar</button> 
+              <button className="btn btn-warning" onClick={() => delSolicitud(solicitud[0].id) 	} >Rechazar</button> 
+            </div>
+          </div>
+          
+        
+      )}
+      </div>
+     }
+    }
+     return null
+   }
+
 
 
 
@@ -57,9 +174,11 @@ export default class Torneo extends Component {
 
           <h1>{torneo.data.nombre}</h1>
           <div className="prf-btns">
-            <Link to='/comingsoon'>
-              <button className="btn btn-info prf-btn">Inscribir Equipo</button>
-            </Link>
+          
+				  		
+				  		<this.btnsAplicar torneo={torneo}/>
+				  		
+				  	
 
           </div>
         </div>
@@ -82,6 +201,7 @@ export default class Torneo extends Component {
     <ul className="nav nav-tabs">
       <li className="active tablink"><a data-toggle="tab" href="#info">Informacion</a></li> 
       <li className="tablink"><a data-toggle="tab" href="#equip">Equipos Inscritos</a></li>
+      <this.liSolicitud organizador = {torneo.data} />
     </ul>
 
     <div className="tab-content">
@@ -120,6 +240,7 @@ export default class Torneo extends Component {
         </div>
          )}
       </div>
+      <this.divSolicitud organizador = {torneo.data}/>
     </div>
 
   </div>
