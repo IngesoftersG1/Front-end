@@ -13,6 +13,7 @@ import Infousuario from './Info-usuario'
 import Example from './Loading/logo'
 import Bandeja from './perfil/Bandeja'
 import Eventos from './eventos/Eventos'
+import InscribirTorneo from './eventos/InscribirTorneo'
 
 import Misequipos from './perfil/Mis_equipos'
 import Miseventos from './perfil/Mis_equipos'
@@ -77,6 +78,8 @@ const Main = () => (
       <Route exact path='/createEv' render={()=>(
           !!sessionStorage.jwt ? (<CrearEv />):(<Redirect to='/perfil' />)
       )}/>
+
+      <Route exact path='/inscribir/:id' component={InscribirTorneo}/>
 
       <Route path='/canchas' component={Canchas}/>
 
