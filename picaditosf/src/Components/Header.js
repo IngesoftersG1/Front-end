@@ -57,7 +57,7 @@ class Header extends Component {
     console.log('sinleerparam',sinleer.sinleer)
     if (sinleer.sinleer>0){
 
-      return <span style={{'font-weight':'bold','color':'white','background-color':'red','border-radius':'50%',padding:'2px 6px 2px 6px'}}>
+      return <span id="msg_span">
               {sinleer.sinleer}</span>
     }
     return null

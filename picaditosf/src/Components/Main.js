@@ -164,6 +164,8 @@ const Main = () => (
       <Route path='/L' />
 
       <Route exact path='/Lostpass' component={Lostpass}/>
+      
+      <Route path='/configuracion' component={Configuracion}/>
       <Route exact path='/token' />
       <Route path='/confirmateuser@tokennumbers/:user_name' component={Confirmation}/>
 

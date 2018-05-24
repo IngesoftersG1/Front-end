@@ -57,7 +57,7 @@ export default class Tablon extends Component {
 			    </div>
 			  </div>
 			</div>
-      <div className="tablon">
+      <div className="cont_2">
 
       <div className="container">
         <ul className="nav nav-tabs">

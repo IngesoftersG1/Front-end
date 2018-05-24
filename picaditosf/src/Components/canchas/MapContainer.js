@@ -19,20 +19,26 @@ export class MapContainer extends Component {
             selectedPlace: {},
             isLoading: true,
             info: [],
-            canchas: []
+            canchas: [],
+            userlat: 4.63,
+            userlng:-74.15
         }
         const setState = this.setState.bind(this)
         this.setcanchasstate = this.setcanchasstate.bind(this)
         this.onMarkerClick = this.onMarkerClick.bind(this)
         this.onMapClicked = this.onMapClicked.bind(this)
+        this.getuserGeolocation = this.getuserGeolocation.bind(this)
     }
 
     states = {
         precios: [],
-        calificaciones: []
+        calificaciones: [],
+            userlat: 4.63,
+            userlng:-74.15
     }
       componentDidMount() {
-        axios.get(consts.SERVER_URL+`canchas `)
+/**/
+/**/    axios.get(consts.SERVER_URL+`canchas `)
           .then(res => {
             const canchas = res.data;
           	//const b = eventos[0].name;
@@ -40,11 +46,49 @@ export class MapContainer extends Component {
             for (var i=0;i<canchas.length;i++){
                 this.setcanchasstate(canchas[i])
             }
+            this.getuserGeolocation();
             console.log(this.state)
-            setTimeout(() => this.setState({ isLoading: false }), 1000);
+            setTimeout(() => this.setState({ isLoading: false }),1000);
           })
+          
       }
-
+      
+      getuserGeolocation(){
+        let userlat = 0
+        let userlng = 0
+        console.log("if", navigator.geolocation)
+        navigator.geolocation.getCurrentPosition(function(objPosition)
+    		{
+    		  userlat = objPosition.coords.longitude
+    		  userlng = objPosition.coords.latitude
+          console.log("lat", userlat)
+          console.log("long", userlng)
+    		}, function(objPositionError)
+    		{
+    			switch (objPositionError.code)
+    			{
+    				case objPositionError.PERMISSION_DENIED:
+    					console.log("No se ha permitido el acceso a la posición del usuario.");
+    				break;
+    				case objPositionError.POSITION_UNAVAILABLE:
+    					console.log("No se ha podido acceder a la información de su posición.");
+    				break;
+    				case objPositionError.TIMEOUT:
+    					console.log("El servicio ha tardado demasiado tiempo en responder.");
+    				break;
+    				default:
+    					console.log("Error desconocido.");
+    			}
+    			//window.location.refresh
+    		}, {
+          enableHighAccuracy: true,
+          timeout: 25000,
+          maximumAge: 0
+    		});
+    		this.setState({userlat})
+    		this.setState({userlng})
+      }
+      
       setcanchasstate(cancha){
         //this.state.info[cancha.nombre]={precio: cancha.precio}
         this.states.precios[cancha.nombre]=cancha.precio
@@ -91,7 +135,6 @@ export class MapContainer extends Component {
                 position={{lat: 4.624, lng: -74.063}}
                 icon={BALLICON}/>
             */}
-
             { this.state.canchas.map(cancha =>
         		(<Marker
         		onClick={this.onMarkerClick}
