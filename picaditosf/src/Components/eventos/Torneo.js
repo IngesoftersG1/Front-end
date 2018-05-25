@@ -287,7 +287,7 @@ export default class Torneo extends Component {
 					<div className="row align-items-start">
 						<div className="col-md-6">
 		  					<h4>
-		  					 {partido.info_equipos[0].nombre} Vs {partido.info_equipos[1].nombre}
+                <a href={`/equipo/${partido.info_equipos[0].id}`}>{partido.info_equipos[0].nombre} </a> Vs <a href={`/equipo/${partido.info_equipos[1].id}`}>{partido.info_equipos[1].nombre} </a>
 		  	    			</h4>
 		  	    		</div>
 						<div className="col-md-2">
