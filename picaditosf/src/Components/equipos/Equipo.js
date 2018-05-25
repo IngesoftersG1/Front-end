@@ -36,7 +36,18 @@ export default class Equipo extends Component {
       })
   }
 
-	
+	btnPartido(partido){
+		if(partido.partido.jugado){
+			return <button className="btn btn-info prf-btn">Ver partido</button>
+			}
+		if(!partido.partido.pending && !partido.partido.jugado){
+				return <button className="btn btn-info prf-btn">Jugar partido</button>
+			}	
+		if(partido.partido.pending){
+		return <button className="btn btn-info prf-btn">Confirmar marcador</button>
+		}	
+			 
+		}
       
  btnsAplicar(eusers){
 	console.log(eusers)
@@ -326,7 +337,7 @@ export default class Equipo extends Component {
 		  	    		</div>
 		  	    		<div className="col-md-2">
 								<Link to={`/partido/${partido[0].id}`}>
-		  		  		<button className="btn btn-info prf-btn" >Ver partido</button>
+		  		  		<this.btnPartido partido = {partido[0]}/>
 							</Link>
 		  	    		</div>
 		  	    	</div>
