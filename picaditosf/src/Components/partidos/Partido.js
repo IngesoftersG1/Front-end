@@ -36,6 +36,7 @@ export default class Partido extends Component {
   }
   
   scoreAndInfo(){
+    
     let cap_name=""
     let cap_pending=""
     if(!!sessionStorage.jwt){
@@ -87,7 +88,6 @@ export default class Partido extends Component {
                <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
                <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
                <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
-               <h4> Este partido aun no ha sido jugado </h4>
                </div>
       }
     }else if(!this.state.partido.pending){
