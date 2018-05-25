@@ -126,10 +126,11 @@ export default class Torneo extends Component {
           
           <div className="row align-items-start">
             <div className="col-md-6">
-              <h5>{solicitud[1].nombre} quiere inscribirse a tu torneo</h5>
+              <h4> <a href={`/equipo/${solicitud[1].id}`}>{solicitud[1].nombre} </a> quiere unirse a tu torneo</h4>
+              <h5>{solicitud.message}</h5>
             </div>
             <div className="col-md-6">
-              <button className="btn btn-success" onClick={function(event){ accpSolicitud(solicitud[0].equipo_id, organizador.organizador.id, solicitud[0].id)}}>Aceptar</button> 
+              <button className="btn btn-success"  style={{marginRight:10}} onClick={function(event){ accpSolicitud(solicitud[0].equipo_id, organizador.organizador.id, solicitud[0].id)}}>Aceptar</button> 
               <button className="btn btn-warning" onClick={() => delSolicitud(solicitud[0].id) 	} >Rechazar</button> 
             </div>
           </div>

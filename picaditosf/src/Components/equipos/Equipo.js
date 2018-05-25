@@ -164,21 +164,41 @@ export default class Equipo extends Component {
  	if(!!sessionStorage.jwt){
  	if(capitan.cap.capitan_name == JSON.parse(sessionStorage.user).user_name){
 		return 	<div id="sol" className="tab-pane fade">
-		<h3>Solicitudes</h3>
-		{ capitan.cap.solicitudes.map(solicitud =>
+		<h3>Equipos</h3>
+		{ capitan.cap.solicitudes_equipo.map(solicitud =>
 		
 				
 				<div className="row align-items-start">
 					<div className="col-md-6">
-						<h4>{solicitud.user_id} quiere unirse a tu equipo</h4>
+					<h4> <a href={`/equipo/${solicitud[1].id}`}>{solicitud[1].nombre} </a>	quiere jugar contigo</h4>
+						<h6>{solicitud[0].message}</h6>
 	    		</div>
 	    		<div className="col-md-6">
-	    			<button className="btn btn-success" onClick={function(event){ accpSolicitud(solicitud.user_id, capitan.cap.id, solicitud.id)}}>Aceptar</button> 
-	    			<button className="btn btn-warning" onClick={() => delSolicitud(solicitud.id) 	} >Rechazar</button> 
+	    			<button className="btn btn-success" style={{marginRight:10}}>Aceptar</button> 
+	    			<button className="btn btn-warning" >Rechazar</button> 
 	    		</div>
 				</div>
 				
 		  
+		)}
+		<h3>Usuarios</h3>
+		{ capitan.cap.solicitudes_usuario.map(solicitud =>
+		
+				
+		<div className="row align-items-start">
+			<div className="col-md-6">
+			<h4> <a href={`/usuario/${solicitud.user_id}`}>{solicitud.user_id} </a>	quiere unirse a tu equipo</h4>
+			<h6>{solicitud.message}</h6>
+
+				
+			</div>
+			<div className="col-md-6">
+				<button className="btn btn-success"  style={{marginRight:10}} onClick={function(event){ accpSolicitud(solicitud.user_id, capitan.cap.id, solicitud.id)}}>Aceptar</button> 
+				<button className="btn btn-warning" onClick={() => delSolicitud(solicitud.id) 	} >Rechazar</button> 
+			</div>
+		</div>
+		
+	
 		)}
 		</div>
 	 }
