@@ -141,7 +141,7 @@ class Header extends Component {
               </ul>
               <div className="form-inline mt-2 mt-md-0">
                 <Link className="nav-link" to="/login">
-                      <button className="btn btn-success">Iniciar Sesion</button>
+                      <button className="btn btn-success">Iniciar Sesión</button>
                   </Link>
                 <Link className="nav-link" to="/register">
                     <button className="btn ">Registrate</button>  </Link>
@@ -227,7 +227,7 @@ class Header extends Component {
               </ul>
               <div className="form-inline mt-2 mt-md-0">
                 <Link className="nav-link" id ="buttons" to="/login">
-                      <button className="btn btn-success">Inicia Sesión</button>
+                      <button className="btn btn-success">Iniciar Sesión</button>
                   </Link>
                 <Link className="nav-link" id = "buttons" to="/register">
                     <button className="btn" id ="register">Regístrate</button>  </Link>
