@@ -16,9 +16,10 @@ export default class Partido extends Component {
 		this.state = {
 			partido: [], isLoading: true, marcador_local: 0, marcador_visitante :0
 		}
-		const { history } = this.props
-
+    const { history } = this.props
     this.onSubmit = this.onSubmit.bind(this);
+    this.scoreAndInfo = this.scoreAndInfo.bind(this);
+    
 	}
   
   
@@ -33,6 +34,94 @@ export default class Partido extends Component {
 })
   }
   
+  scoreAndInfo(){
+    let cap_name=""
+    let cap_pending=""
+    if(!!sessionStorage.jwt){
+      cap_name=JSON.parse(sessionStorage.user).user_name
+    }
+    if(this.state.partido.pending){
+      if(this.state.partido.pending_equipo==this.state.partido.info_equipos[0].id){
+        cap_pending=this.state.partido.info_equipos[0].capitan_name
+      }else{
+        cap_pending=this.state.partido.info_equipos[1].capitan_name
+      }
+      
+    }
+    if(this.state.partido.jugado || (cap_name!=this.state.partido.info_equipos[0].capitan_name && cap_name!=this.state.partido.info_equipos[1].capitan_name)){
+      
+      if(this.state.partido.pending){
+        return <div> 
+        <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
+        <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+        <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+        <h4> Este partido requiere confirmacion </h4>
+        </div>
+      }else{
+        return <div>
+               <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
+               <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+               <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+               </div>
+      }
+    }else if(!this.state.partido.pending){
+        return <div>
+          <form className="form1" onSubmit={this.onSubmit}>
+                      <div className="row">
+                        <div className="col-md-5 text-center">
+                              <input placeholder="L"
+                                style={{width:"100%"}}
+                                name="marcador_local"
+                                onChange={event => this.setState({marcador_local: event.target.value})}
+                                value={this.state.marcador_local}
+                                className="form-control"
+                                required/>
+                        </div>
+                        <div className="col-md-2 text-center">
+                              <h3>-</h3>
+                        </div>
+                        <div className="col-md-5 text-center">
+                              <input placeholder="V"
+                                style={{width:"100%"}}
+                                name="marcador_visitante"
+                                onChange={event => this.setState({marcador_visitante: event.target.value})}
+                                value={this.state.marcador_visitante}
+                                className="form-control"
+                                required/>
+                        </div>
+
+                      
+                        <div>
+                          <br/>
+                        </div>
+					              
+                        </div>
+                        <button type="submit" className="btn btn-lg btn-primary btn-block">Enviar resultado</button>
+					</form>
+              <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+              <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+          </div>
+    }else if(cap_pending==JSON.parse(sessionStorage.user).user_name){  
+          return <div>
+                <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
+                <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+                <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+                <h4> Este partido requiere tu confirmacion</h4>
+                <button className="btn btn-success"style={{marginRight:10} } onClick={() => this.acceptPartido()}>Aceptar</button> 
+                <button className="btn btn-warning" onClick={() => this.rejectPartido()}>Rechazar</button> 
+            </div>
+    }else{
+      return <div>
+          <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
+          <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+          <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+          <h4> Este partido requiere confirmacion del otro equipo</h4>
+          
+      </div>
+    }  
+  }
+
+
   updatePartido(){
     let pending_team_id=0
     if(JSON.parse(sessionStorage.user).user_name==this.state.partido.info_equipos[0].capitan_name){
@@ -171,7 +260,7 @@ export default class Partido extends Component {
 			
 		  })
     
-    console.log(this.state)
+    
   }
 
 
@@ -185,371 +274,13 @@ export default class Partido extends Component {
         </div>); // render the loading component
     }
     
-    let cap_name=""
-    let cap_pending=""
-    if(!!sessionStorage.jwt){
-      cap_name=JSON.parse(sessionStorage.user).user_name
-    }
-    if(this.state.partido.pending){
-      if(this.state.partido.pending_equipo==this.state.partido.info_equipos[0].id){
-        cap_pending=this.state.partido.info_equipos[0].capitan_name
-      }else{
-        cap_pending=this.state.partido.info_equipos[1].capitan_name
-      }
-      
-    }
+    
     
     
    
-    if(this.state.partido.jugado || (cap_name!=this.state.partido.info_equipos[0].capitan_name && cap_name!=this.state.partido.info_equipos[1].capitan_name)){
-    if(this.state.partido.pending){
-    return (
-
-    <div >
-      
-    <div className="tablon row" >
-         <div className="col-md-4 text-center">
-            <h3>{this.state.partido.info_equipos[0].nombre}</h3>
-            <ul className="text-center nav nav-tabs">
-               <li className="active tablink"><a data-toggle="tab" href="#equipo1">Equipo</a></li>
-               <li className="tablink"><a data-toggle="tab" href="#jugadores1">Jugadores</a></li>
-            </ul>
-            
-            <div className="tab-content">
-            <div className="text-center tab-pane active" id="equipo1">
-            <div className="row" >
-                  <div class="col-md-4">
-                  </div>
-               
-                  <div class="col-md-4">
-                  <a href={`/equipo/${this.state.partido.info_equipos[0].id}`}>
-                    <img src={require('../../imagenes/ball-fire.jpg')} className="img-responsive profile-img"/>
-      	            <h5>{this.state.partido.info_equipos[0].nombre}</h5>
-      	          </a>
-                  </div>
-                  <div class="col-md-4">
-                  </div>  
-            </div>
-      	    </div>  
-                <div className="text-center cont_card col-md-3 tab-pane" id="jugadores1">
-                { this.state.partido.info_equipos[2].map(user =>
-
-                      <div className="container cont_partido">
-                        <div className="row align-items-start">
-                          <div className="col-md-8">
-                            <h2 style={{fontSize:"medium", fontWeight:"100"}}>
-                            {user.user_name}
-                            </h2>
-                          </div>
-                        
-                      </div>
-
-                  </div>
-              )}
-                </div>
-            </div>
-         </div>
-         <div className="col-md-4 text-center">
-            <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
-            <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
-            <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
-            <h4> Este partido requiere confirmacion </h4>
-         </div>
-         
-         <div className="col-md-4 text-center">
-            <h3>{this.state.partido.info_equipos[1].nombre}</h3>
-            <ul className="text-center nav nav-tabs">
-               <li className="active tablink"><a data-toggle="tab" href="#equipo2">Equipo</a></li>
-               <li className="tablink"><a data-toggle="tab" href="#jugadores2">Jugadores</a></li>
-            </ul>
-            
-            <div className="tab-content" >
-            <div className="text-center tab-pane active" id="equipo2">
-            <div className="row" >
-                  <div class="col-md-4">
-                  </div>
-               
-                  <div class="col-md-4">
-                  <a href={`/equipo/${this.state.partido.info_equipos[1].id}`}>
-                    <img src={require('../../imagenes/ball-fire.jpg')} className="img-responsive profile-img"/>
-      	            <h5>{this.state.partido.info_equipos[1].nombre}</h5>
-      	          </a>
-                  </div>
-                  <div class="col-md-4">
-                  </div>  
-            </div>
-      	    </div>  
-                <div className="text-center cont_card col-md-3 tab-pane" id="jugadores2">
-                { this.state.partido.info_equipos[3].map(user =>
-
-                  <div className="container ">
-                  <div className="row align-items-start">
-                  <div className="col-md-8 cont_partido">
-                  <h2 style={{fontSize:"medium", fontWeight:"100"}}>
-                  {user.user_name}
-                  </h2>
-                  </div>
-  
-                  </div>
-
-                  </div>
-                )}
-                </div>
-            </div>
-         </div>
-
-            
-         
-    </div>
-      
-	 </div>
-
-
-
-    )
-  }else{
-    return (
-
-      <div >
-        
-      <div className="tablon row" >
-           <div className="col-md-4 text-center">
-              <h3>{this.state.partido.info_equipos[0].nombre}</h3>
-              <ul className="text-center nav nav-tabs">
-                 <li className="active tablink"><a data-toggle="tab" href="#equipo1">Equipo</a></li>
-                 <li className="tablink"><a data-toggle="tab" href="#jugadores1">Jugadores</a></li>
-              </ul>
-              
-              <div className="tab-content">
-              <div className="text-center tab-pane active" id="equipo1">
-              <div className="row" >
-                    <div class="col-md-4">
-                    </div>
-                 
-                    <div class="col-md-4">
-                    <a href={`/equipo/${this.state.partido.info_equipos[0].id}`}>
-                      <img src={require('../../imagenes/ball-fire.jpg')} className="img-responsive profile-img"/>
-                      <h5>{this.state.partido.info_equipos[0].nombre}</h5>
-                    </a>
-                    </div>
-                    <div class="col-md-4">
-                    </div>  
-              </div>
-              </div>  
-                  <div className="text-center cont_card col-md-3 tab-pane" id="jugadores1">
-                  { this.state.partido.info_equipos[2].map(user =>
-  
-                        <div className="container cont_partido">
-                          <div className="row align-items-start">
-                            <div className="col-md-8">
-                              <h2 style={{fontSize:"medium", fontWeight:"100"}}>
-                              {user.user_name}
-                              </h2>
-                            </div>
-                          
-                        </div>
-  
-                    </div>
-                )}
-                  </div>
-              </div>
-           </div>
-           <div className="col-md-4 text-center">
-              <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
-              <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
-              <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
-           </div>
-           
-           <div className="col-md-4 text-center">
-              <h3>{this.state.partido.info_equipos[1].nombre}</h3>
-              <ul className="text-center nav nav-tabs">
-                 <li className="active tablink"><a data-toggle="tab" href="#equipo2">Equipo</a></li>
-                 <li className="tablink"><a data-toggle="tab" href="#jugadores2">Jugadores</a></li>
-              </ul>
-              
-              <div className="tab-content" >
-              <div className="text-center tab-pane active" id="equipo2">
-              <div className="row" >
-                    <div class="col-md-4">
-                    </div>
-                 
-                    <div class="col-md-4">
-                    <a href={`/equipo/${this.state.partido.info_equipos[1].id}`}>
-                      <img src={require('../../imagenes/ball-fire.jpg')} className="img-responsive profile-img"/>
-                      <h5>{this.state.partido.info_equipos[1].nombre}</h5>
-                    </a>
-                    </div>
-                    <div class="col-md-4">
-                    </div>  
-              </div>
-              </div>  
-                  <div className="text-center cont_card col-md-3 tab-pane" id="jugadores2">
-                  { this.state.partido.info_equipos[3].map(user =>
-  
-                    <div className="container ">
-                    <div className="row align-items-start">
-                    <div className="col-md-8 cont_partido">
-                    <h2 style={{fontSize:"medium", fontWeight:"100"}}>
-                    {user.user_name}
-                    </h2>
-                    </div>
     
-                    </div>
-  
-                    </div>
-                  )}
-                  </div>
-              </div>
-           </div>
-  
-              
-           
-      </div>
-        
-     </div>
-  
-  
-  
-      )
-
-  }
-  }else if(!this.state.partido.pending){
     return (
 
-      <div >
-        
-      <div className="tablon row" >
-           <div className="col-md-4 text-center">
-              <h3>{this.state.partido.info_equipos[0].nombre}</h3>
-              <ul className="text-center nav nav-tabs">
-                 <li className="active tablink"><a data-toggle="tab" href="#equipo1">Equipo</a></li>
-                 <li className="tablink"><a data-toggle="tab" href="#jugadores1">Jugadores</a></li>
-              </ul>
-              
-              <div className="tab-content">
-              <div className="text-center tab-pane active" id="equipo1">
-              <div className="row" >
-                    <div class="col-md-4">
-                    </div>
-                 
-                    <div class="col-md-4">
-                    <a href={`/equipo/${this.state.partido.info_equipos[0].id}`}>
-                      <img src={require('../../imagenes/ball-fire.jpg')} className="img-responsive profile-img"/>
-                      <h5>{this.state.partido.info_equipos[0].nombre}</h5>
-                    </a>
-                    </div>
-                    <div class="col-md-4">
-                    </div>  
-              </div>
-              </div>  
-                  <div className="text-center cont_card col-md-3 tab-pane" id="jugadores1">
-                  { this.state.partido.info_equipos[2].map(user =>
-  
-                        <div className="container cont_partido">
-                          <div className="row align-items-start">
-                            <div className="col-md-8">
-                              <h2 style={{fontSize:"medium", fontWeight:"100"}}>
-                              {user.user_name}
-                              </h2>
-                            </div>
-                          
-                        </div>
-  
-                    </div>
-                )}
-                  </div>
-              </div>
-           </div>
-           <div className="col-md-4 text-center">
-                <form className="form1" onSubmit={this.onSubmit}>
-                      <div className="row">
-                        <div className="col-md-5 text-center">
-                              <input placeholder="L"
-                                style={{width:"100%"}}
-                                name="marcador_local"
-                                onChange={event => this.setState({marcador_local: event.target.value})}
-                                value={this.state.marcador_local}
-                                className="form-control"
-                                required/>
-                        </div>
-                        <div className="col-md-2 text-center">
-                              <h3>-</h3>
-                        </div>
-                        <div className="col-md-5 text-center">
-                              <input placeholder="V"
-                                style={{width:"100%"}}
-                                name="marcador_visitante"
-                                onChange={event => this.setState({marcador_visitante: event.target.value})}
-                                value={this.state.marcador_visitante}
-                                className="form-control"
-                                required/>
-                        </div>
-
-                      
-                        <div>
-                          <br/>
-                        </div>
-					              
-                        </div>
-                        <button type="submit" className="btn btn-lg btn-primary btn-block">Enviar resultado</button>
-					</form>
-              <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
-              <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
-           </div>
-           
-           <div className="col-md-4 text-center">
-              <h3>{this.state.partido.info_equipos[1].nombre}</h3>
-              <ul className="text-center nav nav-tabs">
-                 <li className="active tablink"><a data-toggle="tab" href="#equipo2">Equipo</a></li>
-                 <li className="tablink"><a data-toggle="tab" href="#jugadores2">Jugadores</a></li>
-              </ul>
-              
-              <div className="tab-content" >
-              <div className="text-center tab-pane active" id="equipo2">
-              <div className="row" >
-                    <div class="col-md-4">
-                    </div>
-                 
-                    <div class="col-md-4">
-                    <a href={`/equipo/${this.state.partido.info_equipos[1].id}`}>
-                      <img src={require('../../imagenes/ball-fire.jpg')} className="img-responsive profile-img"/>
-                      <h5>{this.state.partido.info_equipos[1].nombre}</h5>
-                    </a>
-                    </div>
-                    <div class="col-md-4">
-                    </div>  
-              </div>
-              </div>  
-                  <div className="text-center cont_card col-md-3 tab-pane" id="jugadores2">
-                  { this.state.partido.info_equipos[3].map(user =>
-  
-                    <div className="container ">
-                    <div className="row align-items-start">
-                    <div className="col-md-8 cont_partido">
-                    <h2 style={{fontSize:"medium", fontWeight:"100"}}>
-                    {user.user_name}
-                    </h2>
-                    </div>
-    
-                    </div>
-  
-                    </div>
-                  )}
-                  </div>
-              </div>
-           </div>
-  
-              
-           
-      </div>
-        
-     </div>
-  
-  
-  
-      )
-  }else if(cap_pending==JSON.parse(sessionStorage.user).user_name){
-    return (
     <div >
       
     <div className="tablon row" >
@@ -595,12 +326,7 @@ export default class Partido extends Component {
             </div>
          </div>
          <div className="col-md-4 text-center">
-            <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
-            <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
-            <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
-            <h4> Este partido requiere tu confirmacion</h4>
-            <button className="btn btn-success"style={{marginRight:10} } onClick={() => this.acceptPartido()}>Aceptar</button> 
-	    			<button className="btn btn-warning" onClick={() => this.rejectPartido()}>Rechazar</button> 
+            <this.scoreAndInfo />
          </div>
          
          <div className="col-md-4 text-center">
@@ -650,108 +376,10 @@ export default class Partido extends Component {
     </div>
       
 	 </div>
+
+
+
     )
-  }else{
-    return (
-    <div >
-      
-    <div className="tablon row" >
-         <div className="col-md-4 text-center">
-            <h3>{this.state.partido.info_equipos[0].nombre}</h3>
-            <ul className="text-center nav nav-tabs">
-               <li className="active tablink"><a data-toggle="tab" href="#equipo1">Equipo</a></li>
-               <li className="tablink"><a data-toggle="tab" href="#jugadores1">Jugadores</a></li>
-            </ul>
-            
-            <div className="tab-content">
-            <div className="text-center tab-pane active" id="equipo1">
-            <div className="row" >
-                  <div class="col-md-4">
-                  </div>
-               
-                  <div class="col-md-4">
-                  <a href={`/equipo/${this.state.partido.info_equipos[0].id}`}>
-                    <img src={require('../../imagenes/ball-fire.jpg')} className="img-responsive profile-img"/>
-      	            <h5>{this.state.partido.info_equipos[0].nombre}</h5>
-      	          </a>
-                  </div>
-                  <div class="col-md-4">
-                  </div>  
-            </div>
-      	    </div>  
-                <div className="text-center cont_card col-md-3 tab-pane" id="jugadores1">
-                { this.state.partido.info_equipos[2].map(user =>
-
-                      <div className="container cont_partido">
-                        <div className="row align-items-start">
-                          <div className="col-md-8">
-                            <h2 style={{fontSize:"medium", fontWeight:"100"}}>
-                            {user.user_name}
-                            </h2>
-                          </div>
-                        
-                      </div>
-
-                  </div>
-              )}
-                </div>
-            </div>
-         </div>
-         <div className="col-md-4 text-center">
-            <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
-            <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
-            <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
-            <h4> Este partido requiere confirmacion del otro equipo</h4>
-         </div>
-         
-         <div className="col-md-4 text-center">
-            <h3>{this.state.partido.info_equipos[1].nombre}</h3>
-            <ul className="text-center nav nav-tabs">
-               <li className="active tablink"><a data-toggle="tab" href="#equipo2">Equipo</a></li>
-               <li className="tablink"><a data-toggle="tab" href="#jugadores2">Jugadores</a></li>
-            </ul>
-            
-            <div className="tab-content" >
-            <div className="text-center tab-pane active" id="equipo2">
-            <div className="row" >
-                  <div class="col-md-4">
-                  </div>
-               
-                  <div class="col-md-4">
-                  <a href={`/equipo/${this.state.partido.info_equipos[1].id}`}>
-                    <img src={require('../../imagenes/ball-fire.jpg')} className="img-responsive profile-img"/>
-      	            <h5>{this.state.partido.info_equipos[1].nombre}</h5>
-      	          </a>
-                  </div>
-                  <div class="col-md-4">
-                  </div>  
-            </div>
-      	    </div>  
-                <div className="text-center cont_card col-md-3 tab-pane" id="jugadores2">
-                { this.state.partido.info_equipos[3].map(user =>
-
-                  <div className="container ">
-                  <div className="row align-items-start">
-                  <div className="col-md-8 cont_partido">
-                  <h2 style={{fontSize:"medium", fontWeight:"100"}}>
-                  {user.user_name}
-                  </h2>
-                  </div>
   
-                  </div>
-
-                  </div>
-                )}
-                </div>
-            </div>
-         </div>
-
-            
-         
-    </div>
-      
-	 </div>
-    )
-  }
   }
 }
