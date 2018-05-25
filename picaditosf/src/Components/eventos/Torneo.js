@@ -11,14 +11,23 @@ this.state.eventos.map(evento => {evento[0].title})
 }
 */
 export default class Torneo extends Component {
-  state = {
-    torneo: [], isLoading: true
-  }
+  constructor(props){
+    super(props);
+		this.state = {
+      torneo: [], isLoading: true
+		}
+    
+    this.btnPartido = this.btnPartido.bind(this);
+    this.btnsAplicar = this.btnsAplicar.bind(this);
+    this.btnsComenzar = this.btnsComenzar.bind(this);
+    this.empezarTorneo = this.empezarTorneo.bind(this);
+	}
+ 
   
   componentDidMount() {
     axios.get(consts.SERVER_URL+`torneos/torneo_id/?id=`+this.props.match.params.id)
       .then(res => {
-        const torneo = [res];
+        const torneo = res.data;
         console.log(torneo)
         this.setState({ torneo });
 
@@ -30,16 +39,36 @@ export default class Torneo extends Component {
   btnsAplicar(torneo){
     console.log(torneo)
     if(!!sessionStorage.jwt){  
-    if(torneo.torneo.data.organizador_name!=JSON.parse(sessionStorage.user).user_name){
+    if(torneo.torneo.organizador_name!=JSON.parse(sessionStorage.user).user_name){
     
       return <div>
-        <Link to={`/inscribir/${torneo.torneo.data.id}`}>
+        <Link to={`/inscribir/${torneo.torneo.id}`}>
         <button className="btn btn-info prf-btn" >Inscribirse al torneo</button>
         </Link>
         </div>
     }
   }
      return null
+   }
+   btnsComenzar(torneo){
+    if(!!sessionStorage.jwt){  
+    if(torneo.torneo.organizador_name==JSON.parse(sessionStorage.user).user_name && !torneo.torneo.comenzado){
+    
+      return <div>
+        <button className="btn btn-info prf-btn" onClick={() => this.empezarTorneo()}>Comenzar torneo</button>
+        </div>
+    }
+  }
+     return null
+   }
+
+   empezarTorneo(){
+    /*Aqui va el algoritmo magico que Perdomo va a diseñar*/
+    swal(
+      'Magia',
+      'Proximamente este boton generará todos los partidos del torneo',
+      'success'
+      )
    }
    liSolicitud(organizador){
     console.log('cap',organizador)
@@ -118,7 +147,7 @@ export default class Torneo extends Component {
      
      
      if(!!sessionStorage.jwt){
-     if(organizador.organizador.organizador_name == JSON.parse(sessionStorage.user).user_name){
+     if(organizador.organizador.organizador_name == JSON.parse(sessionStorage.user).user_name && !organizador.organizador.comenzado){
       return 	<div id="sol" className="tab-pane fade">
       <h3>Solicitudes</h3>
       { organizador.organizador.solicitudes.map(solicitud =>
@@ -143,7 +172,17 @@ export default class Torneo extends Component {
      return null
    }
 
-
+   btnPartido(partido){
+    if(!!sessionStorage.jwt){  
+		if(partido.partido.jugado || this.state.torneo.organizador_name!= JSON.parse(sessionStorage.user).user_name){
+			return <button className="btn btn-info prf-btn">Ver partido</button>
+			}else{
+				return <button className="btn btn-info prf-btn">Jugar partido</button>
+			}	
+    }else{
+      return <button className="btn btn-info prf-btn">Ver partido</button>
+    }	 
+		}
 
 
  render() {
@@ -162,7 +201,7 @@ export default class Torneo extends Component {
 
 
 
-{ this.state.torneo.map(torneo =>
+
   <div className="cont_2">
   <div className="container">
     <div className="row align-items-start">
@@ -173,12 +212,12 @@ export default class Torneo extends Component {
 
         <div className="row">
 
-          <h1>{torneo.data.nombre}</h1>
+          <h1>{this.state.torneo.nombre}</h1>
           <div className="prf-btns">
           
 				  		
-				  		<this.btnsAplicar torneo={torneo}/>
-				  		
+				  		<this.btnsAplicar torneo={this.state.torneo}/>
+				  		<this.btnsComenzar torneo={this.state.torneo}/>
 				  	
 
           </div>
@@ -187,7 +226,7 @@ export default class Torneo extends Component {
           <div className="row align-items-start">
           <div className="col-md-8">
               <h4>
-              {torneo.data.deporte.nombre}
+              {this.state.torneo.deporte.nombre}
                 </h4>
               </div>
              
@@ -202,25 +241,26 @@ export default class Torneo extends Component {
     <ul className="nav nav-tabs">
       <li className="active tablink"><a data-toggle="tab" href="#info">Informacion</a></li> 
       <li className="tablink"><a data-toggle="tab" href="#equip">Equipos Inscritos</a></li>
-      <this.liSolicitud organizador = {torneo.data} />
+      <li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
+      <this.liSolicitud organizador = {this.state.torneo} />
     </ul>
 
     <div className="tab-content">
 
         <div id="info" className="tab-pane active">
            <h3>Información</h3>
-           { this.state.torneo.map(torneo =>
+          
             <div className="container">
-            <h4>Fecha: {torneo.data.fecha}</h4>
-            <h4>Premio: {torneo.data.premio}</h4>
+            <h4>Fecha: {this.state.torneo.fecha}</h4>
+            <h4>Premio: {this.state.torneo.premio}</h4>
             </div>
-           )}
+          
         </div>
 
         
       <div id="equip" className="tab-pane fade">
         <h3> Equipos </h3>
-        { this.state.torneo[0].data.equipos.map(equipo =>
+        { this.state.torneo.equipos.map(equipo =>
 
         <div className="container">
         <div className="row align-items-start">
@@ -241,12 +281,36 @@ export default class Torneo extends Component {
         </div>
          )}
       </div>
-      <this.divSolicitud organizador = {torneo.data}/>
+      <div id="par" className="tab-pane fade">
+					{ this.state.torneo.partidos.map(partido =>
+					<div className="container">
+					<div className="row align-items-start">
+						<div className="col-md-6">
+		  					<h4>
+		  					 {partido.info_equipos[0].nombre} Vs {partido.info_equipos[1].nombre}
+		  	    			</h4>
+		  	    		</div>
+						<div className="col-md-2">
+		  					<h3>
+		  					 {partido.marcador_local} - {partido.marcador_visitante}
+		  	    			</h3>
+		  	    		</div>
+		  	    		<div className="col-md-2">
+								<Link to={`/partido/${partido.id}`}>
+		  		  		<this.btnPartido partido = {partido}/>
+							</Link>
+		  	    		</div>
+		  	    	</div>
+
+		  		</div>
+					 )}
+				</div>
+      <this.divSolicitud organizador = {this.state.torneo}/>
     </div>
 
   </div>
 </div>
-		)}
+		
 
 
 

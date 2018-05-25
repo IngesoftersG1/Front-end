@@ -18,6 +18,7 @@ export default class Partido extends Component {
 		}
     const { history } = this.props
     this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmitTorneo = this.onSubmitTorneo.bind(this);
     this.scoreAndInfo = this.scoreAndInfo.bind(this);
     
 	}
@@ -48,6 +49,30 @@ export default class Partido extends Component {
       }
       
     }
+    if(!sessionStorage.jwt){
+      if(this.state.partido.jugado){
+        return <div> 
+        <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
+        <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+        <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+        </div>
+      }else if(this.state.partido.pending){
+        return <div> 
+        <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
+        <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+        <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+        <h4> Este partido requiere confirmacion </h4>
+        </div> 
+      }else{
+        return <div> 
+        <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
+        <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+        <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+        <h4> Este partido aun no ha sido jugado </h4>
+        </div>
+      }
+    }
+    if(this.state.partido.torneo==null){
     if(this.state.partido.jugado || (cap_name!=this.state.partido.info_equipos[0].capitan_name && cap_name!=this.state.partido.info_equipos[1].capitan_name)){
       
       if(this.state.partido.pending){
@@ -62,6 +87,7 @@ export default class Partido extends Component {
                <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
                <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
                <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+               <h4> Este partido aun no ha sido jugado </h4>
                </div>
       }
     }else if(!this.state.partido.pending){
@@ -118,7 +144,64 @@ export default class Partido extends Component {
           <h4> Este partido requiere confirmacion del otro equipo</h4>
           
       </div>
-    }  
+    }
+  }else{
+    if(this.state.partido.jugado){
+      return <div>
+          <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
+          <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+          <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+         
+          
+      </div>
+    }else{
+      if(this.state.partido.torneo.organizador_name==JSON.parse(sessionStorage.user).user_name){
+        return <div>
+        <form className="form1" onSubmit={this.onSubmitTorneo}>
+                    <div className="row">
+                      <div className="col-md-5 text-center">
+                            <input placeholder="L"
+                              style={{width:"100%"}}
+                              name="marcador_local"
+                              onChange={event => this.setState({marcador_local: event.target.value})}
+                              value={this.state.marcador_local}
+                              className="form-control"
+                              required/>
+                      </div>
+                      <div className="col-md-2 text-center">
+                            <h3>-</h3>
+                      </div>
+                      <div className="col-md-5 text-center">
+                            <input placeholder="V"
+                              style={{width:"100%"}}
+                              name="marcador_visitante"
+                              onChange={event => this.setState({marcador_visitante: event.target.value})}
+                              value={this.state.marcador_visitante}
+                              className="form-control"
+                              required/>
+                      </div>
+
+                    
+                      <div>
+                        <br/>
+                      </div>
+                      
+                      </div>
+                      <button type="submit" className="btn btn-lg btn-primary btn-block">Enviar resultado</button>
+        </form>
+            <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+            <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+        </div>
+      }else{
+        return <div>
+        <h1 style={{fontWeight:"100"}}>{this.state.partido.marcador_local}-{this.state.partido.marcador_visitante}</h1>
+          <h4 style={{fontWeight:"100"}}>{this.state.partido.fecha}</h4>
+          <h4 style={{fontWeight:"100"}}>{this.state.partido.ubicacion.localidad}</h4>
+          <h4> El resultado de este partido aun no ha sido ingresado por el organizador del torneo</h4>
+         </div> 
+      }
+    }
+  }  
   }
 
 
@@ -155,7 +238,34 @@ export default class Partido extends Component {
 				}
 				}) 
 		} 
-	
+    updatePartidoTorneo(){
+      
+      axios.put(consts.SERVER_URL+'partidos/'+this.state.partido.id+'?', { 
+        
+        pending: false,
+        marcador_local: this.state.marcador_local,
+        marcador_visitante: this.state.marcador_visitante,
+        jugado: true
+        
+         }).then(res => {
+          console.log(res);
+          if(res.status==204){
+            swal(
+              "Partido almacenado",
+              "El marcador fue almacenado correctamente",
+              "success"
+              ).then((value) => {
+                window.location.reload()
+            })
+          }else{
+            swal(
+              "Sucedio un error",
+              "continue",
+              "error"
+              )
+          }
+          }) 
+      } 
     acceptPartido(){
       swal({
         title: '¿Seguro?',
@@ -263,7 +373,27 @@ export default class Partido extends Component {
     
   }
 
-
+  onSubmitTorneo(e){
+		e.preventDefault();
+		swal({
+			title: '¿Seguro?',
+			text: 'Este marcador se almacenara y no se puede deshacer',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Si',
+			cancelButtonText: 'No'
+		  }).then((result) => {
+			if (result.value) {
+				this.updatePartidoTorneo();
+				
+			  
+		
+			} 
+			
+		  })
+    
+    
+  }
 
  render() {
     if(this.state.isLoading){
