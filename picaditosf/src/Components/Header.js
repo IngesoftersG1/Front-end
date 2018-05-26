@@ -97,9 +97,9 @@ class Header extends Component {
                 </li>
               </ul>
               <form className="form-inline mt-2 mt-md-0">
-                <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
+                <input id="search" className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
                 <a href="#" className="btn">
-                  <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/magnifyingglass-256.png" width="30"/>
+                  <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/search-32.png" width="30"/>
                 </a>
                 <Link onClick={this.logout} className="nav-link" to="/">
                   <button className="btn btn-danger">Cerrar sesión</button></Link>
@@ -185,7 +185,7 @@ class Header extends Component {
               <form className="form-inline mt-2 mt-md-0">
                 <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"/>
                 <a href="#" className="btn">
-                  <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/magnifyingglass-256.png" width="30"/>
+                  <img src="https://cdn4.iconfinder.com/data/icons/small-n-flat/24/search-32.png" width="30"/>
                 </a>
                 <Link onClick={this.logout} className="nav-link" to="/">
                   <button className="btn btn-danger">Cerrar sesión</button></Link>

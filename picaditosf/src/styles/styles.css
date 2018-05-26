@@ -354,7 +354,7 @@ SITE
 	min-width: 	400px;
 	padding: 40px;
 	margin: auto;
-	margin-top: 100px;
+	margin-top: 80px;
 	border-radius: 3px 3px 0px 0px;
 }
 .cont_2w{
@@ -532,6 +532,7 @@ body{ margin: 20px; }
   font-weight: 100;
 }
 /*--SCROLLBAR--*/
+
 
 /* width
 ::-webkit-scrollbar {

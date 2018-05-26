@@ -106,11 +106,12 @@ export default class Perfil extends Component {
 			  		<h1>{user.nombres}</h1>
 						<div className="prf-btns">
 				  		<Link to='/editperfil'>
-				  			<button className="btn btn-info prf-btn">Editar Perfil</button>
+				  			<button className="btn btn-info prf-btn">
+				  			<img src="" />Editar Perfil</button>
 				  		</Link>
 
 				  		<Link to='/Configuracion'>
-				  			<button className="btn btn-warning prf-btn">Configuración</button>
+				  			<img src="https://cdn3.iconfinder.com/data/icons/fatcow/32/cog.png"  />
 				  		</Link>
 						</div>
 			  	</div>
