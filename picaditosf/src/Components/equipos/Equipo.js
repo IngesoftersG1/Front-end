@@ -22,19 +22,15 @@ export default class Equipo extends Component {
 
   componentDidMount() {
 		console.log("props",this.props)
-          setTimeout(() => this.setState({ isLoading: false }), 500);
-
-
           axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+this.props.match.params.id
-
 			)
-
     		.then(res => {
         	const equipos = [res];
         	console.log(equipos)
         	const usuarios = equipos[0].data.users
         	console.log(usuarios)
-    			this.setState({equipos});
+    		this.setState({equipos});
+        	this.setState({ isLoading: false });	
       })
   }
 
@@ -102,15 +98,6 @@ export default class Equipo extends Component {
 			  <div className="modal-dialog" role="document">
 			    <div className="modal-content">
 			    	<SolicitudPartido equipo_id_param={eusers.eusers.id} />
-			      {/*<div className="modal-header">
-			        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-			        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div className="modal-body">
-			        ...
-			      </div>*/}
 			      <div className="modal-footer">
 			        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
 			        <button type="button" className="btn btn-primary">Save changes</button>
@@ -140,40 +127,56 @@ export default class Equipo extends Component {
  
  divSolicitud(capitan){
 	function accpSolicitud(user_id, equipo_id){
-		
 		axios.post(consts.SERVER_URL+'equipos_users/?', { 
 			user_id: user_id,
 			equipo_id: equipo_id,
-			
 		})
-	   
-	 }
-	 function delSolicitud(solicitud_id){
-		
-		axios.delete(consts.SERVER_URL+'requests/'+solicitud_id)
-		window.location.reload()
-	 }
+	}
+	function accpPartido(fecha, local, visitante){
+		console.log("post",{fecha,local,visitante})
+		{/*
+		axios.post(consts.SERVER_URL+'/partidos', { 
+			fecha: fecha,
+			equipo_local_id: local , 
+      equipo_visitante_id: visitante,
+			jugado:false
+		})*/}
+	}
+	function delSolicitud(solicitud_id){
+		//axios.delete(consts.SERVER_URL+'requests/'+solicitud_id)
+		//window.location.reload()
+	}
 	
-	 console.log(capitan)
+	 console.log("cap",capitan)
 	 
  	if(!!sessionStorage.jwt){
  	if(capitan.cap.capitan_name == JSON.parse(sessionStorage.user).user_name){
 		return 	<div id="sol" className="tab-pane fade">
-		<h3>Solicitudes</h3>
-		{ capitan.cap.solicitudes.map(solicitud =>
-		
-				
+
+		<h3>Solicitud de jugador</h3>
+		{ capitan.cap.solicitudes_usuario.map(solicitud =>
 				<div className="row align-items-start">
 					<div className="col-md-6">
 						<h4>{solicitud.user_id} quiere unirse a tu equipo</h4>
-	    		</div>
+	    			</div>
 	    		<div className="col-md-6">
 	    			<button className="btn btn-success" onClick={function(event){ accpSolicitud(solicitud.user_id, capitan.cap.id); delSolicitud(solicitud.id)}}>Aceptar</button> 
 	    			<button className="btn btn-warning" onClick={() => delSolicitud(solicitud.id) 	} >Rechazar</button> 
 	    		</div>
 				</div>
-				
-		  
+		)}
+		<h3>Solicitud de partido</h3>
+		{ capitan.cap.solicitudes_equipo.map(solicitud =>
+				<div className="row align-items-start">
+				{console.log("solicitud0",solicitud)}
+					<div className="col-md-6">
+						<h5>{solicitud[1].nombre} quiere jugar con tu equipo</h5>
+	    			</div>
+	    		<div className="col-md-6">
+	    			<button className="btn btn-success" onClick={function(event){ accpPartido(solicitud[0].fecha_partido, solicitud[0].equipo_id , capitan.cap.id); delSolicitud(solicitud[0].id)}}>Aceptar</button> 
+	    			<button className="btn btn-warning" onClick={() => delSolicitud(solicitud[1].id) 	} >Rechazar</button>
+	    		</div>
+				</div>
 		)}
 		</div>
 	 }

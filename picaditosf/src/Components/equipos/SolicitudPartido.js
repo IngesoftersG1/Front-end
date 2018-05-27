@@ -18,8 +18,8 @@ class SolicitudPartido extends Component {
       fecha: '2018-04-04',
       user_id: JSON.parse(sessionStorage.user).user_name,
       user_equipos: [],
-      equipo_id : '',
-      equipo_id_2: '',
+      equipo_id : 0,
+      equipo_id_2: 0,
       message:'',
       deporte: '',
       canchas: [],
@@ -55,15 +55,16 @@ class SolicitudPartido extends Component {
   
 	createInvitacion(){
     axios.post(consts.SERVER_URL+'requests/?', { 
-      request_type: "Team_to_team",
-      equipo_id: this.state.equipo_id_2,
-      message: this.state.message
-      //equipo_local: this.statw.equipo_id,
+      request_type: "Equipo_to_equipo",
+      equipo_partido_id: this.state.equipo_id_2,
+      message: this.state.message,
+      equipo_id: parseInt(this.state.equipo_id),
       //deporte: this.state.partido,
-      //fecha: this.state.fecha,
-      //ubicacion: this.state.ubicacion
+      fecha_partido: this.state.fecha,
+      //ubicacion_partido: this.state.ubicacion
 	  })
 	  .then(res => {
+	    console.log("res",res)
 	    swal(
 				"Solicitud enviada correctamente",
 				"continue",
@@ -100,9 +101,9 @@ class SolicitudPartido extends Component {
 					<form className="form1" onSubmit={this.onSubmit}>
 					  <label htmlFor="local">Local</label>
 					  <select className="custom-select" 
-		          onChange={event => this.setState({equipo_id: event.target.value})}
+		          onChange={event => this.setState({equipo_id: parseInt(event.target.value)})}
 		          value={this.state.equipo_id}>
-		            <option disable selected>Selecciona tu equipo</option>
+		            <option value='0' selected disabled>>Selecciona tu equipo</option>
   					  {this.state.user_equipos.map(equipo =>
   					    <option value={equipo.id}>
   					      {equipo.nombre}
@@ -129,9 +130,9 @@ class SolicitudPartido extends Component {
             
             <label htmlFor="ub">Ubicación</label>
 					  <select className="custom-select" 
-		          onChange={event => this.setState({equipo_id: event.target.value})}
-		          value={this.state.equipo_id}>
-		            <option disable selected>Selecciona una ubicacion</option>
+		          onChange={event => this.setState({ubicacion: event.target.value})}
+		          value={this.state.ubicacion}>
+		            <option disabled selected>Selecciona una ubicacion</option>
   					  {this.state.canchas.map(cancha =>
   					    <option value={cancha.nombre}>
   					      {cancha.nombre}
