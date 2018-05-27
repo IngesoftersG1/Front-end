@@ -7,6 +7,7 @@ import Select from 'react-select';
 import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
+import 'react-select/dist/react-select.css';
 
 const divStyle = {
   color: 'black',
@@ -125,6 +126,7 @@ class CrearE extends Component{
 
 		const { deporte_id } = this.state;
   		const value =deporte_id.value;
+  		const deport = deporte_id.label;
 
 		return (
 
@@ -143,26 +145,19 @@ class CrearE extends Component{
 				        	required/>
 				        	<br/>
                   Deporte
-                	&nbsp;&nbsp;&nbsp;
-                	<select name='month' id='monthddl'>
-                	<option value='1'>futbol</option>
-                	<option value='2'>Voleibol</option>
-                	<option value='3'>Basketball</option>
-                	</select>
-
-                  {/*
-				    Día&nbsp;&nbsp;&nbsp;
-    			     <Select
-
-    					 name="form-field-name"
-    					 value={value}
-        				 onChange={this.handleChange}
-        				 options={[
-        				 { value: 1, label: 'futbol' },
-        				 { value: 2, label: 'basket' },
-    					 ]}
-    					/>
-            */}
+    				       &nbsp;&nbsp;&nbsp;
+        			     <Select
+        					 name="form-field-name"
+        					 placeholder= "seleccione el deporte"
+    		    			 value={value}
+        		    	 onChange={this.handleChange}
+        					 options={[
+        				   { value: 1, label: 'futbol' },
+        				   { value: 2, label: 'basket' },
+        				   { value: 3, label: 'voleibol' },
+    					     ]}
+    					     />
+            
 
 				        <br/>
 
