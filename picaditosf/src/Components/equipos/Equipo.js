@@ -134,17 +134,17 @@ export default class Equipo extends Component {
 	}
 	function accpPartido(fecha, local, visitante){
 		console.log("post",{fecha,local,visitante})
-		{/*
+		
 		axios.post(consts.SERVER_URL+'/partidos', { 
 			fecha: fecha,
 			equipo_local_id: local , 
       equipo_visitante_id: visitante,
 			jugado:false
-		})*/}
+		})
 	}
 	function delSolicitud(solicitud_id){
-		//axios.delete(consts.SERVER_URL+'requests/'+solicitud_id)
-		//window.location.reload()
+		axios.delete(consts.SERVER_URL+'requests/'+solicitud_id)
+		window.location.reload()
 	}
 	
 	 console.log("cap",capitan)
@@ -174,7 +174,7 @@ export default class Equipo extends Component {
 	    			</div>
 	    		<div className="col-md-6">
 	    			<button className="btn btn-success" onClick={function(event){ accpPartido(solicitud[0].fecha_partido, solicitud[0].equipo_id , capitan.cap.id); delSolicitud(solicitud[0].id)}}>Aceptar</button> 
-	    			<button className="btn btn-warning" onClick={() => delSolicitud(solicitud[1].id) 	} >Rechazar</button>
+	    			<button className="btn btn-warning" onClick={() => delSolicitud(solicitud[0].id) 	} >Rechazar</button>
 	    		</div>
 				</div>
 		)}
