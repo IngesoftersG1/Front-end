@@ -78,8 +78,12 @@ class CrearE extends Component{
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
+      params: new Headers({
+        'capitan_name': JSON.parse(sessionStorage.user).user_name
+      }),
       body: info
     });
+   
 
     return fetch(request).then(response => {
 
