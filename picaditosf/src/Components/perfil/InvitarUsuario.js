@@ -13,11 +13,12 @@ import swal from 'sweetalert2'
 
 
 
-export default class InscribirTorneo extends Component {
+export default class InvitarUsuario extends Component {
 	constructor(props){
     super(props);
 		this.state = {
-			torneo: [], isLoading: true, user:[], equipo: '', contenido: '', invalidPath: false
+			torneo: [], isLoading: true, user:[], equipo: '', contenido: '', invalidPath: false, 
+			userToInvite: [],
 		}
 		const { history } = this.props
 
@@ -27,36 +28,41 @@ export default class InscribirTorneo extends Component {
 
     componentDidMount() {
 			if(!!sessionStorage.jwt){
-     axios.get(consts.SERVER_URL+`users/1?`, {
-			params: {
-				user_name:JSON.parse(sessionStorage.user).user_name
-			}
-		})
-		.then(res => {
-    	const user = res.data;
-  		console.log('user',user)
-		  this.setState({ user });
-			setTimeout(() => this.setState({ isLoading: false }), 2000)
-
-			})
-			console.log(this.params)
-			axios.get(consts.SERVER_URL+`torneos/torneo_id/?id=`+this.props.match.params.id)
-      .then(res => {
-        const torneo = res.data;
-        console.log(torneo)
-				this.setState({ torneo });
-				setTimeout(() => this.setState({ isLoading: false }), 2000)
+                    axios.get(consts.SERVER_URL+`users/1?`, {
+        			params: {
+        				user_name:JSON.parse(sessionStorage.user).user_name
+        			}
+        		    })
+        		    .then(res => {
+            	    const user = res.data;
+          		    console.log('user',user)
+        		    this.setState({ user });
+        			setTimeout(() => this.setState({ isLoading: false }), 2000)
         
+        			})
+			
+			
+			console.log(this.params)
+			axios.get(consts.SERVER_URL+`users/1?`, {
+    			params: {
+					user_name: this.props.match.params.id
+				}
+			})
+    		.then(res => {
+        	const userToInvite = res.data;
+      		console.log(userToInvite)
+    		this.setState({ userToInvite  });
 
-      })
-			console.log(this.state.torneo.id)
+             })
+      
+		
 			}else{
 				this.setState({ invalidPath: true});
 			}
     }
 	equiposListComponents(equipo, torneo){
 	
-		if(equipo.equipo.capitan_name==JSON.parse(sessionStorage.user).user_name && equipo.torneo.deporte.id==equipo.equipo.deporte_id && equipo.torneo.deporte.min_jugadores <= equipo.equipo.numero_jugadores){
+		if(equipo.equipo.capitan_name==JSON.parse(sessionStorage.user).user_name ){
 			return <option value={equipo.equipo.id}>{equipo.equipo.nombre}</option>  
 		}else{
 		return null
@@ -68,8 +74,8 @@ export default class InscribirTorneo extends Component {
 		axios.post(consts.SERVER_URL+'requests/?', { 
 			
 			equipo_id: this.state.equipo,
-			torneo_id: this.state.torneo.id,
-			request_type: "Equipo_to_torneo",
+			user_id: this.state.userToInvite.user_name,
+			request_type: "Equipo_to_user",
 			message: this.state.contenido
 			 }).then(res => {
 				console.log(res);
@@ -104,7 +110,7 @@ export default class InscribirTorneo extends Component {
 		e.preventDefault();
 		swal({
 			title: '¿Seguro?',
-			text: 'El organizador del torneo recibira tu solicitud',
+			text: 'El jugador recibira tu solicitud',
 			type: 'warning',
 			showCancelButton: true,
 			confirmButtonText: 'Si',
@@ -140,7 +146,7 @@ export default class InscribirTorneo extends Component {
 		
 				<div className="cont_1">
 					
-					<h1>Inscribirse en {this.state.torneo.nombre}</h1>
+					<h1>Invitar a {this.state.userToInvite.user_name}</h1>
 					<form className="form1" onSubmit={this.onSubmit}>
 					<select value={this.state.equipo} onChange={this.handleChange.bind(this)} id="soflow">
 					<option value="" selected="selected">- selecciona un equipo-</option>
@@ -150,20 +156,19 @@ export default class InscribirTorneo extends Component {
 					</select>
 												<div>
                         <br/>
-                        <h4>Si en esta lista no aparecen equipos, <a href={`/createE`}>crea un equipo </a> añade jugadores a tu equipo </h4>
                         </div>
 
 						<label htmlFor="psw">Mensaje</label>
-						<textarea rows="3" placeholder="¿Le quieres decir algo al organizador?"
+						<textarea rows="3" placeholder="Motiva al jugador a unirse a tu equipo"
 							name="contenido"
 							type='text'
-		          onChange={event => this.setState({contenido: event.target.value})}
+		      onChange={event => this.setState({contenido: event.target.value})}
 		          
 							className="form-control"  />
                         <div>
                         <br/>
                         </div>
-						<button type="submit" className="btn btn-lg btn-primary btn-block">Inscribirse</button>
+						<button type="submit" className="btn btn-lg btn-primary btn-block">Invitar</button>
 					</form>
 				</div>
 			
@@ -171,5 +176,3 @@ export default class InscribirTorneo extends Component {
 		)
 	}
 }
-
-
