@@ -139,6 +139,7 @@ class CrearE extends Component{
     }
   	if (this.state.deporte_id === 1){
   	  label = this.state.deporte_id+' '+ "futbol";
+
   	  return(
 	    <div className="text-center">
 				<div className="cont_1">
@@ -405,6 +406,7 @@ class CrearE extends Component{
       
       
       
+
     }
     
 		return (
@@ -436,6 +438,7 @@ class CrearE extends Component{
         				   { value: 2, label: '2. basket' },
         				   { value: 3, label: '3. voleibol' },
     					     ]}
+
     					     />
 			            <br/>
 			            
@@ -455,6 +458,7 @@ class CrearE extends Component{
 						  <button className="btn btn-lg btn-success btn-block">Volver</button>
 						  </a>
 					  </div>
+
 				</div>
 			</div>
 		)
