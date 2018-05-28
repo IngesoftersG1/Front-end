@@ -56,7 +56,7 @@ loqs3ea(){
 	
 		swal(
 					"Calificacion recibida",
-					"ni idea",
+					"Gracias por su calificacion",
 					"success"
 					)
 	
@@ -109,14 +109,8 @@ loqs3ea(){
 
         </form></center>
 
-
-
-
-        
-				<this.buttonInvitar />
-
         <button onClick = {this.loqs3ea} className="btnstarts" >Calificar</button>
-
+		<this.buttonInvitar/>
           </div>
 
 

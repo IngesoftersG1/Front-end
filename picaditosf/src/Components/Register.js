@@ -6,6 +6,7 @@ import a from './Login'
 import swal from 'sweetalert2'
 import * as consts from '../consts'
 
+
 // The Roster component matches one of two different routes
 // depending on the full pathname
 class Register extends Component{
@@ -28,7 +29,6 @@ class Register extends Component{
 		console.log("json",info)
 
 		const request = new Request(consts.SERVER_URL+`users`, {
-
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -41,9 +41,8 @@ class Register extends Component{
     	console.log("response",response);
     	if(response.status==422){
     		console.log("validations from server error")
-    	}else if(response.status==200 ){
+    	}else if(response.status==200){
     		console.log("create user sucessfull")
-    	
     	}else{
     		console.log("Error inesperate")
     	}
@@ -51,7 +50,7 @@ class Register extends Component{
     })
 
     .catch(error => {
-    	return error;
+      return error;
     });
 	}
 
@@ -64,7 +63,7 @@ class Register extends Component{
     //todo api request
     this.createUser().then(res => {
 			console.log("respo",res)
-    	if (res.nombres ){
+    	if (res.nombres){
     		console.log("success ",res.user_name)
 				swal(
 					"Registrado correctamente",
@@ -85,10 +84,12 @@ class Register extends Component{
     		}
     		var msg = "No se pudo crear usuario " + rmail + ruser
     		swal(
-    			"No se pudo crear usuario ",
-    			rmail + ruser ,
-    			"warning"
-    			)
+					"Registrado correctamente",
+					"continue a login",
+					"success"
+					).then((value) => {
+						window.location.href='/login'
+				})
     	}
    })
 
@@ -137,11 +138,10 @@ class Register extends Component{
 		          value={this.state.apellidos}
 							className="form-control"
 							required/>
-
+{/*
 							<form id="form1" runat="server">
 							<br />Fecha de nacimiento
 	    <div>
-
 	Día&nbsp;&nbsp;&nbsp;
 	<select name='day' id='dayddl'>
 	<option value='1'>1</option>
@@ -175,7 +175,6 @@ class Register extends Component{
 	<option value='29'>29</option>
 	<option value='30'>30</option>
 	<option value='31'>31</option>
-
 	</select>
   &nbsp;&nbsp;&nbsp;
 	Mes
@@ -249,9 +248,10 @@ class Register extends Component{
  </div>
 </form>
 <br />
-
 <button type="button" onclick="myFunction()">Try it</button>
+*/}
 
+					  <label htmlFor="psw">Fecha de Nacimiento</label>		
 						<input placeholder="Enter birth"
 							name="firstname"
 							type='text'
