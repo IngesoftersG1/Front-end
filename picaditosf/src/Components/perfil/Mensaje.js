@@ -4,32 +4,16 @@ import { Link } from 'react-router-dom'
 import '../../styles/styles.css'
 import session from '../../Reducers/sessionReducer';
 import * as consts from '../../consts';
-
 import swal from 'sweetalert2'
+
+
+var today;
+
+
 //fecha , contenido , usuario_2_name ,user_id , asunto
 // The Roster component matches one of two different routes
 // depending on the full pathname
 
-function getfecha () {
-
-  	var today = new Date();
-		var dd = today.getDate();
-		var mm = today.getMonth()+1; //January is 0!
-		var yyyy = today.getFullYear();
-
-		if(dd<10) {
-    dd = '0'+dd
-		}
-
-		if(mm<10) {
-    mm = '0'+mm
-		}
-
-		today = mm + '/' + dd + '/' + yyyy;
-
-  	 this.setState({ fecha: 'today' });
-
-  }
 
 
 class Mensaje extends Component {
@@ -37,7 +21,7 @@ class Mensaje extends Component {
     super(props);
 
     this.state = {
-      fecha: '2018-04-04',
+      fecha: '',
       contenido: '',
       usuario_2_name: '',
       user_id: JSON.parse(sessionStorage.user).user_name,
@@ -46,7 +30,27 @@ class Mensaje extends Component {
     }
 
     this.onSubmit = this.onSubmit.bind(this);
-  }
+    
+		
+	}
+	
+	addd = () => {
+		today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1; //January is 0!
+		var yyyy = today.getFullYear();
+
+		if(dd<10) {
+    		dd = '0'+dd
+		}
+
+		if(mm<10) {
+			mm = '0'+mm
+		}
+		today = mm + '-' + dd + '-' + yyyy;
+		
+		this.setState({ fecha: today })
+	}
 
 
 	createMessage(){
@@ -54,25 +58,27 @@ class Mensaje extends Component {
 		const info = JSON.stringify(this.state)
 		console.log("json",info)
 		const request = new Request(consts.SERVER_URL+`mensajes`, {
-      method: 'POST',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      }),
-      body: info
-    });
+    		method: 'POST',
+    		headers: new Headers({
+        		'Content-Type': 'application/json'
+    		}),
+    			body: info
+    		});
 
-    return fetch(request).then(response => {
+    	return fetch(request).then(response => {
     	console.log("response",response);
-      return response.json();
-    })
+	    return response.json();
+    	})
 
-    .catch(error => {
-      return error;
-    });
+    	.catch(error => {
+    		return error;
+    	});
 	}
 
   onSubmit(e){
 	e.preventDefault();
+	this.addd()
+	
     this.createMessage().then(res => {
     	console.log(res)
     	if (res.status==500){
@@ -90,8 +96,11 @@ class Mensaje extends Component {
    })
 
     //
+    
     console.log(this.state)
   }
+  
+  
 
 	render() {
 		return (

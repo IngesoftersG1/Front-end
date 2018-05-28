@@ -7,11 +7,17 @@ import Select from 'react-select';
 import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
+import 'react-select/dist/react-select.css';
+
 
 const divStyle = {
   color: 'black',
 
 }
+
+
+
+
 
 // The Roster component matches one of two different routes
 // depending on the full pathname
@@ -24,7 +30,7 @@ class CrearE extends Component{
       calificacion:'',
       created_at: null,
       updated_at: null,
-      deporte_id: '3',
+      deporte_id: 'ingrese el deporte',
       capitan_name: "Malphite",
       users:
         {
@@ -67,13 +73,19 @@ class CrearE extends Component{
 	createUser(){
 		const info = JSON.stringify(this.state)
 		console.log("json",info)
-		const request = new Request(`http://localhost:3001/equipos`, {
+
+		const request = new Request(consts.SERVER_URL+`equipos`, {
+
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'
       }),
+      params: new Headers({
+        'capitan_name': JSON.parse(sessionStorage.user).user_name
+      }),
       body: info
     });
+   
 
     return fetch(request).then(response => {
 
@@ -116,16 +128,293 @@ class CrearE extends Component{
   }
 
   handleChange = (deporte_id) => {
-    this.setState({deporte_id: deporte_id.value});
-    console.log(`Selected: ${deporte_id.label}`);
+    this.setState({deporte_id: deporte_id.value})
+    console.log(this.state.deporte_id);
   }
+  
+
+  
 
 
 	render() {
-
+    var label = this.state.deporte_id;
 		const { deporte_id } = this.state;
-  		const value =deporte_id.value;
+  	const value =deporte_id.value;
+  	if (this.state.deporte_id === '0'){
+  	  label = this.state.deporte_id;
+    }
+  	if (this.state.deporte_id === 1){
+  	  label = this.state.deporte_id+' '+ "futbol";
 
+  	  return(
+	    <div className="text-center">
+				<div className="cont_1">
+
+					<h1>Crear Equipo</h1>
+					<form className="form1" onSubmit={this.onSubmit}>
+				    <label htmlFor="psw">Nombre del Equipo</label>
+						<input placeholder="Enter name"
+							nombre="nombre"
+							type='text'
+		                onChange={event => this.setState({nombre: event.target.value})}
+		                value={this.state.nombre}
+							className="form-control"
+				        	required/>
+				        	<br/>
+                  Deporte
+    				       &nbsp;&nbsp;&nbsp;
+        			     <Select
+        					 name="form-field-name"
+        					 clearable
+        					 placeholder= {label}
+        					 value="funciona??"
+        					 onChange={this.handleChange}
+        					 options={[
+        				   { value: 1, label: '1. futbol' },
+        				   { value: 2, label: '2. basket' },
+        				   { value: 3, label: '3. voleibol' },
+    					     ]}
+    					     />
+			            <br/>
+			      
+				    <label htmlFor="psw">¿ya tienes miembros? invitalos!</label>
+				      <input placeholder="Enter username jugador 1"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 2</label>
+				      <input placeholder="Enter username jugador 2"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 3</label>
+				      <input placeholder="Enter username jugador 3"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 4</label>
+				      <input placeholder="Enter username jugador 4"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 5</label>
+				      <input placeholder="Enter username jugador 5"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			            
+			            
+					  <div className="checkbox mb-3">
+       	 	    <label>
+       		    <input type="checkbox" value="true"/>Acepto terminos y condiciones
+       	 	    </label>
+	     	  	</div>
+			  		<button type="submit" className="btn btn-lg btn-success btn-block">Crear Equipo</button>
+		  			  <br/>
+	  				</form>
+  					<div>
+						  <a href='/equipos'>
+						  <button className="btn btn-lg btn-success btn-block">Volver</button>
+						  </a>
+					  </div>
+				</div>
+			</div>  	    
+  	    )
+  	  
+  	  
+  	  
+  	  
+    }
+    if (this.state.deporte_id === 2){
+  	  label = this.state.deporte_id+' '+ "basket";
+  	  return(
+	    <div className="text-center">
+				<div className="cont_1">
+
+					<h1>Crear Equipo</h1>
+					<form className="form1" onSubmit={this.onSubmit}>
+				    <label htmlFor="psw">Nombre del Equipo</label>
+						<input placeholder="Enter name"
+							nombre="nombre"
+							type='text'
+		                onChange={event => this.setState({nombre: event.target.value})}
+		                value={this.state.nombre}
+							className="form-control"
+				        	required/>
+				        	<br/>
+                  Deporte
+    				       &nbsp;&nbsp;&nbsp;
+        			     <Select
+        					 name="form-field-name"
+        					 clearable
+        					 placeholder= {label}
+        					 value="funciona??"
+        					 onChange={this.handleChange}
+        					 options={[
+        				   { value: 1, label: '1. futbol' },
+        				   { value: 2, label: '2. basket' },
+        				   { value: 3, label: '3. voleibol' },
+    					     ]}
+    					     />
+			            <br/>
+			      
+				    <label htmlFor="psw">¿ya tienes miembros? invitalos!</label>
+				      <input placeholder="Enter username jugador 1"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 2</label>
+				      <input placeholder="Enter username jugador 2"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 3</label>
+				      <input placeholder="Enter username jugador 3"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 4</label>
+				      <input placeholder="Enter username jugador 4"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 5</label>
+				      <input placeholder="Enter username jugador 5"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			            
+			            
+					  <div className="checkbox mb-3">
+       	 	    <label>
+       		    <input type="checkbox" value="true"/>Acepto terminos y condiciones
+       	 	    </label>
+	     	  	</div>
+			  		<button type="submit" className="btn btn-lg btn-success btn-block">Crear Equipo</button>
+		  			  <br/>
+	  				</form>
+  					<div>
+						  <a href='/equipos'>
+						  <button className="btn btn-lg btn-success btn-block">Volver</button>
+						  </a>
+					  </div>
+				</div>
+			</div>  	    
+  	    )    
+      
+      
+      
+    }
+    
+    
+    
+    if (this.state.deporte_id === 3){
+  	  label = this.state.deporte_id+' '+ "voleibol";
+  	  return(
+	    <div className="text-center">
+				<div className="cont_1">
+
+					<h1>Crear Equipo</h1>
+					<form className="form1" onSubmit={this.onSubmit}>
+				    <label htmlFor="psw">Nombre del Equipo</label>
+						<input placeholder="Enter name"
+							nombre="nombre"
+							type='text'
+		                onChange={event => this.setState({nombre: event.target.value})}
+		                value={this.state.nombre}
+							className="form-control"
+				        	required/>
+				        	<br/>
+                  Deporte
+    				       &nbsp;&nbsp;&nbsp;
+        			     <Select
+        					 name="form-field-name"
+        					 clearable
+        					 placeholder= {label}
+        					 value="funciona??"
+        					 onChange={this.handleChange}
+        					 options={[
+        				   { value: 1, label: '1. futbol' },
+        				   { value: 2, label: '2. basket' },
+        				   { value: 3, label: '3. voleibol' },
+    					     ]}
+    					     />
+			            <br/>
+			      
+				    <label htmlFor="psw">¿ya tienes miembros? invitalos!</label>
+				      <input placeholder="Enter username jugador 1"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 2</label>
+				      <input placeholder="Enter username jugador 2"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 3</label>
+				      <input placeholder="Enter username jugador 3"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 4</label>
+				      <input placeholder="Enter username jugador 4"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 5</label>
+				      <input placeholder="Enter username jugador 5"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />
+			      <label htmlFor="psw">jugador 6</label>
+				      <input placeholder="Enter username jugador 6"
+							nombre="nombre"
+							type='text'
+		          className="form-control"
+				    />			            
+			            
+					  <div className="checkbox mb-3">
+       	 	    <label>
+       		    <input type="checkbox" value="true"/>Acepto terminos y condiciones
+       	 	    </label>
+	     	  	</div>
+			  		<button type="submit" className="btn btn-lg btn-success btn-block">Crear Equipo</button>
+		  			  <br/>
+	  				</form>
+  					<div>
+						  <a href='/equipos'>
+						  <button className="btn btn-lg btn-success btn-block">Volver</button>
+						  </a>
+					  </div>
+				</div>
+			</div>  	    
+  	    )    
+      
+      
+      
+      
+      
+      
+      
+      
+
+    }
+    
 		return (
 
 			<div className="text-center">
@@ -143,43 +432,39 @@ class CrearE extends Component{
 				        	required/>
 				        	<br/>
                   Deporte
-                	&nbsp;&nbsp;&nbsp;
-                	<select name='month' id='monthddl'>
-                	<option value='1'>futbol</option>
-                	<option value='2'>Voleibol</option>
-                	<option value='3'>Basketball</option>
-                	</select>
+    				       &nbsp;&nbsp;&nbsp;
+        			     <Select
+        					 name="form-field-name"
+        					 clearable
+        					 placeholder= {label}
+        					 value="funciona??"
+        					 onChange={this.handleChange}
+        					 options={[
+        				   { value: 1, label: '1. futbol' },
+        				   { value: 2, label: '2. basket' },
+        				   { value: 3, label: '3. voleibol' },
+    					     ]}
 
-                  {/*
-				    Día&nbsp;&nbsp;&nbsp;
-    			     <Select
+    					     />
+			            <br/>
+			            
+			            
+			            
+			            
+					  <div className="checkbox mb-3">
+       	 	    <label>
+       		    <input type="checkbox" value="true"/>Acepto terminos y condiciones
+       	 	    </label>
+	     	  	</div>
+			  		<button type="submit" className="btn btn-lg btn-success btn-block">Crear Equipo</button>
+		  			  <br/>
+	  				</form>
+  					<div>
+						  <a href='/equipos'>
+						  <button className="btn btn-lg btn-success btn-block">Volver</button>
+						  </a>
+					  </div>
 
-    					 name="form-field-name"
-    					 value={value}
-        				 onChange={this.handleChange}
-        				 options={[
-        				 { value: 1, label: 'futbol' },
-        				 { value: 2, label: 'basket' },
-    					 ]}
-    					/>
-            */}
-
-				        <br/>
-
-					<div className="checkbox mb-3">
-		       	 	<label>
-		         		<input type="checkbox" value="true"/>Acepto terminos y condiciones
-		       	 	</label>
-		     		</div>
-						<button type="submit" className="btn btn-lg btn-success btn-block">Crear Equipo</button>
-						<br/>
-					</form>
-
-					<div>
-						<a href='/equipos'>
-						<button className="btn btn-lg btn-success btn-block">Volver</button>
-						</a>
-					</div>
 				</div>
 			</div>
 		)

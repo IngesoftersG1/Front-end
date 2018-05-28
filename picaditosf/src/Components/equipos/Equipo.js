@@ -6,63 +6,69 @@ import MyPdfViewer from '../PDF/pdfview'
 import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
+import swal from 'sweetalert2'
 
 /**/
 import SolicitudPartido from './SolicitudPartido';
 /**/
 export default class Equipo extends Component {
 
-  constructor(props,context) {
-    super(props,context);
-  }
-
-  state = {
-    equipos: [], isLoading: true, users:[]
-  }
+  constructor(props){
+    super(props);
+		this.state = {
+      equipos: [], isLoading: true
+		}
+    
+		this.divSolicitud = this.divSolicitud.bind(this);
+		
+	}
 
   componentDidMount() {
-		console.log("props",this.props)
+
           axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+this.props.match.params.id
 			)
     		.then(res => {
-        	const equipos = [res];
+        	const equipos = res.data;
         	console.log(equipos)
-        	const usuarios = equipos[0].data.users
-        	console.log(usuarios)
-    		this.setState({equipos});
-        	this.setState({ isLoading: false });	
+
+					this.setState({equipos});
+					setTimeout(() => this.setState({ isLoading: false }), 1000);
+
       })
   }
-
-	sendSolicitud(e){
-		e.preventDefault();
-		{/*axios.post(consts.SERVER_URL+'/request', { })
-	  .then(function(response){
-	    console.log('saved successfully')
-	  }); */}
-	  return null
-	}
+	descPartido(partido){
 	
-	aceptSolicitud(e){
-		e.preventDefault();
-		{/*axios.post(consts.SERVER_URL+'/request', { })
-	  .then(function(response){
-	    console.log('saved successfully')
-	  }); */}
-	  return null
-	}
-	
-	denSolicitud(e){
-		e.preventDefault();
-		{/*axios.delete(url, { params: requestData })
-			.then(function(response) {
-			console.log(response.data));
-			})
-			.catch(function(error) {
-			console.log(error);
-			}); */}
-	  return null
-	}
+		if(partido.partido[0].torneo_id==null){
+			return <h6>Partido amistoso</h6>
+			}else{
+				
+				return <h6>Partido del torneo <a href={`/torneo/${partido.partido[0].torneo_id}`}>{partido.partido[3].nombre}</a></h6>
+			}
+		
+		}	
+			 
+		
+	btnPartido(partido){
+		
+		if(!!sessionStorage.jwt){
+		if((JSON.parse(sessionStorage.user).user_name==partido.partido[1].capitan_name || JSON.parse(sessionStorage.user).user_name==partido.partido[2].capitan_name )){
+			
+			if(partido.partido[0].jugado || partido.partido[0].torneo_id!=null){
+					return <button className="btn btn-info prf-btn">Ver partido</button>
+					}
+				if(!partido.partido[0].pending && !partido.partido[0].jugado){
+						return <button className="btn btn-info prf-btn">Jugar partido</button>
+					}	
+				if(partido.partido[0].pending){
+				return <button className="btn btn-info prf-btn">Confirmar marcador</button>
+				}	
+		}else{
+			return <button className="btn btn-info prf-btn">Ver partido</button>
+		}
+		}else{
+			return <button className="btn btn-info prf-btn">Ver partido</button>
+		}	 
+		}
       
  btnsAplicar(eusers){
 	console.log(eusers)
@@ -70,12 +76,31 @@ export default class Equipo extends Component {
 	let exist = false
 	function sendSolicitud(equipo_id){
 		console.log(equipo_id)
-		axios.post(consts.SERVER_URL+'requests/?', { 
-			user_id: JSON.parse(sessionStorage.user).user_name,
-			equipo_id: equipo_id,
-			request_type: "User_to_equipo"
-	
-		   }) 
+		swal({
+			title: '¿Seguro?',
+			text: 'El cápitan del otro equipo recibira tu solicitud',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Si',
+			cancelButtonText: 'No'
+		  }).then((result) => {
+			if (result.value) {
+			  swal(
+				'¡Solicitud enviada!',
+				'',
+				'success'
+			  )
+			  
+			axios.post(consts.SERVER_URL+'requests/?', { 
+				user_id: JSON.parse(sessionStorage.user).user_name,
+				equipo_id: equipo_id,
+				request_type: "User_to_equipo"
+		
+			   }) 
+			} 
+			
+		  })
+		
 	   
 	}
  	console.log('aplusers',userarr)
@@ -109,6 +134,24 @@ export default class Equipo extends Component {
   }
  	return null
  }
+ liPartido(capitan){
+	if(!sessionStorage.jwt){
+		return	<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
+	}
+
+ 	console.log('cap',capitan)
+ 	if(capitan.cap.capitan_name == JSON.parse(sessionStorage.user).user_name){
+		if(capitan.cap.partidos_pending>0){
+		return	<li className="tablink"><a data-toggle="tab" href="#par">Partidos <span style={{'font-weight':'bold','color':'white','background-color':'red','border-radius':'50%',padding:'2px 6px 2px 6px'}}>
+		{capitan.cap.partidos_pending}</span></a></li>}
+		else{
+			return	<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
+		}
+	 }else{
+			return	<li className="tablink"><a data-toggle="tab" href="#par">Partidos</a></li>
+	 }
+	}
+
  
  liSolicitud(capitan){
 	if(!!sessionStorage.jwt){
@@ -125,7 +168,11 @@ export default class Equipo extends Component {
  	return null
  }
  
+
+
+ 
  divSolicitud(capitan){
+
 	function accpSolicitud(user_id, equipo_id){
 		axios.post(consts.SERVER_URL+'equipos_users/?', { 
 			user_id: user_id,
@@ -148,20 +195,36 @@ export default class Equipo extends Component {
 	}
 	
 	 console.log("cap",capitan)
+
 	 
+	}	
+	 console.log(capitan)
+	 let equipos=(this.state.equipos)
  	if(!!sessionStorage.jwt){
  	if(capitan.cap.capitan_name == JSON.parse(sessionStorage.user).user_name){
 		return 	<div id="sol" className="tab-pane fade">
 
+/* branch */
 		<h3>Solicitud de jugador</h3>
 		{ capitan.cap.solicitudes_usuario.map(solicitud =>
 				<div className="row align-items-start">
 					<div className="col-md-6">
 						<h4>{solicitud.user_id} quiere unirse a tu equipo</h4>
 	    			</div>
+/* development
+		<h3>Equipos</h3>
+		{ capitan.cap.solicitudes_equipo.map(solicitud =>
+		
+				
+				<div className="row align-items-start">
+					<div className="col-md-6">
+					<h4> <a href={`/equipo/${solicitud[1].id}`}>{solicitud[1].nombre} </a>	quiere jugar contigo</h4>
+						<h6>{solicitud[0].message}</h6>
+	    		</div>
+*/
 	    		<div className="col-md-6">
-	    			<button className="btn btn-success" onClick={function(event){ accpSolicitud(solicitud.user_id, capitan.cap.id); delSolicitud(solicitud.id)}}>Aceptar</button> 
-	    			<button className="btn btn-warning" onClick={() => delSolicitud(solicitud.id) 	} >Rechazar</button> 
+	    			<button className="btn btn-success" style={{marginRight:10}} onClick={function(event){ accpPartido(solicitud, equipos, solicitud[0].id)}}>Aceptar</button> 
+	    			<button className="btn btn-warning" onClick={() => delSolicitud(solicitud[0].id)}>Rechazar</button> 
 	    		</div>
 				</div>
 		)}
@@ -178,6 +241,25 @@ export default class Equipo extends Component {
 	    		</div>
 				</div>
 		)}
+		<h3>Usuarios</h3>
+		{ capitan.cap.solicitudes_usuario.map(solicitud =>
+		
+				
+		<div className="row align-items-start">
+			<div className="col-md-6">
+			<h4> <a href={`/usuario/${solicitud.user_id}`}>{solicitud.user_id} </a>	quiere unirse a tu equipo</h4>
+			<h6>{solicitud.message}</h6>
+
+				
+			</div>
+			<div className="col-md-6">
+				<button className="btn btn-success"  style={{marginRight:10}} onClick={function(event){ accpSolicitud(solicitud.user_id, capitan.cap.id, solicitud.id)}}>Aceptar</button> 
+				<button className="btn btn-warning" onClick={() => this.delSolicitud(solicitud.id) 	} >Rechazar</button> 
+			</div>
+		</div>
+		
+	
+		)}
 		</div>
 	 }
 	}
@@ -193,11 +275,13 @@ export default class Equipo extends Component {
         </div>); // render the loading component
     }
 
-
+		console.log(this.state)
   	return (
 
-
+				
     <div>
+
+{/* branch */}
     	{ this.state.equipos.map(equipo =>
 		<div>
 		<div className="cont_2">
@@ -237,13 +321,58 @@ export default class Equipo extends Component {
 			  </ul>
 
 		  	<div className="tab-content">
+{/* Development
+    	
+				<div className="cont_2">
+		<div className="container">
+		  <div className="row align-items-start">
+		  	<div className="col-md-2">
+		  		<img src={require('../../imagenes/ball-fire.jpg')} className="img-responsive profile-img"/>
+		  	</div>
+		  	<div className="col-md-10">
+
+			  	<div className="row">
+			  		<h1>{this.state.equipos.nombre}</h1>
+			  		<div className="prf-btns">
+				  		
+				  		<this.btnsAplicar eusers={this.state.equipos}/>
+				  		
+				  	</div>
+			  	</div>
+			  	<div className="row">
+			  		<div className="row align-items-start">
+						<div className="col-md-8">
+		  					<h4>
+		  					{this.state.equipos.deporte.nombre}
+		  	    			</h4>
+		  	    		</div>
+		  	    	</div>
+			  	</div>
+
+
+		  	</div>
+		 	</div>
+	  </div>
+		<div className="container">
+		  <ul className="nav nav-tabs">
+		    <li className="active tablink"><a data-toggle="tab" href="#info">Informacion</a></li>
+		    <li className="tablink"><a data-toggle="tab" href="#jug">Jugadores</a></li>
+		    <li className="tablink"><a data-toggle="tab" href="#tor">Torneos</a></li>
+			<this.liPartido cap = {this.state.equipos} />
+			<this.liSolicitud cap = {this.state.equipos} />
+		  </ul>
+
+		  <div className="tab-content">
+
+*/}
 		    	<div id="info" className="tab-pane active">
 		    		 <h3>Información</h3>
-		    		 <h3>Nombre capitan: {equipo.data.capitan_name}</h3>
+		    		 <h3>Nombre capitan: {this.state.equipos.capitan_name}</h3>
 		    	</div>
 
 		    	<div id="jug" className="tab-pane fade">
 		    		<h3>Jugadores</h3>
+{/*branch*/}
 		    		{ this.state.equipos[0].data.users.map(user =>
 						<div className="container">
 						<div className="row align-items-start">
@@ -251,6 +380,18 @@ export default class Equipo extends Component {
 		  					<h4>{user.user_name}</h4>
 		  	    	</div>
 		  	    	<div className="col-md-2">
+{/*development
+		    		{ this.state.equipos.users.map(user =>
+
+					<div className="container">
+					<div className="row align-items-start">
+						<div className="col-md-8">
+		  					<h4>
+		  					{user.user_name}
+		  	    			</h4>
+		  	    		</div>
+		  	    		<div className="col-md-2">
+*/}
 						  	<Link to={`/usuario/${user.user_name}`}>
 		  		  				<button className="btn btn-info prf-btn">Ver Usuario</button>
 								</Link>
@@ -262,7 +403,12 @@ export default class Equipo extends Component {
 		    
 		    <div id="tor" className="tab-pane fade">
 					<h3> Torneos </h3>
+{/*branch*/}
 					{ this.state.equipos[0].data.torneos.map(torneo =>
+{/* development
+					{ this.state.equipos.torneos.map(torneo =>
+
+*}
 					<div className="container">
 					<div className="row align-items-start">
 						<div className="col-md-8">
@@ -279,17 +425,20 @@ export default class Equipo extends Component {
 				</div>
 				
 				<div id="par" className="tab-pane fade">
-					{ this.state.equipos[0].data.partidos.map(partido =>
+					{ this.state.equipos.partidos.map(partido =>
 					<div className="container">
 					<div className="row align-items-start">
 						<div className="col-md-6">
-		  				<h4>
-		  					 {partido[1].nombre} Vs {partido[2].nombre}
-		  	   		</h4>
-		  	    </div>
+
+		  					<h4>
+								<a href={`/equipo/${partido[1].id}`}>{partido[1].nombre} </a> Vs <a href={`/equipo/${partido[2].id}`}>{partido[2].nombre} </a>
+		  	    			</h4>
+		  	    		</div>
+
 						<div className="col-md-2">
 		  				<h3>
 		  					 {partido[0].marcador_local} - {partido[0].marcador_visitante}
+{/*branch*/}
 		    			</h3>
 		  	 		</div>
 		     		<div className="col-md-2">
@@ -301,13 +450,33 @@ export default class Equipo extends Component {
 		  		</div>
 					 )}
 				</div>
+{/*development
+		  	    			</h3>
+									<this.descPartido partido = {partido}/>	
+		  	    		</div>
+		  	    		<div className="col-md-2">
+								<Link to={`/partido/${partido[0].id}`}>
+		  		  		<this.btnPartido partido = {partido}/>
+								</Link>
+
+		  	    		</div>
+		  	    	</div>
+
+		  		</div>
+					 )}
+				</div>
+				<this.divSolicitud cap = {this.state.equipos}/>
+				</div>
+*/}
 				
 				<this.divSolicitud cap = {equipo.data}/>
 			</div>
 		</div>
+{/**/}
 		</div>
 		</div>
 	)}
+
 	</div>
 
 
