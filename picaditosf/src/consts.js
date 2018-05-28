@@ -1,1 +1,1 @@
-export const SERVER_URL = "https://expo-back-garayf.c9users.io/"
+export const SERVER_URL = "http://localhost:3001"
