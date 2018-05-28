@@ -199,9 +199,6 @@ export default class Torneo extends Component {
 
 <div>
 
-
-
-
   <div className="cont_2">
   <div className="container">
     <div className="row align-items-start">
@@ -237,6 +234,8 @@ export default class Torneo extends Component {
       </div>
      </div>
   </div>
+  </div>
+  <div className="cont_2w">
   <div className="container">
     <ul className="nav nav-tabs">
       <li className="active tablink"><a data-toggle="tab" href="#info">Informacion</a></li> 
@@ -310,20 +309,8 @@ export default class Torneo extends Component {
 
   </div>
 </div>
-		
-
-
-
-
-
-
-
-
 
 	</div>
-
-
-
-    )
-  }
+)}
+  
 }

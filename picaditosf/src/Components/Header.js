@@ -61,7 +61,7 @@ class Header extends Component {
     console.log('sinleerparam',sinleer.sinleer)
     if (sinleer.sinleer>0){
 
-      return <span style={{'font-weight':'bold','color':'white','background-color':'red','border-radius':'50%',padding:'2px 6px 2px 6px'}}>
+      return <span id="msg_span">
               {sinleer.sinleer}</span>
     }
     return null
@@ -101,9 +101,11 @@ class Header extends Component {
                 </li>
               </ul>
               <form className="form-inline mt-2 mt-md-0">
+
               <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" onChange={event => this.setState({busqueda: event.target.value})}/>
                    <a href={"/busqueda/" + this.state.busqueda} className="btn">
                   <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/magnifyingglass-256.png" width="30"/>
+
                 </a>
                 <Link onClick={this.logout} className="nav-link" to="/">
                   <button className="btn btn-danger">Cerrar sesión</button></Link>
@@ -187,9 +189,11 @@ class Header extends Component {
                 </li>
               </ul>
               <form className="form-inline mt-2 mt-md-0">
+
               <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" onChange={event => this.setState({busqueda: event.target.value})}/>
                    <a href={"/busqueda/" + this.state.busqueda} className="btn">
                   <img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/magnifyingglass-256.png" width="30"/>
+
                 </a>
                 <Link onClick={this.logout} className="nav-link" to="/">
                   <button className="btn btn-danger">Cerrar sesión</button></Link>

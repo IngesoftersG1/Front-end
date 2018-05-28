@@ -181,7 +181,7 @@ export default class Perfil extends Component {
     		return null
     	}else {
     		return   <div class="alert alert-danger">
-						<strong>Tu cuanta no esta verificada!</strong> Por favor ingresa a tu correo
+						<strong>Tu cuenta no esta verificada!</strong> Por favor ingresa a tu correo
 					</div>
     	}
     }
@@ -196,8 +196,8 @@ export default class Perfil extends Component {
 
     return (
     <div>
-		{ this.state.user.map(user =>
-
+{ this.state.user.map(user =>
+	<div>
 	<div className="cont_2">
 		<div className="container">
 			<this.showConfirm conf={user.confirmed} />
@@ -213,11 +213,12 @@ export default class Perfil extends Component {
 			  		<h1>{user.nombres}</h1>
 						<div className="prf-btns">
 				  		<Link to='/editperfil'>
-				  			<button className="btn btn-info prf-btn">Editar Perfil</button>
+				  			<button className="btn btn-info prf-btn">
+				  			<img src="" />Editar Perfil</button>
 				  		</Link>
 
 				  		<Link to='/Configuracion'>
-				  			<button className="btn btn-warning prf-btn">Configuración</button>
+				  			<img src="https://cdn3.iconfinder.com/data/icons/fatcow/32/cog.png"  />
 				  		</Link>
 						</div>
 			  	</div>
@@ -228,6 +229,8 @@ export default class Perfil extends Component {
 		  	</div>
 		 	</div>
 	  </div>
+	</div>
+	<div className="cont_2w">
 		<div className="container">
 		  <ul className="nav nav-tabs">
 		    <li className="active tablink"><a data-toggle="tab" href="#perfil">Perfil</a></li>
@@ -319,11 +322,9 @@ export default class Perfil extends Component {
 
 		</div>
 	</div>
+	</div>
 		)}
 	</div>
-
-
-
     )
   }
 
