@@ -73,7 +73,7 @@ class CrearE extends Component{
 	createUser(){
 		const info = JSON.stringify(this.state)
 		console.log("json",info)
-		const request = new Request(`http://localhost:3001/equipos`, {
+		const request = new Request(consts.SERVER_URL+`equipos`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json'

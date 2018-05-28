@@ -9,19 +9,17 @@ import * as consts from '../../consts';
 
 
 export default class Usuario extends Component {
-  state = {
-    usuario: [], isLoading: true, calificacion: '2',
-  }
-  storeEquipoName(name){
-  	sessionStorage.setItem('check_equipo', name);
-	}
-	storeTorneoName(name){
-  	sessionStorage.setItem('check_torneo', name);
-  }
-  storeUserName(name){
-  	sessionStorage.setItem('check_user', name);
-  }
+  	constructor(props){
+    super(props);
+		this.state = {
+			user: [], isLoading: true, calificacion: '2',
+		}
+		
 
+    this.buttonInvitar = this.buttonInvitar.bind(this);
+	}
+  
+ 
   componentDidMount() {
           setTimeout(() => this.setState({ isLoading: false }), 500);
           axios.get(consts.SERVER_URL+`users/1?`, {
@@ -37,7 +35,20 @@ export default class Usuario extends Component {
       })
       }
 
-
+	buttonInvitar(){
+		if(!!sessionStorage.jwt){
+		if(JSON.parse(sessionStorage.user)!=this.props.match.params.id){
+			return  <Link to={`/invitar/${this.props.match.params.id}`}>
+        <button className="btn btn-info prf-btn" >Invitar a equipo</button>
+        </Link>
+		}else{
+			return null
+		}
+			
+		}else{
+			return null
+		}
+	}
 
 
  render() {
@@ -89,7 +100,7 @@ export default class Usuario extends Component {
 
 
         <button onClick = {this.o} className="btnstarts">Calificar</button>
-
+				<this.buttonInvitar />
           </div>
 
 

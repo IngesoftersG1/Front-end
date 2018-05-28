@@ -27,6 +27,7 @@ import Login from './Login'
 import Canchas from './canchas/Canchas'
 
 import Perfil from './perfil/Perfil'
+import InvitarUsuario from './perfil/InvitarUsuario'
 import Configuracion from './perfil/Configuracion'
 import Edit from './perfil/Edit'
 
@@ -80,6 +81,8 @@ const Main = () => (
       )}/>
 
       <Route exact path='/inscribir/:id' component={InscribirTorneo}/>
+      
+      <Route exact path='/invitar/:id' component={InvitarUsuario}/>
 
       <Route path='/canchas' component={Canchas}/>
 
