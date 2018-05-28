@@ -7,11 +7,17 @@ import Select from 'react-select';
 import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
+import 'react-select/dist/react-select.css';
+
 
 const divStyle = {
   color: 'black',
 
 }
+
+
+
+
 
 // The Roster component matches one of two different routes
 // depending on the full pathname
@@ -24,7 +30,7 @@ class CrearE extends Component{
       calificacion:'',
       created_at: null,
       updated_at: null,
-      deporte_id: '3',
+      deporte_id: 'ingrese el deporte',
       capitan_name: "Malphite",
       users:
         {
@@ -116,16 +122,31 @@ class CrearE extends Component{
   }
 
   handleChange = (deporte_id) => {
-    this.setState({deporte_id: deporte_id.value});
-    console.log(`Selected: ${deporte_id.label}`);
+    this.setState({deporte_id: deporte_id.value})
+    console.log(this.state.deporte_id);
   }
+  
+
+  
 
 
 	render() {
-
+    var label = this.state.deporte_id;
 		const { deporte_id } = this.state;
-  		const value =deporte_id.value;
-
+  	const value =deporte_id.value;
+  	if (this.state.deporte_id === '0'){
+  	  label = this.state.deporte_id;
+    }
+  	if (this.state.deporte_id === 1){
+  	  label = this.state.deporte_id+' '+ "futbol";
+    }
+    if (this.state.deporte_id === 2){
+  	  label = this.state.deporte_id+' '+ "basket";
+    }
+    if (this.state.deporte_id === 3){
+  	  label = this.state.deporte_id+' '+ "voleibol";
+    }
+    
 		return (
 
 			<div className="text-center">
@@ -143,26 +164,21 @@ class CrearE extends Component{
 				        	required/>
 				        	<br/>
                   Deporte
-                	&nbsp;&nbsp;&nbsp;
-                	<select name='month' id='monthddl'>
-                	<option value='1'>futbol</option>
-                	<option value='2'>Voleibol</option>
-                	<option value='3'>Basketball</option>
-                	</select>
+    				       &nbsp;&nbsp;&nbsp;
+        			     <Select
+        					 name="form-field-name"
+        					 clearable
+        					 placeholder= {label}
+        					 value="funciona??"
+        					 onChange={this.handleChange}
+        					 options={[
+        				   { value: 1, label: '1. futbol' },
+        				   { value: 2, label: '2. basket' },
+        				   { value: 3, label: '3. voleibol' },
+    					     ]}
 
-                  {/*
-				    Día&nbsp;&nbsp;&nbsp;
-    			     <Select
-
-    					 name="form-field-name"
-    					 value={value}
-        				 onChange={this.handleChange}
-        				 options={[
-        				 { value: 1, label: 'futbol' },
-        				 { value: 2, label: 'basket' },
-    					 ]}
-    					/>
-            */}
+    					     />
+            
 
 				        <br/>
 
