@@ -6,7 +6,7 @@ import MyPdfViewer from '../PDF/pdfview'
 import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
-
+import swal from 'sweetalert2'
 
 export default class Usuario extends Component {
   state = {
@@ -38,7 +38,15 @@ export default class Usuario extends Component {
       }
 
 
-
+loqs3ea(){
+	
+		swal(
+					"Calificacion recibida",
+					"ni idea",
+					"success"
+					)
+	
+}
 
  render() {
     if(this.state.isLoading){
@@ -88,7 +96,7 @@ export default class Usuario extends Component {
 
 
 
-        <button onClick = {this.o} className="btnstarts">Calificar</button>
+        <button onClick = {this.loqs3ea} className="btnstarts" >Calificar</button>
 
           </div>
 
