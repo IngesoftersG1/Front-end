@@ -21,6 +21,7 @@ export default class Torneo extends Component {
     this.btnsAplicar = this.btnsAplicar.bind(this);
     this.btnsComenzar = this.btnsComenzar.bind(this);
     this.empezarTorneo = this.empezarTorneo.bind(this);
+    this.liSolicitud = this.liSolicitud.bind(this);
 	}
  
   
@@ -70,8 +71,8 @@ export default class Torneo extends Component {
     			      <select className="custom-select" 
   		          onChange={event => this.setState({tipotorneo:event.target.value})}
   		          value={this.state.tipotorneo}>
-  		            <option value='Todos contra todos' selected>Liga</option>
-  		            <option value='0'disabled >Próximamenta más</option>
+  		            <option value='Todos contra todos' selected>Liga (Todos contra todos)</option>
+  		            <option value='0'disabled >Próximamente más</option>
     			      </select>
     			      <div class="form-check">
                   <input class="form-check-input" type="checkbox" value= {this.state.chckvuelta} 
@@ -83,7 +84,7 @@ export default class Torneo extends Component {
               </div>
   			      <div className="modal-footer">
   			        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-  			        <button type="button" className="btn btn-primary"  onClick={() => this.empezarTorneo(this.state.tipotorneo, torneo.torneo.id,this.state.chckvuelta)}>Save changes</button>
+  			        <button type="button" className="btn btn-primary"  onClick={() => this.empezarTorneo(this.state.tipotorneo, torneo.torneo.id,this.state.chckvuelta)}>Empezar Torneo</button>
   			      </div>
   			    </div>
   			  </div>
@@ -97,25 +98,44 @@ export default class Torneo extends Component {
 
    empezarTorneo(tipo,torneo,vuelta){
     /*Aqui va el algoritmo magico que Perdomo va a diseñar*/
-    /*  axios.post(consts.SERVER_URL+'/torneos/empezar', { 
-			  id: torneo ,
-			  ida_vuelta: vuelta ,
-				})
-    */
-    console.log("empezart", {tipo,torneo,vuelta})
-    swal(
+    swal({
+			title: '¿Seguro?',
+			text: 'Esta acción no se puede deshacer',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonText: 'Si',
+			cancelButtonText: 'No'
+			}).then((result) => {
+			if (result.value) {
+			  swal(
+			  'El torneo ha comenzado',
+			  '¡A jugar!',
+			  'success'
+			  ).then((value) => {
+          window.location.reload()
+          })
+			  axios.post(consts.SERVER_URL+'torneos/empezar', { 
+          id: torneo ,
+          ida_vuelta: vuelta ,
+          })
+			} 
+			})  
+    
+    
+    
+   /* swal(
       'Magia',
       'Proximamente este boton generará todos los partidos del torneo',
       'success'
       ).then((value) => {
 			  //window.location.reload()
-			  })
+			  })*/
    }
    liSolicitud(organizador){
     console.log('cap',organizador)
     if(!!sessionStorage.jwt){
      
-     if(organizador.organizador.organizador_name == JSON.parse(sessionStorage.user).user_name){
+     if(organizador.organizador.organizador_name == JSON.parse(sessionStorage.user).user_name && !(this.state.torneo.comenzado)){
       if(organizador.organizador.solicitudes_pendientes>0){
       return	<li className="tablink"><a data-toggle="tab" href="#sol">Solicitudes <span style={{'font-weight':'bold','color':'white','background-color':'red','border-radius':'50%',padding:'2px 6px 2px 6px'}}>
       {organizador.organizador.solicitudes_pendientes}</span></a></li>}
@@ -140,7 +160,7 @@ export default class Torneo extends Component {
         if (result.value) {
           swal(
           'Aceptado',
-          'El jugador ha sido añadido a tu equipo',
+          'El equipo ha sido inscrito en tu torneo',
           'success'
           ).then((value) => {
           window.location.reload()

@@ -35,8 +35,7 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state)
-    console.log(this.props)
+   
 
     this.props.actions.loginUser(this.state);
    // window.location.reload();
