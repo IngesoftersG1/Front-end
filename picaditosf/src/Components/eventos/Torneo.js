@@ -14,7 +14,7 @@ export default class Torneo extends Component {
   constructor(props){
     super(props);
 		this.state = {
-      torneo: [], isLoading: true
+      torneo: [], isLoading: true, chckvuelta:false, tipotorneo: ""
 		}
     
     this.btnPartido = this.btnPartido.bind(this);
@@ -55,20 +55,61 @@ export default class Torneo extends Component {
     if(torneo.torneo.organizador_name==JSON.parse(sessionStorage.user).user_name && !torneo.torneo.comenzado){
     
       return <div>
-        <button className="btn btn-info prf-btn" onClick={() => this.empezarTorneo()}>Comenzar torneo</button>
+        <button className="btn btn-info prf-btn" data-toggle="modal" data-target="#Modal">Comenzar torneo</button>
+        <div className="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  			  <div className="modal-dialog" role="document">
+  			    <div className="modal-content">
+  			      <div class="modal-header">
+                <h5 class="modal-title">Empezar torneo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+  			      <div className="modal-body">
+    			      <label>Tipo de torneo</label>
+    			      <select className="custom-select" 
+  		          onChange={event => this.setState({tipotorneo:event.target.value})}
+  		          value={this.state.tipotorneo}>
+  		            <option value='Todos contra todos' selected>Liga</option>
+  		            <option value='0'disabled >Próximamenta más</option>
+    			      </select>
+    			      <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value= {this.state.chckvuelta} 
+                  onChange={() => { this.setState({ chckvuelta: !this.state.chckvuelta})}} id="defaultCheck1"/>
+                  <label class="form-check-label" for="defaultCheck1">
+                    Ida y vuelta
+                  </label>
+                </div>
+              </div>
+  			      <div className="modal-footer">
+  			        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+  			        <button type="button" className="btn btn-primary"  onClick={() => this.empezarTorneo(this.state.tipotorneo, torneo.torneo.id,this.state.chckvuelta)}>Save changes</button>
+  			      </div>
+  			    </div>
+  			  </div>
+  			</div>
+       
         </div>
     }
   }
      return null
    }
 
-   empezarTorneo(){
+   empezarTorneo(tipo,torneo,vuelta){
     /*Aqui va el algoritmo magico que Perdomo va a diseñar*/
+    /*  axios.post(consts.SERVER_URL+'/torneos/empezar', { 
+			  id: torneo ,
+			  ida_vuelta: vuelta ,
+				})
+    */
+    console.log("empezart", {tipo,torneo,vuelta})
     swal(
       'Magia',
       'Proximamente este boton generará todos los partidos del torneo',
       'success'
-      )
+      ).then((value) => {
+			  //window.location.reload()
+			  })
    }
    liSolicitud(organizador){
     console.log('cap',organizador)
