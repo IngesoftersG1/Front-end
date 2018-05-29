@@ -22,6 +22,8 @@ export default class Torneo extends Component {
     this.btnsComenzar = this.btnsComenzar.bind(this);
     this.empezarTorneo = this.empezarTorneo.bind(this);
     this.liSolicitud = this.liSolicitud.bind(this);
+    this.buttonBan = this.buttonBan.bind(this);
+    this.delEquipo = this.delEquipo.bind(this);
 	}
  
   
@@ -37,6 +39,26 @@ export default class Torneo extends Component {
       })
   }
 
+  delEquipo(equipo_id){
+      console.log(equipo_id)
+    axios.post(consts.SERVER_URL+'equipos_torneos/borrar/', { 
+			
+      equipo_id: equipo_id.equipo,
+      torneo_id: this.state.torneo.id
+			
+			 });
+  }
+
+  buttonBan(equipo){
+    
+    if(!!sessionStorage.jwt){  
+      
+      if(this.state.torneo.organizador_name==JSON.parse(sessionStorage.user).user_name){
+        return <button className="btn btn-danger prf-btn" onClick={() => this.delEquipo(equipo)}>Eliminar equipo</button>
+      }
+    }
+    return null
+  }
   btnsAplicar(torneo){
     console.log(torneo)
     if(!!sessionStorage.jwt){  
@@ -324,17 +346,17 @@ export default class Torneo extends Component {
 
         <div className="container">
         <div className="row align-items-start">
-          <div className="col-md-8">
+          <div className="col-md-6">
               <h4>
               {equipo.nombre}
                 </h4>
               </div>
-              <div className="col-md-2">
-
+              <div className="col-md-4">
+              
               <Link to={`/equipo/${equipo.id}`}>
                 <button className="btn btn-info prf-btn">Ver Equipo</button>
-
-                  </Link>
+              </Link>
+              <this.buttonBan equipo={equipo.id}/>
               </div>
             </div>
 
