@@ -86,7 +86,7 @@ class Login extends Component {
     sessionStorage.setItem('user',JSON.stringify(user));
     swal(
 			"Ha ingresado correctamente",
-			"continue",
+			"¡Bienvenido!",
 			"success"
 			).then((value) => {
 				window.location.reload()

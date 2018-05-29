@@ -379,7 +379,7 @@ SITE
 }
 
 .tablon{
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(245, 245, 245, 0.8);
 	max-width: 1200px;
 	min-width: 	400px;
 	padding: 40px;
@@ -387,6 +387,15 @@ SITE
 	margin-top: 100px;
 }
 
+.tablon a, h4, h5{
+  color: #343a40;
+}
+
+.tablon h1, h2 , h3{
+  color: black;
+  font-weight: 700
+  
+}
 .scrollable{
   max-height:450px;
   overflow-y: scroll;

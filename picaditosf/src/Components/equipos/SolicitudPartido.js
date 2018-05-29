@@ -19,7 +19,7 @@ class SolicitudPartido extends Component {
       user_id: JSON.parse(sessionStorage.user).user_name,
       user_equipos: [],
       equipo_id : 0,
-      equipo_id_2: 0,
+      equipo_2: [],
       message:'',
       deporte: '',
       canchas: [],
@@ -27,11 +27,23 @@ class SolicitudPartido extends Component {
       isLoading: true
     }
 
-    this.onSubmit = this.onSubmit.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
+		this.equiposListComponents = this.equiposListComponents.bind(this);
   }
   componentDidMount() {
     this.setState({equipo_id_2:this.props.equipo_id_param})
-    axios.get(consts.SERVER_URL+`users/1?`, {
+		
+		axios.get(consts.SERVER_URL+`equipos/equipo_id/?id=`+this.props.equipo_id_param
+	)
+		.then(res => {
+			const equipo_2 = res.data;
+			
+			console.log(equipo_2)
+			this.setState({equipo_2});
+			this.setState({ isLoading: false });	
+	})
+
+		axios.get(consts.SERVER_URL+`users/1?`, {
 			params: {
 				user_name:JSON.parse(sessionStorage.user).user_name
 			}
@@ -87,7 +99,18 @@ class SolicitudPartido extends Component {
     console.log("statesol",this.state)
     //window.location.reload()
   }
-
+	equiposListComponents(equipo){
+	
+		
+		console.log(equipo)
+		console.log(this.state.equipo_2)
+		if(equipo.equipo.capitan_name==JSON.parse(sessionStorage.user).user_name && equipo.equipo.deporte_id==this.state.equipo_2.deporte_id){
+			return <option value={equipo.equipo.id}>{equipo.equipo.nombre}</option>  
+		}else{
+		return null
+		}
+	
+	}
 	render() {
 	 if(this.state.isLoading){
     return (<div>
@@ -104,11 +127,10 @@ class SolicitudPartido extends Component {
 		          onChange={event => this.setState({equipo_id: parseInt(event.target.value)})}
 		          value={this.state.equipo_id}>
 		            <option value='0' selected disabled>>Selecciona tu equipo</option>
-  					  {this.state.user_equipos.map(equipo =>
-  					    <option value={equipo.id}>
-  					      {equipo.nombre}
-  					    </option>
-  					  )}
+								{ this.state.user_equipos.map(equipo =>
+							<this.equiposListComponents equipo={equipo}/>
+							)}
+  					  
             </select>
 
 						<label htmlFor="fecha">Fecha </label>

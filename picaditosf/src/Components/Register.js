@@ -17,7 +17,7 @@ class Register extends Component{
       nombres: '',
       apellidos: '',
       email:'',
-      fecha_nacimiento:'',
+      fecha_nacimiento:'YYYY-MM-DD',
       password: '',
       password_confirmation: ''
     }
@@ -35,18 +35,20 @@ class Register extends Component{
       }),
       body: info
     });
-
+		
     return fetch(request).then(response => {
 
     	console.log("response",response);
     	if(response.status==422){
-    		console.log("validations from server error")
-    	}else if(response.status==200){
-    		console.log("create user sucessfull")
+				console.log("validations from server error")
+				
+    	}else if(response.status==200||response.status==404){
+				console.log("create user sucessfull")
+				return true
     	}else{
     		console.log("Error inesperate")
     	}
-      return response.json();
+      return false;
     })
 
     .catch(error => {
@@ -63,7 +65,7 @@ class Register extends Component{
     //todo api request
     this.createUser().then(res => {
 			console.log("respo",res)
-    	if (res.nombres){
+    	if (res){
     		console.log("success ",res.user_name)
 				swal(
 					"Registrado correctamente",
@@ -74,27 +76,16 @@ class Register extends Component{
 				})
     		//window.location.href='/login'
     	}else{
-    		console.log("responseresp",res)
-    		var rmail , ruser
-    		if (res.email){
-    			rmail= " email " + res.email
-    		}
-    		if (res.user_name){
-    			ruser=", user_name " + res.user_name
-    		}
-    		var msg = "No se pudo crear usuario " + rmail + ruser
     		swal(
-					"Registrado correctamente",
-					"continue a login",
-					"success"
-					).then((value) => {
-						window.location.href='/login'
-				})
+					"Datos invalidos",
+					"intente de nuevo",
+					"error"
+				)
+    		
     	}
    })
 
-    //
-    console.log(this.state)
+   
   }
 
 	render() {

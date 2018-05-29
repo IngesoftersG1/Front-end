@@ -414,6 +414,7 @@ export default class Partido extends Component {
     <div >
       
     <div className="tablon row" >
+        
          <div className="col-md-4 text-center">
             <h3>{this.state.partido.info_equipos[0].nombre}</h3>
             <ul className="text-center nav nav-tabs">
@@ -506,7 +507,7 @@ export default class Partido extends Component {
     </div>
       
 	 </div>
-
+ 
 
 
     )
