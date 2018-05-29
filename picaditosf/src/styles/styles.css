@@ -17,8 +17,9 @@ a:hover {
   /* Set the fixed height of the footer here */
   height: 50px;
   line-height: 50px; /* Vertically center the text there */
-  background-color:  rgba(0, 0, 0, 0);
+  background-color:  rgba(0, 0, 0, 0.2);
   color: white;
+  z-index: -10;
 }
 
 /*
@@ -580,3 +581,9 @@ select#soflow, select#soflow-color {
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }*/
+
+.backimg {
+  z-index: 10;
+  margin-top: -50px;
+  margin-left:  2%;
+}
