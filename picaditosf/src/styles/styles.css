@@ -470,7 +470,7 @@ SITE
 
 
 .Footerfont{
-	background-color: rgba(0, 0, 0, 1);
+	/*background-color: rgba(0, 0, 0, 1);*/
 	width:100%;
 	padding: 5;
 	height:40px;

@@ -63,9 +63,11 @@ class Login extends Component {
 
   responseGoogle = (googleUser) => {
     console.log("id", googleUser );
+  /* 
     var id_token = googleUser.getAuthResponse().id_token;
-    //var googleId = googleUser.getId();
     var datauser = googleUser.getBasicProfile();
+ 
+    //var googleId = googleUser.getId();
     //console.log("datagoogl",response)
     var user = {
           user_name: datauser.getGivenName(),
@@ -90,6 +92,7 @@ class Login extends Component {
 			).then((value) => {
 				window.location.reload()
 		})
+		*/
   }
 
 
