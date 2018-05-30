@@ -13,6 +13,7 @@ import Infousuario from './Info-usuario'
 import Example from './Loading/logo'
 import Bandeja from './perfil/Bandeja'
 import Eventos from './eventos/Eventos'
+import InscribirTorneo from './eventos/InscribirTorneo'
 
 import Misequipos from './perfil/Mis_equipos'
 import Miseventos from './perfil/Mis_equipos'
@@ -26,6 +27,7 @@ import Login from './Login'
 import Canchas from './canchas/Canchas'
 
 import Perfil from './perfil/Perfil'
+import InvitarUsuario from './perfil/InvitarUsuario'
 import Configuracion from './perfil/Configuracion'
 import Edit from './perfil/Edit'
 
@@ -59,7 +61,7 @@ const Main = () => (
  <main>
     <Switch>
 
-      <Route path='/busqueda' component={Busqueda}/>
+      <Route path='/busqueda/:busq*' component={Busqueda}/>
 
       <Route exact path='/geteventlist' component={geteventlist}/>
       <Route exact path='/' render={()=>(
@@ -77,6 +79,10 @@ const Main = () => (
       <Route exact path='/createEv' render={()=>(
           !!sessionStorage.jwt ? (<CrearEv />):(<Redirect to='/perfil' />)
       )}/>
+
+      <Route exact path='/inscribir/:id' component={InscribirTorneo}/>
+      
+      <Route exact path='/invitar/:id' component={InvitarUsuario}/>
 
       <Route path='/canchas' component={Canchas}/>
 
@@ -164,6 +170,8 @@ const Main = () => (
       <Route path='/L' />
 
       <Route exact path='/Lostpass' component={Lostpass}/>
+      
+      <Route path='/configuracion' component={Configuracion}/>
       <Route exact path='/token' />
       <Route path='/confirmateuser@tokennumbers/:user_name' component={Confirmation}/>
 

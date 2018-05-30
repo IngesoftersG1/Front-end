@@ -4,6 +4,7 @@ import * as consts from '../consts'
 import session from '../Reducers/sessionReducer';
 import swal from 'sweetalert2';
 
+
 class Uploadfile extends React.Component {
 
 	constructor(props) {

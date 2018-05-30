@@ -35,8 +35,7 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state)
-    console.log(this.props)
+   
 
     this.props.actions.loginUser(this.state);
    // window.location.reload();
@@ -64,9 +63,11 @@ class Login extends Component {
 
   responseGoogle = (googleUser) => {
     console.log("id", googleUser );
+  /* 
     var id_token = googleUser.getAuthResponse().id_token;
-    //var googleId = googleUser.getId();
     var datauser = googleUser.getBasicProfile();
+ 
+    //var googleId = googleUser.getId();
     //console.log("datagoogl",response)
     var user = {
           user_name: datauser.getGivenName(),
@@ -86,11 +87,12 @@ class Login extends Component {
     sessionStorage.setItem('user',JSON.stringify(user));
     swal(
 			"Ha ingresado correctamente",
-			"continue",
+			"¡Bienvenido!",
 			"success"
 			).then((value) => {
 				window.location.reload()
 		})
+		*/
   }
 
 
@@ -131,18 +133,18 @@ class Login extends Component {
           </div>
           <button type="submit"
             disabled={!this.validateForm()}
-            className="btn btn-lg btn-success btn-block">Iniciar sesion
+            className="btn btn-lg btn-block">Iniciar sesion
           </button>
 
-          <p>o</p>
-
+          <p></p>
+          
           <GoogleLogin clientId="506449915249-mpnernms8pplsn9m3m1mnlsgvphj3km9.apps.googleusercontent.com"
                      className="btn btn-lg btn-block btn-google"
                      onSuccess={this.responseGoogle}
                      onFailure={this.responseGoogle}>
-            <span> Iniciar sesion con Google + </span>
+            <span><img src="http://reeoo.qiniudn.com/Google-icon.png!icon512" style={{'border-radius':'50%'}} width="30"/>
+               {' Ingresar con Google +'}</span>
           </GoogleLogin>
-
         </form>
       </div>
     );

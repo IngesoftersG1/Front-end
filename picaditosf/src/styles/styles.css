@@ -17,8 +17,9 @@ a:hover {
   /* Set the fixed height of the footer here */
   height: 50px;
   line-height: 50px; /* Vertically center the text there */
-  background-color:  rgba(0, 0, 0, 0);
+  background-color:  rgba(0, 0, 0, 0.2);
   color: white;
+  z-index: -10;
 }
 
 /*
@@ -27,13 +28,23 @@ LANDING STYLES
 
 h1{
 	color: white;
-	font-weight: bold;
-	margin-bottom: 30px;
+	font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 10px;
 }
 
-h4,h3,h5 {
+h2 {
   color:white;
 }
+
+h3, h4{
+  color: lightgray;
+}
+
+h5, h6{
+  color: gray;
+}
+
 
 .stars{
   color:white;
@@ -61,13 +72,13 @@ h4,h3,h5 {
 }
 
 .lead{
-  font-weight: bolder;
+  /*font-weight: bolder;*/
 }
 
 .nav-link{
-  font-weight: bolder;
+  /*font-weight: bolder;
   font-size: 20px;
-  margin-right: 40px;
+  margin-right: 40px;*/
 }
 
 #head1:hover{
@@ -258,6 +269,7 @@ LOGIN STTYLES
 	margin-top: 80px;
 	margin-bottom: 30px;
 	color: #EBEBEB;
+	
 }
 
 .cont_1 p {
@@ -349,15 +361,37 @@ LOGIN
 SITE
 */
 .cont_2{
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(33, 33, 33, 0.9);
 	max-width: 800px;
 	min-width: 	400px;
 	padding: 40px;
 	margin: auto;
-	margin-top: 100px;
+	margin-top: 80px;
+	border-radius: 3px 3px 0px 0px;
 }
+.cont_2w{
+  background-color: rgba(245, 245, 245, 0.8);
+	max-width: 800px;
+	min-width: 	400px;
+	padding: 10px 40px 40px 40px;
+	margin: auto;
+	border-radius: 0px 0px 5px 5px;
+}
+.cont_2 h4{
+  color: lightgray!important;
+}
+.cont_2w a, h4, h5{
+  color: #343a40;
+}
+
+.cont_2w h1, h2 , h3{
+  color: black;
+  font-weight: 700
+  
+}
+
 .tablon{
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(245, 245, 245, 0.8);
 	max-width: 1200px;
 	min-width: 	400px;
 	padding: 40px;
@@ -365,6 +399,15 @@ SITE
 	margin-top: 100px;
 }
 
+.tablon a, h4, h5{
+  color: #343a40;
+}
+
+.tablon h1, h2 , h3{
+  color: black;
+  font-weight: 700
+  
+}
 .scrollable{
   max-height:450px;
   overflow-y: scroll;
@@ -372,6 +415,16 @@ SITE
   padding: 0.8em;
 }
 
+#msg_span {
+  font-weight: bold;
+  color: white;
+  background-color: red;
+  border-radius: 49%;
+  padding: 1px 4px;
+  font-size: 11px;
+  top: -8px;
+  position: relative;
+}
 /* features */
 .cont_3{
 	padding: 30px;
@@ -428,7 +481,7 @@ SITE
 
 
 .Footerfont{
-	background-color: rgba(0, 0, 0, 1);
+	/*background-color: rgba(0, 0, 0, 1);*/
 	width:100%;
 	padding: 5;
 	height:40px;
@@ -463,8 +516,8 @@ SITE
 
 fieldset, label { margin: 0; padding: 0; }
 body{ margin: 20px; }
-h1 { font-size: 1.5em; margin: 10px; }
-
+/*h1 { font-size: 1.5em; margin: 10px; }
+*/
 /****** Style Star Rating Widget *****/
 
 .rating {
@@ -505,7 +558,29 @@ h1 { font-size: 1.5em; margin: 10px; }
 #ligth_font{
   font-weight: 100;
 }
+
+select#soflow, select#soflow-color {
+  -webkit-appearance: button;
+  -webkit-border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  -webkit-padding-end: 20px;
+  -webkit-padding-start: 2px;
+  -webkit-user-select: none;
+  background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+  background-position: 97% center;
+  background-repeat: no-repeat;
+  border: 1px solid #AAA;
+  color: #555;
+  font-size: inherit;
+  margin: 0px;
+  overflow: hidden;
+  padding: 5px 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
 /*--SCROLLBAR--*/
+
 
 /* width
 ::-webkit-scrollbar {
@@ -523,3 +598,9 @@ h1 { font-size: 1.5em; margin: 10px; }
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }*/
+
+.backimg {
+  z-index: 10;
+  margin-top: -50px;
+  margin-left:  2%;
+}

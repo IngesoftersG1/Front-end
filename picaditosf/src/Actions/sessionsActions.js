@@ -31,7 +31,7 @@ export function loginUser(credentials) {
         dispatch(loginSuccess()); 
         swal(
     			"Ha ingresado correctamente",
-    			"continue",
+    			"¡Bienvenido!",
     			"success"
     			).then((value) => {
     				window.location.reload()

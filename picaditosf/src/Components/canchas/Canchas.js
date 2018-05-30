@@ -8,35 +8,17 @@ import '../../styles/styles.css'
 
 export default class Canchas extends Component {
   state = {
-    eventos: [], isLoading: true
+    eventos: [], 
+    max_distance: 1000,
+    max_price: 50000,
+    min_cal: 1,
+    isLoading: true
   }
-  /*
+  
   componentDidMount() {
-    setTimeout(() => 
-      this.endLoading()
-      , 2000);
-    axios.get(`http://localhost:3001/canchas`)
-
-      .then(res => {
-        const eventos = res.data;
-
-        this.setState({ eventos });
-
-        setTimeout(() => this.setState({ isLoading: false }), 2000);
-
-
-      })
     
   }
   
-/*   
-  initMap() {
-    let map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8
-    });
-  }
-    */
   test = event => {    
     event.preventDefault();  
     //window.location.reload()
@@ -53,8 +35,41 @@ export default class Canchas extends Component {
     <div>    
       <div className="cont_2">    
     	  <h1>Canchas</h1>
+    	  <div className="row" style={{padding: '30px',color:'white'}}> 
+    	    <div className="col-md-4">
+    				<label htmlFor="dist">Distancia máxima</label>
+    				<input placeholder="Kilómetros"
+              type='number'
+              onChange={event => this.setState({max_distance: event.target.value})}
+              value={this.state.max_distance}
+    					className="form-control"
+    					/>
+  				</div>
+  				<div className="col-md-4">
+    				<label htmlFor="price">Precio máximo</label>
+    				<input placeholder="Pesos"
+              type='number'
+              onChange={event => this.setState({max_price: event.target.value})}
+              value={this.state.max_price}
+    					className="form-control"
+    					/>
+    			</div>
+    			<div className="col-md-4">
+    				<label htmlFor="price">Calificaion minima</label>
+    				<input placeholder=" de 1 a 5 estrellas"
+              type='number'
+              onChange={event => this.setState({min_cal: event.target.value})}
+              value={this.state.min_cal}
+    					className="form-control"
+    					/>
+    			</div>
+  			</div>
+    	  
         <div className="mapg">
-          <MapContainer />
+          <MapContainer 
+            dist={this.state.max_distance} 
+            price={this.state.max_price}
+            cal={this.state.min_cal}/>
         </div>
         
         <div className="" align="center" style={{width:'85%','max-width':'720px','z-index':'1000',position:'absolute'}} >
@@ -63,11 +78,7 @@ export default class Canchas extends Component {
               <b>Solicitar agregar cancha</b></button>
           </Link>
   		  </div>
-        
-        
-      
-    	 {/* <Link to='/'><button>Inicio</button></Link>	
-    	  <Link to='/BuscarPartido'><button>Buscar partido</button></Link> */} 			  	
+        		  	
     	</div>	
     </div>   
 

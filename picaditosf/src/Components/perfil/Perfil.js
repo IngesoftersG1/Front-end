@@ -6,7 +6,7 @@ import MyPdfViewer from '../PDF/pdfview'
 import session from '../../Reducers/sessionReducer';
 import axios from 'axios';
 import * as consts from '../../consts';
-
+import swal from 'sweetalert2'
 const defaultimage = require('../../imagenes/perfil.jpg')
 
 export default class Perfil extends Component {
@@ -67,6 +67,124 @@ export default class Perfil extends Component {
       })
  
     }
+     liSolicitud(usuario){
+   
+     
+     
+      if(usuario.usuario.solicitudes_pendientes>0){
+      return	<li className="tablink"><a data-toggle="tab" href="#sol">Solicitudes <span style={{'font-weight':'bold','color':'white','background-color':'red','border-radius':'50%',padding:'2px 6px 2px 6px'}}>
+      {usuario.usuario.solicitudes_pendientes}</span></a></li>}
+      else{
+        return	<li className="tablink"><a data-toggle="tab" href="#sol">Solicitudes</a></li>
+      }
+     
+    
+     return null
+   }
+   
+   
+    divSolicitud(usuario){
+    	console.log(usuario)
+    function accpSolicitud(equipo_id, usuario_id, solicitud_id){
+      swal({
+        title: '¿Seguro?',
+        text: 'Esta accion no se puede deshacer',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No'
+        }).then((result) => {
+        if (result.value) {
+          swal(
+          'Aceptado',
+          'Ahora vistes la camiseta del equipo',
+          'success'
+          ).then((value) => {
+          window.location.reload()
+          })
+          axios.post(consts.SERVER_URL+'equipos_users/?', { 
+          	user_id: usuario_id,
+			equipo_id: equipo_id,
+              
+        })
+          axios.delete(consts.SERVER_URL+'requests/'+solicitud_id);
+        } 
+        })
+        
+            
+      
+     }
+  
+  
+     function delSolicitud(solicitud_id){
+       console.log(solicitud_id)
+      swal({
+        title: '¿Seguro?',
+        text: 'Esta accion no se puede deshacer',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No'
+        }).then((result) => {
+        if (result.value) {
+          swal(
+          'Denegado',
+          'La solicitud has sido rechazada',
+          'error'
+          ).then((value) => {
+          window.location.reload()
+        })
+          
+          axios.delete(consts.SERVER_URL+'requests/'+solicitud_id)
+        } 
+        
+        })
+      
+     }
+    
+     
+     
+     
+      return 	<div id="sol" className="tab-pane fade">
+      <h3>Solicitudes</h3>
+      {usuario.usuario.solicitudes.map(solicitud =>
+      
+          
+          <div className="row align-items-start">
+            <div className="col-md-6">
+              <h4> <a href={`/equipo/${solicitud[1].id}`}>{solicitud[1].nombre} </a> quiere que unas a sus filas</h4>
+              <h5>{solicitud[0].message}</h5>
+            </div>
+            <div className="col-md-6">
+              <button className="btn btn-success"  style={{marginRight:10}} onClick={function(event){ accpSolicitud(solicitud[0].equipo_id, usuario.usuario.user_name, solicitud[0].id)}}>Aceptar</button> 
+              <button className="btn btn-warning" onClick={() => delSolicitud(solicitud[0].id) 	} >Rechazar</button> 
+            </div>
+          </div>
+          
+        
+      )}
+      </div>
+     
+    
+     return null
+   }
+   
+   
+   
+   
+   
+    
+    
+    showConfirm(conf){
+    	console.log("conf?",conf)
+    	if (conf.conf){
+    		return null
+    	}else {
+    		return   <div class="alert alert-danger">
+						<strong>Tu cuenta no esta verificada!</strong> Por favor ingresa a tu correo
+					</div>
+    	}
+    }
 
  render() {
     if(this.state.isLoading){
@@ -78,10 +196,12 @@ export default class Perfil extends Component {
 
     return (
     <div>
-		{ this.state.user.map(user =>
-
+{ this.state.user.map(user =>
+	<div>
 	<div className="cont_2">
 		<div className="container">
+			<this.showConfirm conf={user.confirmed} />
+
 		  <div className="row align-items-start">
 		  	<div className="col-md-2">
 		  		<img src={this.state.imgprf} className="img-responsive profile-img"/>
@@ -93,11 +213,12 @@ export default class Perfil extends Component {
 			  		<h1>{user.nombres}</h1>
 						<div className="prf-btns">
 				  		<Link to='/editperfil'>
-				  			<button className="btn btn-info prf-btn">Editar Perfil</button>
+				  			<button className="btn btn-info prf-btn">
+				  			<img src="" />Editar Perfil</button>
 				  		</Link>
 
 				  		<Link to='/Configuracion'>
-				  			<button className="btn btn-warning prf-btn">Configuración</button>
+				  			<img src="https://cdn3.iconfinder.com/data/icons/fatcow/32/cog.png"  />
 				  		</Link>
 						</div>
 			  	</div>
@@ -108,13 +229,17 @@ export default class Perfil extends Component {
 		  	</div>
 		 	</div>
 	  </div>
+	</div>
+	<div className="cont_2w">
 		<div className="container">
 		  <ul className="nav nav-tabs">
 		    <li className="active tablink"><a data-toggle="tab" href="#perfil">Perfil</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#info">Información</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#estat">Estadisticas</a></li>
 		    <li className="tablink"><a data-toggle="tab" href="#equip">Mis Equipos</a></li>
-				<li className="tablink"><a data-toggle="tab" href="#tor">Mis Torneos</a></li>
+			<li className="tablink"><a data-toggle="tab" href="#tor">Mis Torneos</a></li>
+			<this.liSolicitud usuario = {user} />
+			
 		  </ul>
 
 		  <div className="tab-content">
@@ -188,17 +313,18 @@ export default class Perfil extends Component {
 			</div>
 			)}
 			</div>
+		  
+		  
+		 <this.divSolicitud usuario = {user}/>
 
 
 		  </div>
 
 		</div>
 	</div>
+	</div>
 		)}
 	</div>
-
-
-
     )
   }
 
