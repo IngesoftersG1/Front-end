@@ -7,6 +7,7 @@ import BubbleChart from '@weknow/react-bubble-chart-d3';
 import session from '../../Reducers/sessionReducer';
 import * as consts from '../../consts';
 import { ResponsivePie } from '@nivo/pie'
+import { ResponsiveStream } from '@nivo/stream'
 
 export default class Stats extends React.Component {
 
@@ -182,7 +183,148 @@ export default class Stats extends React.Component {
         motionDamping={15}
 
       />
-      
+      </ div>
+
+      <div className="admin">
+      <h1 className="title-stats"> Estadísticas a lo largo del tiempo </h1>
+      <ResponsiveStream
+       data={[
+  {
+    "Usuarios": 1,
+    "Equipos": 1,
+    "Torneos": 2,
+    "Canchas": 10,
+    "Partidos Totales": 6
+  },
+  {
+    "Usuarios": 8,
+    "Equipos": 2,
+    "Torneos": 2,
+    "Canchas": 10,
+    "Partidos Totales": 8
+  },
+  {
+    "Usuarios": 15,
+    "Equipos": 4,
+    "Torneos": 3,
+    "Canchas": 12,
+    "Partidos Totales": 10
+  },
+  {
+    "Usuarios": 30,
+    "Equipos": 8,
+    "Torneos": 6,
+    "Canchas": 14,
+    "Partidos Totales": 15
+  },
+  {
+    "Usuarios": 50,
+    "Equipos": 12,
+    "Torneos": 8,
+    "Canchas": 16,
+    "Partidos Totales": 18
+  },
+  {
+    "Usuarios": 105,
+    "Equipos": 18,
+    "Torneos": 12,
+    "Canchas": 18,
+    "Partidos Totales": 28
+  },
+  {
+    "Usuarios": 120,
+    "Equipos": 22,
+    "Torneos": 16,
+    "Canchas": 18,
+    "Partidos Totales": 34
+  },
+  {
+    "Usuarios": 160,
+    "Equipos": 28,
+    "Torneos": 17,
+    "Canchas": 20,
+    "Partidos Totales": 38
+  },
+  {
+    "Usuarios": 192,
+    "Equipos": 38,
+    "Torneos": 17,
+    "Canchas": 21,
+    "Partidos Totales": 49
+  },
+  {
+    "Usuarios": 204,
+    "Equipos": 43,
+    "Torneos": 20,
+    "Canchas": 24,
+    "Partidos Totales": 52
+  },
+  {
+    "Usuarios": 230,
+    "Equipos": 45,
+    "Torneos": 23,
+    "Canchas": 25,
+    "Partidos Totales": 60
+  }
+]}
+       keys={[
+         "Usuarios",
+         "Equipos",
+         "Torneos",
+         "Canchas",
+         "Partidos Totales"
+       ]}
+       margin={{
+           "top": 50,
+           "right": 110,
+           "bottom": 50,
+           "left": 60
+       }}
+       axisBottom={{
+           "orient": "bottom",
+           "tickSize": 5,
+           "tickPadding": 5,
+           "tickRotation": 0,
+           "legend": "",
+           "legendOffset": 36
+       }}
+       colors="set1"
+       offsetType="none"
+       fillOpacity={0.85}
+       borderColor="black"
+       defs={[
+           {
+               "id": "dots",
+               "type": "patternDots",
+               "background": "inherit",
+               "color": "#2c998f",
+               "size": 4,
+               "padding": 2,
+               "stagger": true
+           },
+           {
+               "id": "squares",
+               "type": "patternSquares",
+               "background": "inherit",
+               "color": "#e4c912",
+               "size": 6,
+               "padding": 2,
+               "stagger": true
+           }
+       ]}
+
+       animate={true}
+       motionStiffness={90}
+       motionDamping={15}
+
+   />
+
+    </ div>
+    <div className="admin2">
+    <h1 className="stats2"> Enero &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;   Febrero &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  Marzo &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Abril
+    &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Mayo &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Junio &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; Julio &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+     Agosto &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; Septiembre &nbsp; &nbsp;&nbsp; &nbsp;  Octubre &nbsp; &nbsp; &nbsp; &nbsp;
+      Noviembre &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; </h1>
     </ div>
     </center>
 

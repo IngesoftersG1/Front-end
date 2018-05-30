@@ -94,8 +94,19 @@ h4,h3,h5 {
 
 .admin{
   margin-top: 100px;
-  height: 700px;
-  width: 1500px;
+  margin-bottom: 0px;
+  height: 900px;
+  width: 1200px;
+  background-color: black;
+  opacity: 0.92;
+  font-size: 20px;
+}
+
+.admin2{
+  margin-top: 0px;
+  margin-bottom: 150px;
+  height: 60px;
+  width: 1200px;
   background-color: black;
   opacity: 0.92;
   font-size: 20px;
@@ -436,8 +447,14 @@ SITE
 
   width: 1500px;
 }
+
 .title-stats{
   padding-top: 30px;
+  margin-bottom: 0px;
+}
+
+.stats2{
+  font-size: 15px;
   margin-bottom: 0px;
 }
 
